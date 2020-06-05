@@ -1,0 +1,10 @@
+{
+    "include":[
+        "src/**/*.ts"
+    ],
+    "compilerOption" : {
+        "noImplicitAny" : true,
+        "target" : "es5",
+        "sourcemap" : true
+    }
+}
