@@ -16,7 +16,8 @@
     "express": "^4.17.1",
     "mongo": "^0.1.0",
     "mongoose": "^5.9.17",
-    "nodemailer": "^6.4.8"
+    "nodemailer": "^6.4.8",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
