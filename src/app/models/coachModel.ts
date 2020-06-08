@@ -1,6 +1,6 @@
 import mongoose = require('mongoose')
 
-let Coach = {
+let CoachInterface  = {
 
   firstName: String, //think we'll have to split name into 2
   lastName: String,
@@ -15,6 +15,7 @@ let Coach = {
   town: String,
   county: String,
   postcode: String, // can typehint a postcode with regex?
+  location: Object, //needs to be location typehinted probably
 
   qualifications: Array, //array best way to handle multiple?
   yearsCoaching: Number,
@@ -48,6 +49,5 @@ let Coach = {
 //   password: ''
 // }
 
-let coachSchema : mongoose.Schema = new mongoose.Schema(Coach, {collection: 'coach'})
-
-export default mongoose.model('coach', coachSchema)
+let coachSchema : mongoose.Schema = new mongoose.Schema(CoachInterface, {collection: 'coach'})
+export default mongoose.model('Coach', coachSchema)

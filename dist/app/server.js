@@ -3,6 +3,7 @@ exports.__esModule = true;
 var express = require("express");
 var routes_1 = require("./routes");
 var db_1 = require("./db");
+//unused const required due to typescript import elision if db not used
 var database = db_1.db;
 var app = express();
 var port = 3000;

@@ -39,50 +39,18 @@ exports.__esModule = true;
 var coachModel_1 = require("../app/models/coachModel");
 function sendFormInfo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var aCoach, coach, data, responseData_1, responseData;
+        var aCoach, coach;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    aCoach = {
-                        firstName: 'James',
-                        lastName: 'Waterhouse',
-                        email: '',
-                        phone: '',
-                        dob: '',
-                        houseNumber: 0,
-                        houseName: '',
-                        address1: '',
-                        address2: '',
-                        town: '',
-                        county: '',
-                        postcode: '',
-                        qualifications: [''],
-                        yearsCoaching: 0,
-                        sport: '',
-                        expertise: '',
-                        password: ''
-                    };
-                    coach = new coachModel_1["default"](aCoach) // not sure about typehint
-                    ;
-                    return [4 /*yield*/, coach.insertOne(coach)]; // not sure about typehint
-                case 1:
-                    data = _a.sent() // not sure about typehint
-                    ;
-                    if (data.insertedCount == 1) {
-                        responseData_1 = {
-                            status: "success",
-                            message: "Coach successfully added!",
-                            data: coach
-                        };
-                        return [2 /*return*/, res.json(responseData_1)];
-                    }
-                    responseData = {
-                        status: "failure",
-                        message: "error adding coach",
-                        data: {}
-                    };
-                    return [2 /*return*/, res.json(responseData)];
+            aCoach = req.params.task;
+            try {
+                coach = new coachModel_1["default"](aCoach);
+                console.log(coach);
+                coach.save();
             }
+            catch (error) {
+                console.log(error);
+            }
+            return [2 /*return*/];
         });
     });
 }
