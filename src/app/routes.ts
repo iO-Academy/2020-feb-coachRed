@@ -5,7 +5,7 @@ const app = express();
 
 const routes = (app : express.Application) :void => {
     app.get('/sport', getAllSports)
-    app.post('/newCoach/:coach', sendFormInfo)
+    app.post('/coach', sendFormInfo)
 }
 
 export default routes

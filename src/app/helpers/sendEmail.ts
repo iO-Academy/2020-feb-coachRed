@@ -1,33 +1,30 @@
-import express = require('express')
 import nodemailer = require("nodemailer")
 
-let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: 'coach.red.proto', // gmail user
-        pass: 'Mayden123', // gmail password
-    },
-})
+export default (aCoach) => {
 
-let toEmailAddress : string = 'james.waterhouse@yahoo.co.uk'
+    let transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: 'coach.red.proto', // gmail user
+            pass: 'Mayden123', // gmail password
+        },
+    })
 
-let mailOptions : object = {
-    from: '"Coach Red" <Coach.Red.Proto@gmail.com>', // sender address
-    to: toEmailAddress, // receiver
-    subject: "You successfully registered!", // Subject line
-    text: "Write text here", // plain text body
-    html: "<b>Write email content here</b>", // html body
-}
-
-transporter.sendMail(mailOptions, function (error: object, info: any) {
-
-    if (error) {
-        console.log(error)
-    } else {
-        console.log('Email sent: ' + info.response)
+    let mailOptions : object = {
+        from: '"Coach Red" <Coach.Red.Proto@gmail.com>', // sender address
+        to: aCoach.email , // receiver
+        subject: "You successfully registered!", // Subject line
+        text: `Hi ${aCoach.firstName}, You have successfully registered Sincerely Coach Red`, // plain text body
+        html: `<p>Hi ${aCoach.firstName}, You have successfully registered Sincerely Coach Red</p>`, // html body
     }
-});
 
-const app : express.Application = express()
+    transporter.sendMail(mailOptions, function (error: object, info: any) {
 
-app.listen(3000)
+        if (error) {
+            console.log(error)
+        } else {
+            console.log('Email sent: ' + info.response)
+        }
+    });
+
+}

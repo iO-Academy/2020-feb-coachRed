@@ -1,10 +1,11 @@
 import express = require('express')
 import Coach from '../models/coachModel'
 import mongoose = require('mongoose')
+import sendEmail from '../helpers/sendEmail'
 
 async function sendFormInfo(req: express.Request, res: express.Response) {
   
-    let aCoach = req.params.coach
+    let aCoach = req.body
 
     try {
     
@@ -14,7 +15,7 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
       
         coach.save()
 
-        
+        sendEmail(aCoach)
 
         res.status(200).json(
             {

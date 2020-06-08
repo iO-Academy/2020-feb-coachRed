@@ -37,15 +37,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var coachModel_1 = require("../models/coachModel");
+var sendEmail_1 = require("../helpers/sendEmail");
 function sendFormInfo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var aCoach, coach;
         return __generator(this, function (_a) {
-            aCoach = req.params.coach;
+            aCoach = req.body;
             try {
                 coach = new coachModel_1["default"](aCoach);
                 console.log(coach);
                 coach.save();
+                sendEmail_1["default"](aCoach);
                 res.status(200).json({
                     status: 'success',
                     message: 'coach successfully added',
