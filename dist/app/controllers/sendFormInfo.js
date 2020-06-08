@@ -38,29 +38,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var coachModel_1 = require("../models/coachModel");
 var sendEmail_1 = require("../helpers/sendEmail");
+var validators_1 = require("../helpers/validators");
 function sendFormInfo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var aCoach, coach;
         return __generator(this, function (_a) {
             aCoach = req.body;
-            try {
-                coach = new coachModel_1["default"](aCoach);
-                console.log(coach);
-                coach.save();
-                sendEmail_1["default"](aCoach);
-                res.status(200).json({
-                    status: 'success',
-                    message: 'coach successfully added',
-                    data: coach
-                });
+            if (validators_1["default"](aCoach)) {
+                try {
+                    coach = new coachModel_1["default"](aCoach);
+                    console.log(coach);
+                    coach.save();
+                    sendEmail_1["default"](aCoach);
+                    res.status(200).json({
+                        status: 'success',
+                        message: 'coach successfully added',
+                        data: coach
+                    });
+                }
+                catch (error) {
+                    console.log(error);
+                    res.status(500).json({
+                        status: 'unsuccessful',
+                        message: 'coach not registered'
+                    });
+                }
             }
-            catch (error) {
-                console.log(error);
-                res.status(500).json({
-                    status: 'unsuccessful',
-                    message: 'coach not registered'
-                });
-            }
+            res.send('failed validation');
             return [2 /*return*/];
         });
     });

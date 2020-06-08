@@ -17,37 +17,13 @@ let CoachInterface  = {
   postcode: String, // can typehint a postcode with regex?
   location: Object, //needs to be location typehinted probably
 
-  qualifications: Array, //array best way to handle multiple?
+  qualifications: String, //array best way to handle multiple?
   yearsCoaching: Number,
   sport: String, // list from database. Typehint to sport?
   expertise: String,
 
   password: String //obvs needs sorting out
 }
-
-// let coach: Coach = {
-
-//   firstName: '',  
-//   lastName: '',
-//   email: '', 
-//   phone: '', 
-//   dob: '',
-  
-//   houseNumber: 0,
-//   houseName: '',
-//   address1: '',
-//   address2: '',
-//   town: '',
-//   county: '',
-//   postcode: '', 
-
-//   qualifications: [''], 
-//   yearsCoaching: 0,
-//   sport: '',
-//   expertise: '',
-
-//   password: ''
-// }
 
 let coachSchema : mongoose.Schema = new mongoose.Schema(CoachInterface, {collection: 'coach'})
 export default mongoose.model('Coach', coachSchema)

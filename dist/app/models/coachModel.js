@@ -15,30 +15,11 @@ var CoachInterface = {
     county: String,
     postcode: String,
     location: Object,
-    qualifications: Array,
+    qualifications: String,
     yearsCoaching: Number,
     sport: String,
     expertise: String,
     password: String //obvs needs sorting out
 };
-// let coach: Coach = {
-//   firstName: '',  
-//   lastName: '',
-//   email: '', 
-//   phone: '', 
-//   dob: '',
-//   houseNumber: 0,
-//   houseName: '',
-//   address1: '',
-//   address2: '',
-//   town: '',
-//   county: '',
-//   postcode: '', 
-//   qualifications: [''], 
-//   yearsCoaching: 0,
-//   sport: '',
-//   expertise: '',
-//   password: ''
-// }
 var coachSchema = new mongoose.Schema(CoachInterface, { collection: 'coach' });
 exports["default"] = mongoose.model('Coach', coachSchema);
