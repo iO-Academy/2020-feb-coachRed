@@ -19,4 +19,4 @@ class Database {
     }
 }
 
-export = new Database()
+export const db = new Database

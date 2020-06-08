@@ -2,10 +2,10 @@
 exports.__esModule = true;
 var express = require("express");
 var routes_1 = require("./routes");
-var mongoose = require("mongoose");
+var db_1 = require("./db");
+var database = db_1.db;
 var app = express();
 var port = 3000;
-mongoose.connect('mongodb://localhost:27017/CoachRed', { useNewUrlParser: true });
 app.use(express.json());
 app.use(express.urlencoded());
 routes_1["default"](app);

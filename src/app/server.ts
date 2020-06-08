@@ -1,7 +1,10 @@
 import express = require('express')
 import routes from './routes'
 import mongoose = require('mongoose')
-import {} from './db'
+import {db} from './db'
+
+const database = db
+
 const app : express.Application = express()
 const port : number = 3000
 

@@ -1,4 +1,6 @@
 "use strict";
+exports.__esModule = true;
+exports.db = void 0;
 var mongoose = require("mongoose");
 var server = '127.0.0.1:27017';
 var database = 'CoachRed';
@@ -16,4 +18,4 @@ var Database = /** @class */ (function () {
     };
     return Database;
 }());
-module.exports = new Database();
+exports.db = new Database;
