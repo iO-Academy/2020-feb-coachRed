@@ -4,7 +4,8 @@ export interface TextInputProps {
     label : string, 
     fieldName : string, 
     fieldData : string,
-    updateParent(fieldData: string): void
+    inputType : string,
+    updateParent(fieldData: string | number): void
 }
 
 export class TextInput extends React.Component<TextInputProps, {}> {
@@ -24,7 +25,7 @@ export class TextInput extends React.Component<TextInputProps, {}> {
         return (
             <div className="formItem">
                 <label htmlFor={this.props.fieldName}>{this.props.label}</label>
-                <input type="text" name={this.props.fieldName} id={this.props.fieldName}
+                <input type={this.props.inputType} name={this.props.fieldName} id={this.props.fieldName}
                 onChange={this.textInputChange}></input>
             </div>
         )

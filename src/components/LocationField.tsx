@@ -16,7 +16,6 @@ export class LocationField extends React.Component<LocationFieldProps, {}> {
                 longitude: position.coords.longitude,
                 latitude: position.coords.latitude
             }
-            console.log(longLat)
             this.props.updateParent(longLat)
         })
     }

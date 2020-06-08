@@ -29,7 +29,6 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
             longitude: location.result.longitude,
             latitude: location.result.latitude
         }
-        console.log(longLat)
         this.props.updateLocation(longLat)
     }
 
