@@ -5,7 +5,7 @@ var sourcemaps = require('gulp-sourcemaps')
 
 var ts = require('gulp-typescript')
 // variable pointing to compiler with settings defined in tsconfig.json
-var tsproject = ts.createProject('tsconfig.json')
+var tsproject = ts.createProject('./tsconfig.json')
 
 // Set up gulp to recognise the Babel JS transpiler
 function compileTS(cb) {
@@ -37,6 +37,7 @@ function watch(cb) {
     // and execute the callback passed as argument 2 if there is a change
     // gulp.watch("source/scss/**/*.scss", compileSass);
     gulp.watch("src/**/*.ts", compileTS);
+    gulp.watch("src/**/*.tsx",compileTS);
     cb();
 }
 
