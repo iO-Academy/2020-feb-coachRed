@@ -36,51 +36,49 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+var getAllSports_1 = require("./controllers/getAllSports");
+var sendFormInfo_1 = require("./controllers/sendFormInfo");
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
-function sendFormInfo(req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        var db, collection, coach, data, responseData_1, responseData, err_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, Client.connect()];
-                case 1:
-                    _a.sent();
-                    db = Client.db('toDo');
-                    collection = db.collection('toDo');
-                    coach = req.params.coach;
-                    return [4 /*yield*/, collection.insertOne({
-                            Task: task,
-                            Done: 0
-                        })];
-                case 2:
-                    data = _a.sent();
-                    console.log(data);
-                    if (data.insertedCount == 1) {
-                        responseData_1 = {
-                            status: "success",
-                            message: "ToDo successfully added!",
-                            data: {}
-                        };
-                        return [2 /*return*/, res.json(responseData_1)];
-                    }
-                    responseData = {
-                        status: "failure",
-                        message: "error getting data from database",
+var routes = function (app) {
+    app.get('/sport', getAllSports_1["default"]);
+    app.post('/newCoach/:coach', sendFormInfo_1["default"]);
+};
+app.post('/addTask/:task', jsonParser, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var db, collection, task, data, responseData_1, responseData;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: 
+            // AddToDo
+            return [4 /*yield*/, Client.connect()];
+            case 1:
+                // AddToDo
+                _a.sent();
+                db = Client.db('toDo');
+                collection = db.collection('toDo');
+                task = req.params.task;
+                return [4 /*yield*/, collection.insertOne({
+                        Task: task,
+                        Done: 0
+                    })];
+            case 2:
+                data = _a.sent();
+                console.log(data);
+                if (data.insertedCount == 1) {
+                    responseData_1 = {
+                        status: "success",
+                        message: "ToDo successfully added!",
                         data: {}
                     };
-                    return [2 /*return*/, res.json(responseData)];
-                case 3:
-                    err_1 = _a.sent();
-                    res.status(404).json({
-                        status: 'fail',
-                        message: err_1
-                    });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
+                    return [2 /*return*/, res.json(responseData_1)];
+                }
+                responseData = {
+                    status: "failure",
+                    message: "error getting data from database",
+                    data: {}
+                };
+                return [2 /*return*/, res.json(responseData)];
+        }
     });
-}
+}); });
+exports["default"] = routes;

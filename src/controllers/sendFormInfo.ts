@@ -1,4 +1,4 @@
-import express = require('express')
+import express = require('../app/node_modules/express')
 const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
 
@@ -9,7 +9,7 @@ async function sendFormInfo(req, res) {
       let db = Client.db('toDo')
       let collection = db.collection('toDo')
   
-      let task = req.params.task
+      let coach = req.params.coach
   
       let data = await collection.insertOne({
           Task: task,
