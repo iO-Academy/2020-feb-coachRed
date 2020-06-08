@@ -24,6 +24,6 @@ let coach: object = {
   password: String //obvs needs sorting out
 }
 
-let clientSchema : mongoose.Schema = new mongoose.Schema(coach, {collection: 'coach'})
+let coachSchema : mongoose.Schema = new mongoose.Schema(coach, {collection: 'coach'})
 
-export default mongoose.model('Client', clientSchema)
+export default mongoose.model('Coach', coachSchema)
