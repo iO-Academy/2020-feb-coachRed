@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var mongoose = require("mongoose");
-var Coach = {
+var CoachInterface = {
     firstName: String,
     lastName: String,
     email: String,
@@ -14,6 +14,7 @@ var Coach = {
     town: String,
     county: String,
     postcode: String,
+    location: Object,
     qualifications: Array,
     yearsCoaching: Number,
     sport: String,
@@ -39,5 +40,5 @@ var Coach = {
 //   expertise: '',
 //   password: ''
 // }
-var coachSchema = new mongoose.Schema(Coach, { collection: 'coach' });
-exports["default"] = mongoose.model('coach', coachSchema);
+var coachSchema = new mongoose.Schema(CoachInterface, { collection: 'coach' });
+exports["default"] = mongoose.model('Coach', coachSchema);
