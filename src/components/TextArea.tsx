@@ -1,14 +1,13 @@
 import * as React from "react"
 
-export interface TextInputProps {
+export interface TextAreaProps {
     label : string, 
     fieldName : string, 
-    fieldData : string | number,
-    inputType : string,
+    fieldData : string | number
     updateParent(fieldData: string | number): void
 }
 
-export class TextInput extends React.Component<TextInputProps, {}> {
+export class TextArea extends React.Component<TextAreaProps, {}> {
     constructor(props: any) {
         super(props)
         this.textInputChange = this.textInputChange.bind(this)
@@ -26,8 +25,8 @@ export class TextInput extends React.Component<TextInputProps, {}> {
         return (
             <div className="formItem">
                 <label htmlFor={this.props.fieldName}>{this.props.label}</label>
-                <input type={this.props.inputType} name={this.props.fieldName} id={this.props.fieldName}
-                onChange={this.textInputChange}></input>
+                <textarea name={this.props.fieldName} id={this.props.fieldName} onChange={this.textInputChange}>
+                </textarea>
             </div>
         )
     }

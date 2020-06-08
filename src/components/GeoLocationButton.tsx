@@ -17,7 +17,7 @@ export class GeoLocationButton extends React.Component<GeoLocationButtonProperti
             let longLat: Location = {
                 longitude: position.coords.longitude,
                 latitude: position.coords.latitude
-            }
+            } 
             console.log(longLat)
             this.props.updateParent(longLat)
         })
