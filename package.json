@@ -2,21 +2,25 @@
   "name": "coachred",
   "version": "0.0.1",
   "description": "coachred prototype app",
-  "main": "app.js",
+  "main": "sendEmail.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon dist/app/server.js"
   },
   "author": "Mayden Academy",
   "license": "ISC",
   "repository": "https://github.com/Mayden-Academy/2020-feb-coachRed",
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
+    "@types/nodemailer": "^6.4.0",
     "bcrypt": "^4.0.1",
     "express": "^4.17.1",
     "mongo": "^0.1.0",
     "mongoose": "^5.9.17",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "nodemailer": "^6.4.8",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.11",
