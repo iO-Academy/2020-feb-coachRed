@@ -39,14 +39,35 @@ exports.__esModule = true;
 var coachModel_1 = require("../app/models/coachModel");
 function sendFormInfo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var coach, data, responseData_1, responseData;
+        var aCoach, coach, data, responseData_1, responseData;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    coach = req.params.coach;
-                    return [4 /*yield*/, coachModel_1["default"].insertOne(coach)];
+                    aCoach = {
+                        firstName: 'James',
+                        lastName: 'Waterhouse',
+                        email: '',
+                        phone: '',
+                        dob: '',
+                        houseNumber: 0,
+                        houseName: '',
+                        address1: '',
+                        address2: '',
+                        town: '',
+                        county: '',
+                        postcode: '',
+                        qualifications: [''],
+                        yearsCoaching: 0,
+                        sport: '',
+                        expertise: '',
+                        password: ''
+                    };
+                    coach = new coachModel_1["default"](aCoach) // not sure about typehint
+                    ;
+                    return [4 /*yield*/, coach.insertOne(coach)]; // not sure about typehint
                 case 1:
-                    data = _a.sent();
+                    data = _a.sent() // not sure about typehint
+                    ;
                     if (data.insertedCount == 1) {
                         responseData_1 = {
                             status: "success",
