@@ -36,5 +36,8 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM"
-    }
+    },
+
+    // Enable watch mode
+    watch: true
 };

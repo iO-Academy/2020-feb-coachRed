@@ -1,9 +1,9 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 
-import { Label } from "./components/Label"
+import { App } from "./app"
 
 ReactDOM.render(
-    <Label content="Hello World!" for=""/>,
+    <App />,
     document.getElementById("root")
 )
