@@ -41,14 +41,23 @@ function sendFormInfo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var aCoach, coach;
         return __generator(this, function (_a) {
-            aCoach = req.params.task;
+            aCoach = req.params.coach;
             try {
                 coach = new coachModel_1["default"](aCoach);
                 console.log(coach);
                 coach.save();
+                res.status(200).json({
+                    status: 'success',
+                    message: 'coach successfully added',
+                    data: coach
+                });
             }
             catch (error) {
                 console.log(error);
+                res.status(500).json({
+                    status: 'unsuccessful',
+                    message: 'coach not registered'
+                });
             }
             return [2 /*return*/];
         });
