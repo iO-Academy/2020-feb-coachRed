@@ -9,12 +9,13 @@ var transporter = nodemailer.createTransport({
         pass: 'Mayden123'
     }
 });
+var toEmailAddress = 'james.waterhouse@yahoo.co.uk';
 var mailOptions = {
     from: '"Coach Red" <Coach.Red.Proto@gmail.com>',
-    to: 'james.waterhouse@yahoo.co.uk',
-    subject: "You successfully regiestered!",
+    to: toEmailAddress,
+    subject: "You successfully registered!",
     text: "Write text here",
-    html: "<b>Write HTML Here</b>"
+    html: "<b>Write email content here</b>"
 };
 transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
