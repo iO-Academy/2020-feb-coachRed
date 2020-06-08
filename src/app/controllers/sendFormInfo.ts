@@ -1,5 +1,5 @@
 import express = require('express')
-import Coach from '../app/models/coachModel'
+import Coach from '../models/coachModel'
 import mongoose = require('mongoose')
 
 async function sendFormInfo(req: express.Request, res: express.Response) {
