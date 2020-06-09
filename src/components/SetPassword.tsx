@@ -55,9 +55,23 @@ export class SetPassword extends React.Component<SetPasswordProps, SetPasswordSt
         return (
             <div className="passwordContainer">
                 <label htmlFor="passwordOne">Enter a Secure Password:</label>
-                <input type="password" name="passwordOne" id="passwordOne" onChange={this.passwordOneChange}></input>
+                <input 
+                    className="form-control"
+                    type="password" 
+                    name="passwordOne" 
+                    id="passwordOne" 
+                    onChange={this.passwordOneChange}
+                    required={true}>
+                </input>
                 <label htmlFor="passwordTwo">Confirm Password:</label>
-                <input type="password" name="passwordTwo" id="passwordTwo" onChange={this.passwordTwoChange}></input>
+                <input 
+                    className="form-control"
+                    type="password" 
+                    name="passwordTwo" 
+                    id="passwordTwo" 
+                    onChange={this.passwordTwoChange}
+                    required={true}>
+                </input>
                 <p>
                     Passwords must be at least 8 characters long and must contain one each of: a lowercase letter,
                     an uppercase letter, and a number.

@@ -8,7 +8,7 @@ export interface SubmitButtonProps {
 export class Submit extends React.Component<SubmitButtonProps,{}> {
     render() {
         return(
-            <button onClick={(e) => this.props.sendResults(e)}>
+            <button onClick={(e) => this.props.sendResults(e)} className="btn btn-danger">
                 {this.props.buttonName}
             </button>
         )

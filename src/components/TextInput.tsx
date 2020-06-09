@@ -5,6 +5,7 @@ export interface TextInputProps {
     fieldName : string, 
     fieldData : string | number,
     inputType : string,
+    isRequired : boolean,
     updateParent(fieldData: string | number): void
 }
 
@@ -26,8 +27,14 @@ export class TextInput extends React.Component<TextInputProps, {}> {
         return (
             <div className="formItem">
                 <label htmlFor={this.props.fieldName}>{this.props.label}</label>
-                <input type={this.props.inputType} name={this.props.fieldName} id={this.props.fieldName}
-                onChange={this.textInputChange}></input>
+                <input 
+                    className="form-control"
+                    type={this.props.inputType} 
+                    name={this.props.fieldName} 
+                    id={this.props.fieldName}
+                    required={this.props.isRequired} 
+                    onChange={this.textInputChange} >
+                </input>
             </div>
         )
     }
