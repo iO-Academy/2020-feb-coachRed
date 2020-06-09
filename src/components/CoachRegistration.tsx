@@ -69,106 +69,23 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
         this.sendResults=this.sendResults.bind(this)
     }
 
-    updateFirstName(newFName: string) {
-        this.setState({
-            firstName: newFName
-        })
-    }
-
-    updateLastName(newLName: string) {
-        this.setState({
-            firstName: newLName
-        })
-    }
-
-    updateEmail(newEmail: string) {
-        this.setState({
-            email: newEmail
-        })
-    }
-
-    updatePhone(newPhone: string) {
-        this.setState({
-            phone: newPhone
-        })
-    }
-
-    updateDateOfBirth(newDOB: string) {
-        this.setState({
-            dob: newDOB
-        })
-    }
-
-    updateLocation(newLoc: Location) {
-        this.setState({
-            location: newLoc
-        })
-    }
-
-    updateAddress1(newAddr1: string) {
-        this.setState({
-            address1: newAddr1
-        })
-    }
-
-    updateAddress2(newAddr2: string) {
-        this.setState({
-            address2: newAddr2
-        })
-    }
-
-    updateTown(newTown: string) {
-        this.setState({
-            town: newTown
-        })
-    }
-
-    updateCounty(newCounty: string) {
-        this.setState({
-            county: newCounty
-        })
-    }
-
-    updatePostcode(newPS: string) {
-        this.setState({
-            postcode: newPS
-        })
-    }
-
-    updateQualifications(newQuals: string) {
-        this.setState({
-            qualifications: newQuals
-        })
-    }
-
-    updateYearsTraining(newYT: number) {
-        this.setState({
-            yearsTeaching: newYT
-        })
-    }
-
-    updateSport(newSport: string) {
-        this.setState({
-            sport: newSport
-        })
-    }
-
-    updateAreaOfExpertise(newAOE: string) {
-        this.setState({
-            expertise: newAOE
-        })
-    }
-
-    updatePassword(newPass: string) {
-        this.setState({
-            password: newPass
-        })
-    }
-
-    sendResults(e: any) {
-        e.preventDefault()
-        console.log(this.state)
-    }
+    updateFirstName(newFName: string) {this.setState({firstName: newFName})}
+    updateLastName(newLName: string) {this.setState({firstName: newLName})}
+    updateEmail(newEmail: string) {this.setState({email: newEmail})}
+    updatePhone(newPhone: string) {this.setState({phone: newPhone})}
+    updateDateOfBirth(newDOB: string) {this.setState({dob: newDOB})}
+    updateLocation(newLoc: Location) {this.setState({location: newLoc})}
+    updateAddress1(newAddr1: string) {this.setState({address1: newAddr1})}
+    updateAddress2(newAddr2: string) {this.setState({address2: newAddr2})}
+    updateTown(newTown: string) {this.setState({town: newTown})}
+    updateCounty(newCounty: string) {this.setState({county: newCounty})}
+    updatePostcode(newPS: string) {this.setState({postcode: newPS})}
+    updateQualifications(newQuals: string) {this.setState({qualifications: newQuals})}
+    updateYearsTraining(newYT: number) {this.setState({yearsTeaching: newYT})}
+    updateSport(newSport: string) {this.setState({sport: newSport})}
+    updateAreaOfExpertise(newAOE: string) {this.setState({expertise: newAOE})}
+    updatePassword(newPass: string) {this.setState({password: newPass})}
+    sendResults(e: any) {e.preventDefault(); console.log(this.state)}
 
     render() {
         return(
