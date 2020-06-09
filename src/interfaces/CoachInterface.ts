@@ -6,7 +6,7 @@ export interface CoachInterface  {
     phone: string, 
     dob: string,
     
-    houseNumber: Number, //  either number or name
+    houseNumber: number, //  either number or name
     houseName: string, // either number or name
     address1: string,
     address2: string,
@@ -16,7 +16,7 @@ export interface CoachInterface  {
     location: Object, //needs to be location typehinted probably
   
     qualifications: string, //array best way to handle multiple?
-    yearsCoaching: Number,
+    yearsCoaching: string,
     sport: string, // list from database. Typehint to sport?
     expertise: string,
   
