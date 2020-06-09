@@ -2,8 +2,6 @@ import validator from "validator"
 import { CoachInterface } from "../../interfaces/CoachInterface"
 
 function coachValidator(coach: CoachInterface) {
-  
-  console.log(coach.yearsCoaching)
 
   let firstName = (!validator.isEmpty(coach.firstName) && validator.isAlpha(coach.firstName)) ? true : false
   
@@ -21,7 +19,7 @@ function coachValidator(coach: CoachInterface) {
 
   let address2 = (validator.isEmpty(coach.address2) || validator.matches(coach.address2, /^[a-z0-9 ]+$/i)) ? true : false
 
-  let town = (!validator.isEmpty(coach.town) && validator.matches(coach.address2, /^[a-z ]+$/i)) ? true : false
+  let town = (!validator.isEmpty(coach.town) && validator.matches(coach.town, /^[a-z ]+$/i)) ? true : false
 
   let county = (!validator.isEmpty(coach.county) && validator.matches(coach.county, /^[a-z ]+$/i)) ? true : false
 
