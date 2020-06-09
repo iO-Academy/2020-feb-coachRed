@@ -1,0 +1,21 @@
+$backgroundLight: #FFFFFF;
+$mainFontColour: #000000;
+
+.dropdownContainer {
+    position: relative;
+
+    .dropdownItems {
+        position:absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+
+        background-color: $backgroundLight;
+        border: 1px solid $mainFontColour;
+        border-radius: 5px;
+
+        .dropdownItem {
+            padding: 0.5em;
+        }
+    }
+}

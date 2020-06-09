@@ -25,7 +25,11 @@ export class TextArea extends React.Component<TextAreaProps, {}> {
         return (
             <div className="formItem">
                 <label htmlFor={this.props.fieldName}>{this.props.label}</label>
-                <textarea name={this.props.fieldName} id={this.props.fieldName} onChange={this.textInputChange}>
+                <textarea
+                    className="form-control" 
+                    name={this.props.fieldName} 
+                    id={this.props.fieldName} 
+                    onChange={this.textInputChange}>
                 </textarea>
             </div>
         )

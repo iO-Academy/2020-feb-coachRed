@@ -31,7 +31,9 @@ export class LocationField extends React.Component<LocationFieldProps, {}> {
         }
         return (
         <div className="locationField">
-            <button onClick={this.getLocation}>Get Location</button>
+            <button onClick={this.getLocation} className="btn btn-danger">
+                Get Location
+            </button>
         </div>)
     }
 }
