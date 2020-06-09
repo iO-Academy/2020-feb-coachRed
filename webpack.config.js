@@ -9,6 +9,10 @@ module.exports = {
         extensions: [".ts", ".tsx"]
     },
 
+    output: {
+        filename: "public/scripts/main.js"
+    },
+
     module: {
         rules: [
             {

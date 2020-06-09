@@ -1,6 +1,7 @@
 {
     "include":[
-        "./src/components/**/*.ts", "./src/components/**/*.tsx","/src/index.tsx","/src/app.tsx"
+        "src/components/**/*.ts", "src/components/**/*.tsx","src/index.tsx",
+        "src/app.tsx"
     ],
     "compilerOptions" : {
         "noImplicitAny" : true,
