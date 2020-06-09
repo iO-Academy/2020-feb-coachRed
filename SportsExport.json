@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "5edf9f40e738cb460b53b8e1"
+  },
+  "name": "Rugby"
+},{
+  "_id": {
+    "$oid": "5edf9f779717d2eb6111d9ab"
+  },
+  "name": "Netball"
+}]

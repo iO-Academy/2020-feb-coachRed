@@ -33,7 +33,11 @@ export class App extends React.Component<{}, AppState> {
                         </div>
                     </div>
                 </div>
-                <footer className="footer bg-light"><p><small>© Coach Red 2020</small></p></footer>
+                <footer className="footer bg-light">
+                    <p><small>© Coach Red 2020</small></p>
+                    <a href="#"><img src="images/twitter.png"></img></a>
+                    <a href="#"><img src="images/facebook.png"></img></a>
+                </footer>
             </div>
         )
     }

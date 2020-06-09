@@ -1,8 +1,8 @@
 @import '__defines';
 
 #navbar {
-    position: fixed;
-    top: 0;
+    position: sticky;
+    top: -1px;
     border-bottom: 1px solid $mainFontColour;
     z-index: 1;
     width: 100%;

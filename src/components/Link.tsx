@@ -28,7 +28,6 @@ export class Link extends React.Component<LinkProperties, {}> {
 
     updatePage(e: React.MouseEvent) {
         e.preventDefault()
-        console.log('click!')
         this.props.updateDisplayedPage(this.props.pageToLoad)
     }
 }

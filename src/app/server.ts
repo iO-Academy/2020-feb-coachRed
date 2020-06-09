@@ -1,6 +1,5 @@
 import express = require('express')
 import routes from './routes'
-import mongoose = require('mongoose')
 import { db } from './db'
 import expressmongosanitize = require('express-mongo-sanitize')
 

@@ -23,6 +23,7 @@ let CoachSchema  = {
   expertise: String,
 
   password: String //obvs needs sorting out
+  
 }
 
 let coachSchema : mongoose.Schema = new mongoose.Schema(CoachSchema, {collection: 'coach'})

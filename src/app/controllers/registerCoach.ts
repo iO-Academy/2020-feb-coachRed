@@ -8,11 +8,11 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
   
     let aCoach = req.body
 
-    await BCrypt.hash(aCoach.password, 10, (err, hash) => {
-     
+    await BCrypt.hash(aCoach.password, 10, async (err, hash) => {
+    
         aCoach.password = hash
         
-        if (coachValidator(aCoach)) {
+        if (await coachValidator(aCoach)) {
 
             try {
         
