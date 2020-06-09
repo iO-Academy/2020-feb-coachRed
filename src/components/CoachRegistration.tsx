@@ -61,6 +61,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
         this.updateAddress1=this.updateAddress1.bind(this)
         this.updateAddress2=this.updateAddress2.bind(this)
         this.updateTown=this.updateTown.bind(this)
+        this.updateCounty=this.updateCounty.bind(this)
         this.updateQualifications=this.updateQualifications.bind(this)
         this.updateYearsTraining=this.updateYearsTraining.bind(this)
         this.updateSport=this.updateSport.bind(this)
@@ -70,7 +71,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
     }
 
     updateFirstName(newFName: string) {this.setState({firstName: newFName})}
-    updateLastName(newLName: string) {this.setState({firstName: newLName})}
+    updateLastName(newLName: string) {this.setState({lastName: newLName})}
     updateEmail(newEmail: string) {this.setState({email: newEmail})}
     updatePhone(newPhone: string) {this.setState({phone: newPhone})}
     updateDateOfBirth(newDOB: string) {this.setState({dob: newDOB})}
@@ -85,7 +86,18 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
     updateSport(newSport: string) {this.setState({sport: newSport})}
     updateAreaOfExpertise(newAOE: string) {this.setState({expertise: newAOE})}
     updatePassword(newPass: string) {this.setState({password: newPass})}
-    sendResults(e: any) {e.preventDefault(); console.log(this.state)}
+    async sendResults (e: any) {
+        e.preventDefault(); 
+        let response = await fetch('http://localhost:3000/coach', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        })
+        let data = await response.json()
+        console.log(data)
+    }
 
     render() {
         return(
