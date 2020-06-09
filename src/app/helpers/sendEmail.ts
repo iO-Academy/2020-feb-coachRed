@@ -1,6 +1,6 @@
 import nodemailer = require("nodemailer")
-
-export default (aCoach) => {
+import { CoachInterface } from "../../interfaces/CoachInterface"
+export default (aCoach: CoachInterface) => {
 
     let transporter = nodemailer.createTransport({
         service: "gmail",

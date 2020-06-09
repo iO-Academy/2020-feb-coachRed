@@ -1,6 +1,6 @@
 import mongoose = require('mongoose')
 
-let CoachInterface  = {
+let CoachSchema  = {
 
   firstName: String, //think we'll have to split name into 2
   lastName: String,
@@ -25,5 +25,5 @@ let CoachInterface  = {
   password: String //obvs needs sorting out
 }
 
-let coachSchema : mongoose.Schema = new mongoose.Schema(CoachInterface, {collection: 'coach'})
+let coachSchema : mongoose.Schema = new mongoose.Schema(CoachSchema, {collection: 'coach'})
 export default mongoose.model('Coach', coachSchema)

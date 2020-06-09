@@ -16,7 +16,10 @@ module.exports = {
                 include: /src\/[components,index,app]/,
                 use: [
                     {
-                        loader: "ts-loader"
+                        loader: "ts-loader",
+                        options: {
+                            configFile: "tsconfig.webpack.json"
+                        }
                     }
                 ]
             },

@@ -1,6 +1,7 @@
-import validator = require ('validator') 
+import validator from "validator"
+import { CoachInterface } from "../../interfaces/CoachInterface"
 
-function coachValidator(coach) {
+function coachValidator(coach : CoachInterface) {
 
   let valid = false
 
@@ -12,7 +13,7 @@ function coachValidator(coach) {
 
   let phone = validator.isNumeric(coach.phone) ? true : false
  
-  let postCode = validator.isPostalCode(coach.postCode, 'GB') ? true : false
+  let postCode = validator.isPostalCode(coach.postcode, 'GB') ? true : false
 
   return firstName && lastName && email && phone && postCode
 }
