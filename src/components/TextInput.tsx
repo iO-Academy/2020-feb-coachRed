@@ -19,7 +19,6 @@ export class TextInput extends React.Component<TextInputProps, {}> {
     // have a value attribute
     textInputChange(event: any){
         this.setState({fieldData: event.target.value})
-        console.log(event.target.value)
         this.props.updateParent(event.target.value)
     }
 
