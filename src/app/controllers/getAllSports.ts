@@ -14,7 +14,10 @@ export default (req : express.Request, res : express.Response) => {
     } catch (err) {
         res.status(404).json({
             status: 'fail',
-            message: err
+            message: "Unable to get list of sports",
+            data: {
+                error: err
+            }
         })
     }
 }

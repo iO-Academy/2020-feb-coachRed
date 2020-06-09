@@ -15,16 +15,9 @@ export default (aCoach: CoachInterface) => {
         to: aCoach.email , // receiver
         subject: "You successfully registered!", // Subject line
         text: `Hi ${aCoach.firstName}, You have successfully registered Sincerely Coach Red`, // plain text body
-        html: `<p>Hi ${aCoach.firstName}, You have successfully registered Sincerely Coach Red</p>`, // html body
+        html: `<p>Hi ${aCoach.firstName}, You have successfully registered <br> Sincerely Coach Red</p>`, // html body
     }
 
-    transporter.sendMail(mailOptions, function (error: object, info: any) {
-
-        if (error) {
-            console.log(error)
-        } else {
-            console.log('Email sent: ' + info.response)
-        }
-    });
+    transporter.sendMail(mailOptions, function (error: object, info: any) {});
 
 }

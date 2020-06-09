@@ -1,6 +1,5 @@
 import express = require('express')
 import Coach from '../models/coachModel'
-import mongoose = require('mongoose')
 import sendEmail from '../helpers/sendEmail'
 import coachValidator from '../helpers/validators'
 import * as BCrypt from 'bcrypt'
@@ -13,8 +12,6 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
      
         aCoach.password = hash
         
-        console.log(aCoach.password)
-
         if (coachValidator(aCoach)) {
 
             try {
@@ -36,12 +33,13 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
     
             catch (error) {
 
-                console.log(error)
-
                 res.status(500).json(
                     {
                         status: 'unsuccessful',
-                        message: 'coach not registered'
+                        message: 'coach not registered',
+                        data: {
+                            error: error
+                        }
                     }
                 )
 
@@ -51,7 +49,8 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
             res.status(400).json(
                 {
                     status: 'unsuccessful',
-                    message: 'coach not registered data not validated'
+                    message: 'coach not registered data not validated',
+                    data: {}
                 }
             )
         }
