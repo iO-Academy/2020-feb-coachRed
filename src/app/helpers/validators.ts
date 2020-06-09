@@ -1,7 +1,9 @@
 import validator from "validator"
 import { CoachInterface } from "../../interfaces/CoachInterface"
 
-function coachValidator(coach : CoachInterface) {
+function coachValidator(coach: CoachInterface) {
+  
+  console.log(coach.yearsCoaching)
 
   let firstName = (!validator.isEmpty(coach.firstName) && validator.isAlpha(coach.firstName)) ? true : false
   
@@ -9,7 +11,7 @@ function coachValidator(coach : CoachInterface) {
   
   let email = (!validator.isEmpty(coach.email) && validator.isEmail(coach.email)) ? true : false
 
-  let phone = (!validator.isEmpty(coach.phone) && validator.isNumeric(coach.phone)) ? true : false
+  let phone = (!validator.isEmpty(coach.phone) && validator.matches(coach.phone, /^[0-9 +]+$/i)) ? true : false
 
   let dob = (!validator.isEmpty(coach.dob)) ? true : false
  
@@ -25,14 +27,26 @@ function coachValidator(coach : CoachInterface) {
 
   let qualifications = (!validator.isEmpty(coach.qualifications) && validator.isAlpha(coach.qualifications)) ? true : false
 
-  // let yearsCoaching = (!validator.isEmpty(coach.yearsCoaching) && validator.isNumeric(coach.yearsCoaching)) ? true : false
+  let yearsCoaching = (!validator.isEmpty(coach.yearsCoaching) && validator.isNumeric(coach.yearsCoaching)) ? true : false
 
   let sport = (!validator.isEmpty(coach.sport) && validator.isAlpha(coach.sport)) ? true : false
 
   let expertise = (!validator.isEmpty(coach.expertise) && validator.isAlpha(coach.expertise)) ? true : false
 
-  let yearsCoaching = true
-
+  // console.log(firstName)
+  // console.log(lastName)
+  // console.log(email)
+  // console.log(phone)
+  // console.log(dob)
+  // console.log(postCode)
+  // console.log(address1)
+  // console.log(address2)
+  // console.log(town)
+  // console.log(county)
+  // console.log(qualifications)
+  // console.log(yearsCoaching)
+  // console.log(sport)
+  // console.log(expertise)
 
   return firstName && lastName && email && phone && dob && postCode && address1 && address2 && town && county && qualifications && yearsCoaching && sport && expertise
 }

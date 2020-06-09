@@ -23,7 +23,7 @@ export interface CoachRegistrationState {
     town: string | null,
     county: string | null,
     qualifications: string | null,
-    yearsTeaching: number | null,
+    yearsCoaching: number | null,
     sport: string | null,
     expertise: string | null,
     password: string | null
@@ -46,7 +46,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
             town: null,
             county: null,
             qualifications: null,
-            yearsTeaching: null,
+            yearsCoaching: null,
             sport: "Rugby",
             expertise: null,
             password: null
@@ -82,7 +82,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
     updateCounty(newCounty: string) {this.setState({county: newCounty})}
     updatePostcode(newPS: string) {this.setState({postcode: newPS})}
     updateQualifications(newQuals: string) {this.setState({qualifications: newQuals})}
-    updateYearsTraining(newYT: number) {this.setState({yearsTeaching: newYT})}
+    updateYearsTraining(newYT: number) {this.setState({yearsCoaching: newYT})}
     updateSport(newSport: string) {this.setState({sport: newSport})}
     updateAreaOfExpertise(newAOE: string) {this.setState({expertise: newAOE})}
     updatePassword(newPass: string) {this.setState({password: newPass})}
@@ -126,7 +126,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
                 <TextArea label="Tell us about you and your qualifications" fieldName="qualifications"
                 fieldData={this.state.qualifications} updateParent={this.updateQualifications} />
                 <TextInput label="How long have you been coaching?" fieldName="yearsTraining" 
-                fieldData={this.state.yearsTeaching} inputType="number"  isRequired={true} 
+                fieldData={this.state.yearsCoaching} inputType="number"  isRequired={true} 
                 updateParent={this.updateYearsTraining} />
                 <Dropdown label="What sport will you be coaching?" options={["Rugby", "Netball"]} fieldName="sport"
                 updateParent={this.updateSport}/>
