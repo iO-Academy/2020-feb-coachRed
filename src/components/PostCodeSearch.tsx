@@ -6,7 +6,8 @@ interface Location {
 }
 export interface PostCodeSearchProperties {
     updateLocation(newLoc: Location): void,
-    updateParent(newPS: string) : void
+    updateParent(newPS: string) : void,
+    isRequired : boolean
 }
 export interface PostCodeSearchState {postcode: string}
 
@@ -43,8 +44,17 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
         return ( 
             <form>
                 <label htmlFor ='postcode'>Postcode</label>
-                <input type='text' onChange={this.postcodeInputChange} name='postcode'/>
-                <input type='submit' onClick={this.getLocation} value='Search'/>
+                <input 
+                    className="form-control"
+                    type='text' 
+                    onChange={this.postcodeInputChange} 
+                    name='postcode' 
+                    required={this.props.isRequired}/>
+                <input 
+                    className="btn btn-danger"
+                    type='submit' 
+                    onClick={this.getLocation} 
+                    value='Search'/>
             </form>
         );
     }

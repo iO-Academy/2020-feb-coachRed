@@ -22,7 +22,8 @@ export class Dropdown extends React.Component<DropdownProperties, DropdownState>
             <div className="dropdownContainer">
                 <label htmlFor={this.props.fieldName}>{this.props.label}</label>
                 <div id={this.props.fieldName} className="dropdown">
-                    <div className="selectedItem" onClick={(e) => this.showDropDownItems(e)}>
+                    <div className="selectedItem btn btn-danger dropdown-toggle" 
+                    onClick={(e) => this.showDropDownItems(e)}>
                         {this.state.fieldData}
                     </div>
                     {this.state.dropdownVisible && <div className="dropdownItems">

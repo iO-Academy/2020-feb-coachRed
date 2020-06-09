@@ -6,7 +6,13 @@ export class App extends React.Component {
     
     render() {
         return(
-            <CoachRegistration></CoachRegistration>
+            <div className="container">
+                <div className="row">
+                    <div className="coachRegistration col-10 offset-1 bg-light">
+                        <CoachRegistration></CoachRegistration>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
