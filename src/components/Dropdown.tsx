@@ -53,8 +53,9 @@ export class Dropdown extends React.Component<DropdownProperties, DropdownState>
 
     showDropDownItems(e: React.MouseEvent) : void {
         e.preventDefault()
+        let dropdownToggle = !(this.state.dropdownVisible)
         this.setState({
-            dropdownVisible: true
+            dropdownVisible: dropdownToggle
         })
     }
 }
