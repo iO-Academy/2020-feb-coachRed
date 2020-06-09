@@ -1,6 +1,6 @@
 import express = require('express')
 import getAllSports from './controllers/getAllSports'
-import sendFormInfo from './controllers/sendFormInfo'
+import sendFormInfo from './controllers/registerCoach'
 const app = express();
 
 const routes = (app : express.Application) :void => {
