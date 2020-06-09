@@ -13,8 +13,6 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
         try {
         
             let coach = new Coach(aCoach)
-            
-            console.log(coach)
         
             coach.save()
 
@@ -41,8 +39,10 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
             )
 
         }
-    } 
-    res.send('failed validation')
+    } else {
+        
+        res.send('failed validation')
+    }
 }
 
 export default sendFormInfo
