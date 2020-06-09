@@ -3,10 +3,15 @@ import Coach from '../models/coachModel'
 import mongoose = require('mongoose')
 import sendEmail from '../helpers/sendEmail'
 import coachValidator from '../helpers/validators'
+import * as BCrypt from 'bcrypt'
 
 async function sendFormInfo(req: express.Request, res: express.Response) {
   
     let aCoach = req.body
+
+    await BCrypt.hash(aCoach.password, 10, (err, hash) => {
+        aCoach.password = hash
+    })
 
     if (coachValidator(aCoach)) {
 
