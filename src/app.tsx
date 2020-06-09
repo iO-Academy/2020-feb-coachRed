@@ -33,6 +33,7 @@ export class App extends React.Component<{}, AppState> {
                         </div>
                     </div>
                 </div>
+                <footer className="footer bg-light"><p><small>© Coach Red 2020</small></p></footer>
             </div>
         )
     }

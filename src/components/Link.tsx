@@ -14,11 +14,15 @@ export class Link extends React.Component<LinkProperties, {}> {
 
     render() {
         return(
-            <a  href="#"
-                onClick = {this.updatePage}
-            >
-                {this.props.label}
-            </a>
+            <li className="nav-item">
+                <a  
+                    className="nav-link"
+                    href="#"
+                    onClick = {this.updatePage}
+                >
+                    {this.props.label}
+                </a>
+            </li>
         )
     }
 

@@ -1,6 +1,4 @@
-$backgroundLight: #FFFFFF;
-$mainFontColour: #000000;
-
+@import '__defines';
 
 label {
     padding-top: 2em;
@@ -10,6 +8,6 @@ label {
     margin-top: 1em;
 }
 
-.coachRegistration {
+.pageContent {
     padding-bottom: 2em;
 }

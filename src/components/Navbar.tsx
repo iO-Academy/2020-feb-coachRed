@@ -15,6 +15,7 @@ export class Navbar extends React.Component<navbarProperties, navbarState> {
             <a className="navbar-brand" href="#">
                 {this.props.slogan}
             </a>
+            <ul className="navbar-nav mr-auto">
             {
                 this.props.links.map(link => {
                     return (
@@ -24,6 +25,7 @@ export class Navbar extends React.Component<navbarProperties, navbarState> {
                     )
                 })
             }
+            </ul>
         </nav>)
     }
 }
