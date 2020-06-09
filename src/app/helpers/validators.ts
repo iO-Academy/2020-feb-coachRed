@@ -25,11 +25,14 @@ function coachValidator(coach : CoachInterface) {
 
   let qualifications = (!validator.isEmpty(coach.qualifications) && validator.isAlpha(coach.qualifications)) ? true : false
 
-  let yearsCoaching = (!validator.isEmpty(coach.yearsCoaching) && validator.isNumeric(coach.yearsCoaching)) ? true : false
+  // let yearsCoaching = (!validator.isEmpty(coach.yearsCoaching) && validator.isNumeric(coach.yearsCoaching)) ? true : false
 
   let sport = (!validator.isEmpty(coach.sport) && validator.isAlpha(coach.sport)) ? true : false
 
   let expertise = (!validator.isEmpty(coach.expertise) && validator.isAlpha(coach.expertise)) ? true : false
+
+  let yearsCoaching = true
+
 
   return firstName && lastName && email && phone && dob && postCode && address1 && address2 && town && county && qualifications && yearsCoaching && sport && expertise
 }
