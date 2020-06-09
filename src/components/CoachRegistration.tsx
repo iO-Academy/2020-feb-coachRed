@@ -106,7 +106,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
                 <TextInput label="Address Line 1:" fieldName="addressOne" fieldData={this.state.address1}
                 inputType="text" isRequired={true} updateParent={this.updateAddress1} />
                 <TextInput label="Address Line 2:" fieldName="addressTwo" fieldData={this.state.address2}
-                inputType="text" isRequired={true} updateParent={this.updateAddress2} />
+                inputType="text" isRequired={false} updateParent={this.updateAddress2} />
                 <TextInput label="City" fieldName="town" fieldData={this.state.town}
                 inputType="text" isRequired={true} updateParent={this.updateTown} />
                 <TextInput label="County" fieldName="county" fieldData={this.state.county}
