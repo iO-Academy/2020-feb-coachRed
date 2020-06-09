@@ -24,13 +24,18 @@ export class LocationField extends React.Component<LocationFieldProps, {}> {
         if (this.props.fieldData) {
             return (
                 <div className="locationField">
-                    {this.props.fieldData.latitude}, {this.props.fieldData.longitude}
-                    <button onClick={this.getLocation}>Get Location</button>
+                    <label htmlFor="locationField">Location:</label>
+                    <p>{this.props.fieldData.latitude}, {this.props.fieldData.longitude}</p>
+                    <button onClick={this.getLocation} className="btn btn-danger">
+                        Get Location
+                    </button>
                 </div>
             )
         }
         return (
         <div className="locationField">
+            <label htmlFor="locationField">Location:</label>
+            <p></p>
             <button onClick={this.getLocation} className="btn btn-danger">
                 Get Location
             </button>
