@@ -10,7 +10,7 @@ const app : express.Application = express()
 const port: number = 3000
 
 app.use(express.json())
-app.use(express.static('dist/public/'))
+app.use(express.static(__dirname+'/dist/public/'))
 app.use(express.urlencoded({extended: true}))
 app.use(expressmongosanitize())
 app.use(function(req, res, next) {
