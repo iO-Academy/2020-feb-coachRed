@@ -21,17 +21,17 @@ function coachValidator(coach: CoachInterface) {
 
   let address2 = (validator.isEmpty(coach.address2) || validator.matches(coach.address2, /^[a-z0-9 ]+$/i)) ? true : false
 
-  let town = (!validator.isEmpty(coach.town) && validator.isAlpha(coach.town)) ? true : false
+  let town = (!validator.isEmpty(coach.town) && validator.matches(coach.address2, /^[a-z ]+$/i)) ? true : false
 
-  let county = (!validator.isEmpty(coach.county) && validator.isAlpha(coach.county)) ? true : false
+  let county = (!validator.isEmpty(coach.county) && validator.matches(coach.county, /^[a-z ]+$/i)) ? true : false
 
-  let qualifications = (!validator.isEmpty(coach.qualifications) && validator.isAlpha(coach.qualifications)) ? true : false
+  let qualifications = (!validator.isEmpty(coach.qualifications) && validator.matches(coach.qualifications, /^[a-z0-9 ]+$/i)) ? true : false
 
   let yearsCoaching = (!validator.isEmpty(coach.yearsCoaching) && validator.isNumeric(coach.yearsCoaching)) ? true : false
 
   let sport = (!validator.isEmpty(coach.sport) && validator.isAlpha(coach.sport)) ? true : false
 
-  let expertise = (!validator.isEmpty(coach.expertise) && validator.isAlpha(coach.expertise)) ? true : false
+  let expertise = (!validator.isEmpty(coach.expertise) && validator.matches(coach.expertise, /^[a-z0-9 ]+$/i)) ? true : false
 
   // console.log(firstName)
   // console.log(lastName)
