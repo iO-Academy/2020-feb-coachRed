@@ -41,7 +41,12 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
         }
     } else {
         
-        res.send('failed validation')
+        res.status(400).json(
+            {
+                status: 'unsuccessful',
+                message: 'coach not registered data not validated'
+            }
+        )
     }
 }
 
