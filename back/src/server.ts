@@ -2,6 +2,7 @@ import express = require('express')
 import routes from './routes'
 import mongoose = require('mongoose')
 import { db } from './db'
+require('dotenv').config()
 import expressmongosanitize = require('express-mongo-sanitize')
 
 //unused const required due to typescript import elision if db not used

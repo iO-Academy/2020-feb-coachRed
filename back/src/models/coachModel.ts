@@ -17,6 +17,9 @@ let CoachSchema  = {
   postcode: String, // can typehint a postcode with regex?
   location: Object, //needs to be location typehinted probably
 
+  token: String,
+  salt: String,
+
   qualifications: String, //array best way to handle multiple?
   yearsCoaching: Number,
   sport: String, // list from database. Typehint to sport?

@@ -4,55 +4,62 @@ import mongoose = require('mongoose')
 import sendEmail from '../helpers/sendEmail'
 import coachValidator from '../helpers/validators'
 import * as BCrypt from 'bcrypt'
+import * as jwt from 'jsonwebtoken'
+import config from '../config'
 
 async function sendFormInfo(req: express.Request, res: express.Response) {
   
     let aCoach = req.body
 
-    await BCrypt.hash(aCoach.password, 10, (err, hash) => {
+    aCoach.salt = await BCrypt.genSalt()
+
+    BCrypt.hash(aCoach.password, aCoach.salt, (err, hash) => {
         aCoach.password = hash
-    })
 
-    if (coachValidator(aCoach)) {
+        aCoach.token = jwt.sign({username: aCoach.username, password: aCoach.password}, process.env.SECRET, {
+            expiresIn: 1800 // expires in 30 minutes
+        })
 
-        try {
-        
-            let coach = new Coach(aCoach)
-        
-            coach.save()
+        if (coachValidator(aCoach)) {
 
-            sendEmail(aCoach)
-
-            res.status(200).json(
-                {
-                    status: 'success',
-                    message: 'coach successfully added',
-                    data: coach
-                }
-            )
-        }
+            try {
+            
+                let coach = new Coach(aCoach)
+            
+                coach.save()
     
-        catch (error) {
-
-            console.log(error)
-
-            res.status(500).json(
+                sendEmail(aCoach)
+    
+                res.status(200).json(
+                    {
+                        status: 'success',
+                        message: 'coach successfully added',
+                    }
+                )
+            }
+        
+            catch (error) {
+    
+                console.log(error)
+    
+                res.status(500).json(
+                    {
+                        status: 'unsuccessful',
+                        message: 'coach not registered'
+                    }
+                )
+    
+            }
+        } else {
+            
+            res.status(400).json(
                 {
                     status: 'unsuccessful',
-                    message: 'coach not registered'
+                    message: 'coach not registered data not validated'
                 }
             )
-
         }
-    } else {
-        
-        res.status(400).json(
-            {
-                status: 'unsuccessful',
-                message: 'coach not registered data not validated'
-            }
-        )
-    }
+    })
 }
 
 export default sendFormInfo
