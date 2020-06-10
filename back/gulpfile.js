@@ -18,7 +18,7 @@ function compileTS(cb) {
 
 // Set up gulp to recognise the SCSS CSS framework
 function compileSass(cb) {
-    return gulp.src("src/styles/styles.scss")
+    return gulp.src("front/src/styles/styles.scss")
         // Set up the sourcemaps
         .pipe(sourcemaps.init())
         // Pipe the source code to sass interpreter
@@ -26,7 +26,7 @@ function compileSass(cb) {
         // Add the sourcemap to the end of the compiled CSS
         .pipe(sourcemaps.write())
         // Write the interpreted file to the desired destination
-        .pipe(gulp.dest('dist/public/styles/'))
+        .pipe(gulp.dest('front/dist/public/styles/'))
     // Run the passed-in callback if necessary
     cb();
 }
