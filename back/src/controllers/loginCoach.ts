@@ -3,7 +3,6 @@ import Coach from '../models/coachModel'
 import mongoose = require('mongoose')
 import * as BCrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
-import config from '../config'
 
 export default (req: express.Request, res: express.Response) => {
     const loginForm = req.body
@@ -12,7 +11,11 @@ export default (req: express.Request, res: express.Response) => {
         Coach.findOne({email: loginForm.email}).then((coach: any) =>{
             BCrypt.hash(loginForm.password, coach.salt, (err, hash) => {
                 if (hash === coach.password) {
-                    const token = jwt.sign({password:loginForm.password}, process.env.SECRET, {
+                    const token = jwt.sign(
+                        {
+                            email:loginForm.email, 
+                            password:loginForm.password
+                        }, process.env.SECRET, {
                         expiresIn: 1800 //expires in 30 minutes
                     })
                     coach.updateOne({token: token})
