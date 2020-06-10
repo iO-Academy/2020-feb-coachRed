@@ -6,16 +6,16 @@ export interface SetPasswordProps {
 }
 
 export interface SetPasswordState {
-    passwordOne: string | null,
-    passwordTwo: string | null
+    passwordOne: string,
+    passwordTwo: string
 }
 
 export class SetPassword extends React.Component<SetPasswordProps, SetPasswordState> {
     constructor(props: any) {
         super(props)
         this.state = {
-            passwordOne: null,
-            passwordTwo: null
+            passwordOne: "",
+            passwordTwo: ""
         }
         this.passwordOneChange = this.passwordOneChange.bind(this)
         this.passwordTwoChange = this.passwordTwoChange.bind(this)
@@ -34,13 +34,13 @@ export class SetPassword extends React.Component<SetPasswordProps, SetPasswordSt
         this.passwordChange(this.state.passwordOne, e.target.value)
     }
 
-    passwordChange(passwordOne : string | null, passwordTwo: string | null) : void {
+    passwordChange(passwordOne : string, passwordTwo: string) : void {
         if (passwordOne === passwordTwo && this.validatePassword(passwordOne)) {
             this.props.updateParent(passwordOne)
         }
     }
 
-    validatePassword(password: string | null) : boolean {
+    validatePassword(password: string) : boolean {
         if (
             password.length > 8 
             && password.toUpperCase() != password 

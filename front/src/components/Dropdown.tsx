@@ -43,7 +43,7 @@ export class Dropdown extends React.Component<DropdownProperties, DropdownState>
     }
 
     changeOption(e: React.MouseEvent, toOption : string) : void {
-        e.preventDefault
+        e.preventDefault()
         this.setState({
             dropdownVisible: false,
             fieldData: toOption

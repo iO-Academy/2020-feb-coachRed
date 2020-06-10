@@ -11,22 +11,22 @@ import { Submit } from "./Submit"
 import { SetPassword } from "./SetPassword"
 
 export interface CoachRegistrationState {
-    firstName: string | null,
-    lastName: string | null,
-    email: string | null,
-    phone: string | null,
-    dob: string | null,
-    location: Location | null,
-    postcode: string | null,
-    address1: string | null,
-    address2: string | null,
-    town: string | null,
-    county: string | null,
-    qualifications: string | null,
-    yearsCoaching: number | null,
-    sport: string | null,
-    expertise: string | null,
-    password: string | null
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+    dob: string,
+    location: Location|null,
+    postcode: string,
+    address1: string,
+    address2: string,
+    town: string,
+    county: string,
+    qualifications: string,
+    yearsCoaching: number,
+    sport: string,
+    expertise: string,
+    password: string
 }
 
 export class CoachRegistration extends React.Component<{},CoachRegistrationState> {
@@ -34,22 +34,22 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
     constructor(props: any) {
         super(props)
         this.state = {
-            firstName: null,
-            lastName: null,
-            email: null,
-            phone: null,
-            dob: null,
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            dob: "",
             location: null,
-            postcode: null,
-            address1: null,
-            address2: null,
-            town: null,
-            county: null,
-            qualifications: null,
-            yearsCoaching: null,
+            postcode: "",
+            address1: "",
+            address2: "",
+            town: "",
+            county: "",
+            qualifications: "",
+            yearsCoaching: 0,
             sport: "Rugby",
-            expertise: null,
-            password: null
+            expertise: "",
+            password: ""
         }
         this.updateFirstName=this.updateFirstName.bind(this)
         this.updateLastName=this.updateLastName.bind(this)
