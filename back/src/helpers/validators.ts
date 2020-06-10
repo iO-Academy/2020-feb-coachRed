@@ -1,5 +1,5 @@
 import validator from "validator"
-import { CoachInterface } from "../../interfaces/CoachInterface"
+import { CoachInterface } from "../interfaces/CoachInterface"
 
 function coachValidator(coach: CoachInterface) {
   

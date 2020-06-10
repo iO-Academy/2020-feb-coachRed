@@ -1,5 +1,5 @@
 import nodemailer = require("nodemailer")
-import { CoachInterface } from "../../interfaces/CoachInterface"
+import { CoachInterface } from "../interfaces/CoachInterface"
 export default (aCoach: CoachInterface) => {
 
     let transporter = nodemailer.createTransport({
