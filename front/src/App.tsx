@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 
 import {CoachRegistration} from "./components/CoachRegistration"
 import CoachLogin from "./components/CoachLogin"
+import { CoachAvailibility } from "./components/CoachAvailibility"
 import {Navbar} from "./components/Navbar"
 
 export class App extends React.Component {
