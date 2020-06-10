@@ -18,7 +18,10 @@ export default (req: express.Request, res: express.Response) => {
                     coach.updateOne({token: token})
                     res.status(200).json({
                         status: 'success',
-                        message: 'login successful'
+                        message: 'login successful',
+                        data: {
+                            token: token
+                        }
                     })
                 } else {
                     res.status(403).json({
@@ -29,7 +32,7 @@ export default (req: express.Request, res: express.Response) => {
             })
         })
     } catch (err) {
-        res.status(404).json({
+        res.status(500).json({
             status: 'fail',
             message: err
         })
