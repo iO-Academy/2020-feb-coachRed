@@ -128,7 +128,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
                 <TextInput label="How long have you been coaching?" fieldName="yearsTraining" 
                 fieldData={this.state.yearsCoaching} inputType="number"  isRequired={true} 
                 updateParent={this.updateYearsTraining} />
-                <Dropdown label="What sport will you be coaching?" options={["Rugby", "Netball"]} fieldName="sport"
+                <Dropdown label="What sport will you be coaching?" fieldName="sport"
                 updateParent={this.updateSport}/>
                 <TextInput label="What's your area of expertise?" fieldName="areaOfExpertise" 
                 fieldData={this.state.expertise} inputType="text" isRequired={true} 

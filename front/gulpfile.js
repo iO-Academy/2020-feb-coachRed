@@ -13,7 +13,7 @@ function compileSass(cb) {
         // Add the sourcemap to the end of the compiled CSS
         .pipe(sourcemaps.write())
         // Write the interpreted file to the desired destination
-        .pipe(gulp.dest('dist/public/styles/'))
+        .pipe(gulp.dest('public/styles/'))
     // Run the passed-in callback if necessary
     cb();
 }
