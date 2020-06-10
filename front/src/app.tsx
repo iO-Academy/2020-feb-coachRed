@@ -1,39 +1,30 @@
 import * as React from "react"
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 
 import {CoachRegistration} from "./components/CoachRegistration"
+import CoachLogin from "./components/CoachLogin"
 import {Navbar} from "./components/Navbar"
 
-export interface AppState {loadedPage: string}
-
-export class App extends React.Component<{}, AppState> {
-    constructor(props: any) {
-        super(props)
-        this.state = {
-            loadedPage: "coachRegistration"
-        }
-        this.loadNewPage=this.loadNewPage.bind(this)
-    }
-
-    loadNewPage(pageToLoad: string): void {
-        this.setState({loadedPage: pageToLoad})
-    }
+export class App extends React.Component {
     
     render() {
         return(
             <div className="page">
-                <Navbar slogan="Coach Red" updateDisplayedPage={this.loadNewPage} 
-                    links={[{
-                        label: "Register as Coach",
-                        pageToLoad: "coachRegistration"
-                    }]} />
-                <div className="container">
-                    <div className="row">
-                        <div className="pageContent col-10 offset-1 bg-light">
-                            {this.state.loadedPage === "coachRegistration" && <CoachRegistration></CoachRegistration>}
+                <Router>
+                    <Navbar/>
+                    <div className="container">
+                        <div className="row">
+                            <div className="pageContent col-10 offset-1 bg-light">
+                                <Switch>
+                                    <Route path="/registerCoach" component={CoachRegistration}/>
+                                    <Route path="/coachLogin" component={CoachLogin}/>
+                                    <Route path="/" component={CoachRegistration}/>
+                                </Switch>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <footer className="footer bg-light"><p><small>© Coach Red 2020</small></p></footer>
+                    <footer className="footer bg-light"><p><small>© Coach Red 2020</small></p></footer>
+                </Router>
             </div>
         )
     }
