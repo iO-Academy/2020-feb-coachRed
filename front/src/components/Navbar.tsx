@@ -12,6 +12,9 @@ export class Navbar extends React.Component {
                 </li>
                 <li>
                     <Link to="/coachLogin">Coach Login</Link>
+                    </li>
+                    <li>
+                    <Link to="/coachAvailibility">Coach Availibility</Link>
                 </li>
             </ul>
         </nav>)
