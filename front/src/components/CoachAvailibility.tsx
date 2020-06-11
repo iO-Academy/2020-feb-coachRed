@@ -35,10 +35,10 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     const correctDateFormat = dateClicked.toISOString().split('T')[0]
     const request = {
       method: 'GET',
-      headers: new Headers({
+      headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + String(localStorage.getItem('coachRedToken'))
-      })
+      }
     }
 
     let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}`, request)
@@ -48,13 +48,16 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     let response = await slots.json()
     localStorage.setItem('coachRedToken', response.data.token)
 
-    console.log(response.data.slots)
+    this.setState({bookings: response.data.slots})
   }
 
  
   openModal = () => {
     this.setState({ modalDisplay: (this.state.modalDisplay === true) ? false : true })
-    console.log(this.state.selectedDate)
+    this.updateSelectedDate(this.state.selectedDate)
+    if (!this.state.modalDisplay) {
+      window.location.href="#newSlot"
+    }
   }
 
 
@@ -65,12 +68,14 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
             <div className="calendar">
                 < Calendar chooseDate={this.updateSelectedDate}/>
             </div>
-            <div className="bookingList">
-                {this.state.isDateSelected && < BookingList bookings={this.state.bookings}/>}
-                {this.state.isDateSelected && <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>}
-            </div>
-            <div className="newSlotModal">
-                {this.state.modalDisplay && < Modal date={this.state.selectedDate} />}
+              <div className="bookingsContainer">
+                <div className="bookingList">
+                    {this.state.isDateSelected && < BookingList bookings={this.state.bookings}/>}
+                    {this.state.isDateSelected && <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>}
+                </div>
+                <div id="newSlot" className="newSlotModal">
+                    {this.state.modalDisplay && < Modal date={this.state.selectedDate} toggleModal={this.openModal} />}
+                </div>
             </div>
         </div>
       )

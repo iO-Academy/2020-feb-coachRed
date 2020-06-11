@@ -17,7 +17,7 @@ export default class Booking extends React.Component <BookingProps, {}> {
         <span>
           {this.props.startTime} - {this.props.endTime}
         </span>
-        <button>Details</button>
+        {/* <button className="btn btn-danger">Details</button> */}
       </div>
     )}
   
