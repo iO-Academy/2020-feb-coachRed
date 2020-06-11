@@ -35,14 +35,15 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     const correctDateFormat = dateClicked.toISOString().split('T')[0]
     const request = {
       method: 'GET',
-      headers: new Headers({
+      header: new Headers({
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + String(localStorage.getItem('coachRedToken'))
       })}
 
-    let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}`, request)
+    let response = await fetch(`http://localhost:3000/slot/${correctDateFormat}`, request)
+    let slots = await response.json()
 
-    console.log(request)
+    console.log(slots)
   }
 
  

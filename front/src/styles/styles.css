@@ -1,0 +1,95 @@
+body {
+  min-height: 100vh;
+}
+
+body #root {
+  min-height: 100vh;
+}
+
+body #root .page {
+  min-height: 100vh;
+}
+
+body #root .page .container {
+  min-height: 100vh;
+}
+
+body #root .page .container .row {
+  min-height: 100%;
+}
+
+body #root .page .container .row .pageContent {
+  min-height: 100%;
+}
+
+.dropdownContainer {
+  position: relative;
+}
+
+.dropdownContainer .dropdownItems {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.dropdownContainer .dropdownItems .dropdownItem {
+  padding: 0.5em;
+}
+
+label {
+  padding-top: 2em;
+}
+
+.btn {
+  margin-top: 1em;
+}
+
+.pageContent {
+  padding-bottom: 2em;
+}
+
+#navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #000000;
+  z-index: 1;
+  width: 100%;
+}
+
+#navbar li {
+  height: 100%;
+}
+
+footer {
+  position: fixed;
+  height: 1.5em;
+  overflow: hidden;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+#dayPicker .DayPicker {
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+#dayPicker .DayPicker .DayPicker-wrapper .DayPicker-NavBar {
+  width: 50%;
+}
+
+#dayPicker .DayPicker .DayPicker-wrapper .DayPicker-Months {
+  width: 100%;
+}
+
+#dayPicker .DayPicker .DayPicker-wrapper .DayPicker-Months .DayPicker-Month {
+  width: 70%;
+}
+/*# sourceMappingURL=styles.css.map */
