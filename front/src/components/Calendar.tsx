@@ -22,8 +22,6 @@ export default class Calendar extends React.Component <CalendarProps, CalendarSt
   }
 
   handleDayClick(day: Date) {
-    console.log(typeof(day))
-  console.log(day)
     this.setState({ selectedDay: day })
   
     this.props.chooseDate(day)

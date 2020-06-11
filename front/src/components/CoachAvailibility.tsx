@@ -42,9 +42,13 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     }
 
     let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}`, request)
+    if (slots.status == 403) {
+      window.location.href = 'coachLogin'
+    }
     let response = await slots.json()
+    localStorage.setItem('coachRedToken', response.data.token)
 
-    console.log(response)
+    console.log(response.data.slots)
   }
 
  
