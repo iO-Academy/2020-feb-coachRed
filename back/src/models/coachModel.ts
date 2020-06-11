@@ -29,9 +29,10 @@ let CoachSchema  = {
 
   timeSlots: [
     {
+      date: String,
       startTime: String,
       endTime: String,
-      repeats: String
+      repeat: String
     }
   ]
 }
