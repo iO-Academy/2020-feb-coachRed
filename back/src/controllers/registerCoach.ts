@@ -19,6 +19,8 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
             expiresIn: 1800 // expires in 30 minutes
         })
 
+        aCoach.slots = []
+
         if (coachValidator(aCoach)) {
 
             try {

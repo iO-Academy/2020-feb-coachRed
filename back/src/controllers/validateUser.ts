@@ -16,8 +16,10 @@ export default (req: express.Request, res: express.Response, next: express.NextF
                     expiresIn: 1800
                 })
                 coach.token = newToken;
-                coach.save()
-                req.headers['authorization'] = 'Bearer ' + newToken
+                coach.save().then( () => {
+                    req.headers['authorization'] = 'Bearer ' + newToken
+                    next()
+                })
             } else {
                 return res.status(403).json({
                     status: 'fail',
@@ -33,6 +35,5 @@ export default (req: express.Request, res: express.Response, next: express.NextF
                 }
             })
         }
-        next()
     })
 }
