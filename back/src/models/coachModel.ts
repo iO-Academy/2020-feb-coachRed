@@ -29,6 +29,7 @@ let CoachSchema  = {
 
   timeSlots: [
     {
+      hourlyRate: Number,
       date: String,
       startTime: String,
       endTime: String,
