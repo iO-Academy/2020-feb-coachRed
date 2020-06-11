@@ -1,11 +1,17 @@
-.root {
+body{
     min-height: 100vh;
-    .page {
-        min-height: 100%;
-        .container {
-            height: 100%;
-            .row {
-                height: 100%;
+    #root {
+        min-height: 100vh;
+        .page { 
+            min-height: 100vh;
+            .container {
+                min-height: 100vh;
+                .row{
+                    min-height: 100%;
+                    .pageContent{
+                        min-height: 100%;
+                    }
+                }
             }
         }
     }

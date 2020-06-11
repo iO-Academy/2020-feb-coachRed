@@ -8,6 +8,7 @@ export interface CoachAvailibilityState {
   modalDisplay: boolean
   selectedDate: Date
   isDateSelected: boolean
+  bookings: Array<any>
 }
 
 export interface CoachAvailibilityProps {
@@ -23,13 +24,25 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
       this.state = {
         modalDisplay: false,
         selectedDate: new Date(),
-        isDateSelected: false
+        isDateSelected: false,
+        bookings: []
       } 
   }
 
-  updateSelectedDate = (dateClicked: Date) => {
+  updateSelectedDate = async (dateClicked: Date) => {
     this.setState({ selectedDate: dateClicked })
     this.setState({isDateSelected: true})
+    const correctDateFormat = dateClicked.toISOString().split('T')[0]
+    const request = {
+      method: 'GET',
+      headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + String(localStorage.getItem('coachRedToken'))
+      })}
+
+    let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}`, request)
+
+    console.log(request)
   }
 
  
@@ -47,7 +60,7 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
                 < Calendar chooseDate={this.updateSelectedDate}/>
             </div>
             <div className="bookingList">
-                {this.state.isDateSelected && < BookingList />}
+                {this.state.isDateSelected && < BookingList bookings={this.state.bookings}/>}
                 {this.state.isDateSelected && <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>}
             </div>
             <div className="newSlotModal">
