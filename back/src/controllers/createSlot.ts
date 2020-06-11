@@ -7,7 +7,7 @@ export default (req : express.Request, res : express.Response) => {
                 status: 'success',
                 message: 'Successfully created time slot',
                 data: {
-                    token: req.query.token
+                    token: req.header('Authorization').split(' ')[1]
                 }
             })
         } catch (err) {

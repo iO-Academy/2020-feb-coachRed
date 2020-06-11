@@ -5,7 +5,6 @@ import sendEmail from '../helpers/sendEmail'
 import coachValidator from '../helpers/validators'
 import * as BCrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
-import config from '../config'
 
 async function sendFormInfo(req: express.Request, res: express.Response) {
   
