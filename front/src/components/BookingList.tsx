@@ -12,12 +12,12 @@ export default class BookingList extends React.Component <{}, BookingListState> 
   constructor(props: any) {
     super(props);
     this.state = {
-      bookings: []
+      bookings: [],
     };
   }
 
   componentDidMount() {
-    // let bookings = []
+    let bookings = []
     // fetch('http://localhost:3000/coach/booking', {
     //   method: "GET"
     // }).then((response: any) => {

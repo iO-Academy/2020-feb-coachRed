@@ -19,7 +19,7 @@ export class App extends React.Component {
                                 <Switch>
                                     <Route path="/registerCoach" component={CoachRegistration}/>
                                     <Route path="/coachLogin" component={CoachLogin} />
-                                    <Route path="/coachAvailibility" component={CoachAvailibility}/>
+                                    <Route path="/coachAvailibility" component={CoachAvailibility }/>
                                     <Route path="/" component={CoachRegistration}/>
                                 </Switch>
                             </div>

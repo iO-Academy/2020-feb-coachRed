@@ -3,24 +3,32 @@ import * as React from "react"
 export interface DropdownProperties {
     fieldName: string, 
     label: string,
-    updateParent(newOption: string): void,
-    options: Array<string>
+    updateParent(newSport: string) : void
 }
-export interface DropdownState {
-    dropdownVisible: boolean,
-    fieldData: string,
-
-}
+export interface DropdownState {dropdownVisible : boolean, fieldData: string}
 
 export class Dropdown extends React.Component<DropdownProperties, DropdownState> {
 
+    sports: Array<string>
+
     constructor(props: any) {
         super(props)
-        this.state = {
-            dropdownVisible: false,
-            fieldData: this.props.options[0],
-         
-        }
+        this.state = { dropdownVisible: false, fieldData: '' }
+        this.sports = []
+    }
+
+    componentDidMount() {
+        let initialSports = []
+        fetch('http://localhost:3000/sport',{
+            method: "GET",
+        }).then((response: any) => {
+            return response.json()
+        }).then(response=>{
+            this.sports = response.data.sports.map((sport: any)=>{return sport.name})
+            this.setState({fieldData: this.sports[0]})
+            this.changeOption = this.changeOption.bind(this)
+            this.showDropDownItems = this.showDropDownItems.bind(this)
+        })
     }
 
     render() {
@@ -33,10 +41,10 @@ export class Dropdown extends React.Component<DropdownProperties, DropdownState>
                         {this.state.fieldData}
                     </div>
                     {this.state.dropdownVisible && <div className="dropdownItems">
-                        {this.props.options.map((option) =>{
+                        {this.sports.map((option) =>{
                             return (
                                 <div className="dropdownItem" 
-                                key={this.props.options.findIndex((entry)=>entry===option)} 
+                                key={this.sports.findIndex((entry)=>entry===option)} 
                                 onClick={(e) => this.changeOption(e, option)}>
                                     {option}
                                 </div>

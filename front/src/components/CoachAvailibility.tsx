@@ -2,23 +2,36 @@ import * as React from "react"
 import Calendar from './Calendar'
 import BookingList from './BookingList'
 import Modal from './Modal'
+import {CoachInterface }from '../interfaces/CoachInterface'
 
 export interface CoachAvailibilityState {
-  modalDisplay : string
+  modalDisplay: boolean
+  selectedDate: any
 }
 
-export class CoachAvailibility extends React.Component<{}, CoachAvailibilityState> {
+export interface CoachAvailibilityProps {
+  coach: CoachInterface | null
+
+}
+
+export class CoachAvailibility extends React.Component<CoachAvailibilityProps, CoachAvailibilityState> {
     
   constructor(props: any) {
-      super(props)
+    super(props)
+
       this.state = {
-        modalDisplay: 'none'
+        modalDisplay: false,
+        selectedDate: ''
       } 
+  }
+
+  updateSelectedDate = (dateClicked: any) => {
+    this.setState({ selectedDate: dateClicked })
   }
 
  
   openModal = () => {
-    this.setState({modalDisplay:(this.state.modalDisplay === 'block') ? 'none' : 'block'})
+    this.setState({modalDisplay:(this.state.modalDisplay === true) ? false : true})
   }
 
 
@@ -26,10 +39,10 @@ export class CoachAvailibility extends React.Component<{}, CoachAvailibilityStat
   render() {
       return(
         <div className="root">
-          < Calendar />
+          < Calendar chooseDate={this.updateSelectedDate}/>
           < BookingList />
           <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>
-          < Modal />
+          {this.state.modalDisplay && < Modal date={this.state.selectedDate} />}
         </div>
       )
   }

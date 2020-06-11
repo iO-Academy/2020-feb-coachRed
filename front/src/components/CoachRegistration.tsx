@@ -3,7 +3,7 @@ import * as React from "react"
 import { Location } from '../interfaces/Location'
 
 import { LocationField } from "./LocationField"
-import { Dropdown } from "./Dropdown"
+import { Dropdown } from "./SportDropdown"
 import { TextInput } from "./TextInput"
 import { TextArea } from "./TextArea"
 import { PostCodeSearch } from "./PostCodeSearch"
