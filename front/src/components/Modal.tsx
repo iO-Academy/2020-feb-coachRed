@@ -22,8 +22,8 @@ export default class Modal extends Component<ModalProps, ModalState>{
     super(props);
     this.state = {
       date : this.props.date.toISOString().split('T')[0],
-      startTime: '00:00',
-      endTime: '00:00',
+      startTime: '',
+      endTime: '',
       repeat: 'Once',
       hourlyRate: 0,
       ageGroup: 'Under 18s'
@@ -51,7 +51,6 @@ export default class Modal extends Component<ModalProps, ModalState>{
   }
 
   addSlot = () => {
-    
     fetch('http://localhost:3000/slot', {
       method: 'POST',
       headers: {

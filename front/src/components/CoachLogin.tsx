@@ -39,7 +39,7 @@ class CoachLogin extends React.Component<CoachLoginProps, CoachLoginState> {
         })
         let data = await response.json()
         
-        if (data.status == 'success') {
+        if (data.status === 'success') {
             localStorage.setItem('coachRedToken', data.data.token)
             window.location.href = "/coachAvailibility"
 

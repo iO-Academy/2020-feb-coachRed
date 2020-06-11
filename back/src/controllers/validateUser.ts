@@ -4,6 +4,12 @@ import mongoose = require('mongoose')
 import * as jwt from 'jsonwebtoken'
 
 export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    if (!req.header('Authorization')) {
+        return res.status(403).json({
+            status: 'fail',
+            message: 'Credentials not recognised'
+        })
+    }
     const bearerToken = req.header('Authorization').split(' ')[1]
     Coach.findOne({}).then((coach: any) => {
         try {

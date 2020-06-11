@@ -18,7 +18,6 @@ export class Dropdown extends React.Component<DropdownProperties, DropdownState>
     }
 
     componentDidMount() {
-        let initialSports = []
         fetch('http://localhost:3000/sport',{
             method: "GET",
         }).then((response: any) => {

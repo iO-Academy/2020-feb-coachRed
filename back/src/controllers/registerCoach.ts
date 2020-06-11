@@ -2,7 +2,7 @@ import express = require('express')
 import Coach from '../models/coachModel'
 import mongoose = require('mongoose')
 import sendEmail from '../helpers/sendEmail'
-import coachValidator from '../helpers/validators'
+import coachValidator from '../helpers/coachValidator'
 import * as BCrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
 
@@ -40,9 +40,7 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
             }
         
             catch (error) {
-    
-                console.log(error)
-    
+        
                 res.status(500).json(
                     {
                         status: 'unsuccessful',

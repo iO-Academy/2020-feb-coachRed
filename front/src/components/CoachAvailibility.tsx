@@ -42,7 +42,7 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     }
 
     let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}`, request)
-    if (slots.status == 403) {
+    if (slots.status === 403) {
       window.location.href = 'coachLogin'
     }
     let response = await slots.json()
@@ -70,6 +70,7 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
             </div>
               <div className="bookingsContainer">
                 <div className="bookingList">
+                    {!this.state.isDateSelected && <p>Please Select a Date</p>}
                     {this.state.isDateSelected && < BookingList bookings={this.state.bookings}/>}
                     {this.state.isDateSelected && <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>}
                 </div>

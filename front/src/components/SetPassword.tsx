@@ -1,5 +1,4 @@
 import * as React from "react"
-const saltRounds = 10
 
 export interface SetPasswordProps {
     updateParent(fieldData: string | number): void
@@ -43,8 +42,8 @@ export class SetPassword extends React.Component<SetPasswordProps, SetPasswordSt
     validatePassword(password: string) : boolean {
         if (
             password.length > 8 
-            && password.toUpperCase() != password 
-            && password.toLowerCase() != password 
+            && password.toUpperCase() !== password 
+            && password.toLowerCase() !== password 
             && (isNaN(parseFloat(password)) || !isFinite(parseFloat(password)))
         ) {return true}
 

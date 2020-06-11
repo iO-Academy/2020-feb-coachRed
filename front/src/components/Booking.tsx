@@ -7,10 +7,6 @@ export interface BookingProps {
 
 export default class Booking extends React.Component <BookingProps, {}> {
 
-  constructor(props: any) {
-    super(props);    
-  }
-
   render() {
     return(
       <div className='booking'>

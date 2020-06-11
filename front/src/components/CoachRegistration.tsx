@@ -88,15 +88,13 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
     updatePassword(newPass: string) {this.setState({password: newPass})}
     async sendResults (e: any) {
         e.preventDefault(); 
-        let response = await fetch('http://localhost:3000/coach', {
+        await fetch('http://localhost:3000/coach', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
         })
-        let data = await response.json()
-        console.log(data)
     }
 
     render() {

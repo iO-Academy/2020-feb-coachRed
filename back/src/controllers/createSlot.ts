@@ -1,15 +1,15 @@
 import express = require('express')
 import Coach from '../models/coachModel'
+import slotValidator from '../helpers/slotValidator'
 
 export default (req : express.Request, res : express.Response) => {
     const bearerToken = req.header('Authorization').split(' ')[1]
     try {
             Coach.findOne({token: bearerToken}).then((coach: any) => {
-                console.log(req.body)
                 const startTime = req.body.startTime.replace(':','.')
                 const endTime = req.body.endTime.replace(':','.')
-                if (endTime < startTime) {
-                    res.status(400).json({
+                if ((endTime <= startTime) || !slotValidator(req.body)) {
+                    return res.status(400).json({
                         status: 'fail',
                         message: 'sessions cannot end before they start',
                         data: {
@@ -25,7 +25,6 @@ export default (req : express.Request, res : express.Response) => {
                     ageRange: req.body.ageRange,
                     hourlyRate: req.body.hourlyRate
                 })
-                console.log(coach.timeSlots)
                 coach.save()
                 res.status(200).json({
                     status: 'success',

@@ -54,5 +54,4 @@ function coachValidator(coach: CoachInterface) {
   }
 }
 
-
 export default coachValidator

@@ -11,11 +11,10 @@ export default (req : express.Request, res : express.Response) => {
                     const slotDate = new Date(Date.parse(slot.date))
                     if (slotDate.toDateString() == desiredDate.toDateString()) {
                         slotsToReturn.push(slot)
-                        console.log(slotsToReturn)
                     } else if (Date.parse(req.params.date) > Date.parse(slot.date)){
                         if (slot.repeat === 'Weekly' && slotDate.getDay() === desiredDate.getDay()) {
                             slotsToReturn.push(slot)
-                        } else if (slot.repeat === 'Fortnightly') {
+                        } else if (slot.repeat === 'Fortnightly' && slotDate.getDay() === desiredDate.getDay()) {
                             const weeksBetween = (dayOne: number, dayTwo: number) => {
                                 return (dayTwo - dayOne)/(60*60*24*7*1000)
                             }
