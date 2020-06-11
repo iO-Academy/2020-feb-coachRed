@@ -1,0 +1,26 @@
+
+#dayPicker{
+    .DayPicker {
+        width: 100%; 
+        text-align: center;
+        display: block;
+        margin: auto;
+        .DayPicker-wrapper {
+            .DayPicker-NavBar {
+                width: 50%;
+
+            }
+            .DayPicker-Months{
+                width: 100%;
+                .DayPicker-Month {
+                    width: 70%;
+                }
+            }
+        }
+    }
+}
+
+.newSlotModal {
+
+
+}

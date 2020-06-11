@@ -1,0 +1,12 @@
+.root {
+    min-height: 100vh;
+    .page {
+        min-height: 100%;
+        .container {
+            height: 100%;
+            .row {
+                height: 100%;
+            }
+        }
+    }
+}

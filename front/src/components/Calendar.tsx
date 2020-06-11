@@ -4,45 +4,35 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 export interface CalendarState {
-  selectedDay: any,
+  selectedDay: Date,
 }
 
 export interface CalendarProps {
-  chooseDate(date : any) : void
+  chooseDate(date : Date) : void
 }
 
 export default class Calendar extends React.Component <CalendarProps, CalendarState> {
 
-  constructor(props: any) {
+  constructor(props: CalendarProps) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
-   
     this.state = {
-      selectedDay: null
+      selectedDay: new Date()
     };
   }
 
-  handleDayClick(day: any) {
-  
+  handleDayClick(day: Date) {
+    console.log(typeof(day))
+  console.log(day)
     this.setState({ selectedDay: day })
   
     this.props.chooseDate(day)
   }
 
-  // updateCoachAvailibilityDate = (date : string) => {
-  //     this.props.chooseDate(date)
-  // }
-
   render() {
     return(
-      <div className='root'>
+      <div id='dayPicker'>
         <DayPicker onDayClick={this.handleDayClick} />
-        {this.state.selectedDay ? (
-          <p>You clicked {this.state.selectedDay.toLocaleDateString()}</p>
-        ) : (
-          <p>Please select a day.</p>
-        )}
-        
       </div>
     )}
   

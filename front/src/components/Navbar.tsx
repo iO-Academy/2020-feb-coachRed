@@ -16,6 +16,7 @@ export class Navbar extends React.Component {
                     <li>
                     <Link to="/coachAvailibility">Coach Availibility</Link>
                 </li>
+                   
             </ul>
         </nav>)
     }

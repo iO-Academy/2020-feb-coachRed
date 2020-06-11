@@ -6,7 +6,8 @@ import {CoachInterface }from '../interfaces/CoachInterface'
 
 export interface CoachAvailibilityState {
   modalDisplay: boolean
-  selectedDate: any
+  selectedDate: Date
+  isDateSelected: boolean
 }
 
 export interface CoachAvailibilityProps {
@@ -16,33 +17,42 @@ export interface CoachAvailibilityProps {
 
 export class CoachAvailibility extends React.Component<CoachAvailibilityProps, CoachAvailibilityState> {
     
-  constructor(props: any) {
+  constructor(props: CoachAvailibilityProps) {
     super(props)
 
       this.state = {
         modalDisplay: false,
-        selectedDate: ''
+        selectedDate: new Date(),
+        isDateSelected: false
       } 
   }
 
-  updateSelectedDate = (dateClicked: any) => {
+  updateSelectedDate = (dateClicked: Date) => {
     this.setState({ selectedDate: dateClicked })
+    this.setState({isDateSelected: true})
   }
 
  
   openModal = () => {
-    this.setState({modalDisplay:(this.state.modalDisplay === true) ? false : true})
+    this.setState({ modalDisplay: (this.state.modalDisplay === true) ? false : true })
+    console.log(this.state.selectedDate)
   }
 
 
 
   render() {
       return(
-        <div className="root">
-          < Calendar chooseDate={this.updateSelectedDate}/>
-          < BookingList />
-          <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>
-          {this.state.modalDisplay && < Modal date={this.state.selectedDate} />}
+        <div className="coachAvailibility">
+            <div className="calendar">
+                < Calendar chooseDate={this.updateSelectedDate}/>
+            </div>
+            <div className="bookingList">
+                {this.state.isDateSelected && < BookingList />}
+                {this.state.isDateSelected && <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>}
+            </div>
+            <div className="newSlotModal">
+                {this.state.modalDisplay && < Modal date={this.state.selectedDate} />}
+            </div>
         </div>
       )
   }
