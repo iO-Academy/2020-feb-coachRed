@@ -7,11 +7,11 @@ export default (req: express.Request, res: express.Response, next: express.NextF
     if (!req.header('Authorization')) {
         return res.status(403).json({
             status: 'fail',
-            message: 'Credentials not recognised'
+            message: 'Credentials not recognised - no header'
         })
     }
     const bearerToken = req.header('Authorization').split(' ')[1]
-    Coach.findOne({}).then((coach: any) => {
+    Coach.findOne({token: bearerToken}).then((coach: any) => {
         try {
             if (bearerToken == coach.token) {
                 const tokenData: any = jwt.verify(bearerToken, process.env.SECRET)
@@ -29,13 +29,13 @@ export default (req: express.Request, res: express.Response, next: express.NextF
             } else {
                 return res.status(403).json({
                     status: 'fail',
-                    message: 'Credentials not recognised'
+                    message: 'Credentials not recognised - jwt failed to verify'
                 })
             }
         } catch(err) {
             return res.status(403).json({
                 status: 'fail',
-                message: 'Credentials not recognised',
+                message: 'Credentials not recognised - other error',
                 data: {
                     error: err
                 }

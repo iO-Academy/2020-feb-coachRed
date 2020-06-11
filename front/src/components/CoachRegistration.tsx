@@ -95,11 +95,15 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
             },
             body: JSON.stringify(this.state)
         })
+        window.location.href="/coachLogin"
     }
 
     render() {
         return(
             <div className="root">
+                <h1 className="pageHeading">Welcome to Coach Red!</h1>
+                <p>To register as a coach, there are a few details we need from you</p>
+
                 <TextInput label="First Name" fieldName="firstName" fieldData={this.state.firstName}
                 inputType="text" isRequired={true} updateParent={this.updateFirstName} />
                 <TextInput label="Last Name" fieldName="lastName" fieldData={this.state.lastName}
