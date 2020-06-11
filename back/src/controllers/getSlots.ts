@@ -13,16 +13,16 @@ export default (req : express.Request, res : express.Response) => {
                         slotsToReturn.push(slot)
                         console.log(slotsToReturn)
                     } else if (Date.parse(req.params.date) > Date.parse(slot.date)){
-                        if (slot.repeat === 'weekly' && slotDate.getDay() === desiredDate.getDay()) {
+                        if (slot.repeat === 'Weekly' && slotDate.getDay() === desiredDate.getDay()) {
                             slotsToReturn.push(slot)
-                        } else if (slot.repeat === 'fortnightly') {
+                        } else if (slot.repeat === 'Fortnightly') {
                             const weeksBetween = (dayOne: number, dayTwo: number) => {
                                 return (dayTwo - dayOne)/(60*60*24*7*1000)
                             }
                             if (!(weeksBetween(Date.parse(slot.date),Date.parse(req.params.date)) &1)) {
                                 slotsToReturn.push(slot)
                             }
-                        } else if (slot.repeat === 'monthly' && slotDate.getDate() === desiredDate.getDate()) {
+                        } else if (slot.repeat === 'Monthly' && slotDate.getDate() === desiredDate.getDate()) {
                             slotsToReturn.push(slot)
                         }
                     }

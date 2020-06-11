@@ -22,6 +22,8 @@ export default (req : express.Request, res : express.Response) => {
                     startTime: req.body.startTime, 
                     endTime: req.body.endTime, 
                     repeat: req.body.repeat,
+                    ageRange: req.body.ageRange,
+                    hourlyRate: req.body.hourlyRate
                 })
                 console.log(coach.timeSlots)
                 coach.save()
