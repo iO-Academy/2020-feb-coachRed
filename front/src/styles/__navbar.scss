@@ -6,4 +6,8 @@
     border-bottom: 1px solid $mainFontColour;
     z-index: 1;
     width: 100%;
+
+    li {
+        height: 100%;
+    }
 }

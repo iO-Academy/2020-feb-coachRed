@@ -17,12 +17,23 @@ let CoachSchema  = {
   postcode: String, // can typehint a postcode with regex?
   location: Object, //needs to be location typehinted probably
 
+  token: String,
+  salt: String,
+
   qualifications: String, //array best way to handle multiple?
   yearsCoaching: Number,
   sport: String, // list from database. Typehint to sport?
   expertise: String,
 
-  password: String //obvs needs sorting out
+  password: String, //obvs needs sorting out
+
+  timeSlots: [
+    {
+      startTime: String,
+      endTime: String,
+      repeats: String
+    }
+  ]
 }
 
 let coachSchema : mongoose.Schema = new mongoose.Schema(CoachSchema, {collection: 'coach'})

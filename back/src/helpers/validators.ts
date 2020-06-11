@@ -3,7 +3,7 @@ import { CoachInterface } from "../interfaces/CoachInterface"
 
 function coachValidator(coach: CoachInterface) {
   
-  console.log(coach.yearsCoaching)
+  try {
 
   let firstName = (!validator.isEmpty(coach.firstName) && validator.isAlpha(coach.firstName)) ? true : false
   
@@ -49,6 +49,9 @@ function coachValidator(coach: CoachInterface) {
   // console.log(expertise)
 
   return firstName && lastName && email && phone && dob && postCode && address1 && address2 && town && county && qualifications && yearsCoaching && sport && expertise
+  } catch (error) {
+    return error ?? false
+  }
 }
 
 
