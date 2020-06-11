@@ -38,11 +38,13 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
       headers: new Headers({
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + String(localStorage.getItem('coachRedToken'))
-      })}
+      })
+    }
 
     let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}`, request)
+    let response = await slots.json()
 
-    console.log(request)
+    console.log(response)
   }
 
  

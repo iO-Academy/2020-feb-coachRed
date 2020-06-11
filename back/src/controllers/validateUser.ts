@@ -4,6 +4,7 @@ import mongoose = require('mongoose')
 import * as jwt from 'jsonwebtoken'
 
 export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.log(req.headers)
     const bearerToken = req.header('Authorization').split(' ')[1]
     Coach.findOne({}).then((coach: any) => {
         try {
