@@ -11,19 +11,20 @@ export default (req: express.Request, res: express.Response) => {
         Coach.findOne({email: loginForm.email}).then((coach: any) =>{
             BCrypt.hash(loginForm.password, coach.salt, (err, hash) => {
                 if (hash === coach.password) {
-                    const token = jwt.sign(
+                    const token: string = jwt.sign(
                         {
                             email:loginForm.email, 
                             password:loginForm.password
                         }, process.env.SECRET, {
                         expiresIn: 1800 //expires in 30 minutes
                     })
-                    coach.updateOne({token: token})
+                    coach.token = token
+                    coach.save()
                     res.status(200).json({
                         status: 'success',
                         message: 'login successful',
                         data: {
-                            token: token
+                            "token": token
                         }
                     })
                 } else {

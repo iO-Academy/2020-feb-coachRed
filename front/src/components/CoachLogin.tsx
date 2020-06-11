@@ -7,7 +7,7 @@ export interface CoachLoginProps {
 }
  
 export interface CoachLoginState {
-    emailAddress: string,
+    email: string,
     password: string
 }
  
@@ -15,35 +15,38 @@ class CoachLogin extends React.Component<CoachLoginProps, CoachLoginState> {
     constructor(props: CoachLoginProps) {
         super(props);
         this.state = { 
-            emailAddress: '',
+            email: '',
             password: ''
         };
     }
 
     updateEmailAddress = (newEmailAddress : string) => {
-        this.setState({emailAddress: newEmailAddress})
+        this.setState({email: newEmailAddress})
     }
 
     updatePassword = (newPassword : string) => {
-        this.setState({emailAddress: newPassword})
+        this.setState({password: newPassword})
     }
 
     sendResults = async (e : any) => {
         e.preventDefault()
-        let response = await fetch('localhost:3000/coach/login', {
-            method: 'GET',
+        let response = await fetch('http://localhost:3000/coach/login', {
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(this.state)
         })
         let data = await response.json()
+        localStorage.setItem('coachRedToken', data.data.token)
+
+        window.location.href="/coachRegistration"
     }
 
     render() { 
         return ( 
             <div className='root'>
-                 <TextInput label="Email Address" fieldName="emailAddress" fieldData={this.state.emailAddress}
+                 <TextInput label="Email Address" fieldName="emailAddress" fieldData={this.state.email}
                 inputType="text" isRequired={true} updateParent={this.updateEmailAddress} />
                  <TextInput label="Password" fieldName="password" fieldData={this.state.password}
                 inputType="password" isRequired={false} updateParent={this.updatePassword} />
