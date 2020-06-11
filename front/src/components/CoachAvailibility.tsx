@@ -35,7 +35,7 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     const correctDateFormat = dateClicked.toISOString().split('T')[0]
     const request = {
       method: 'GET',
-      header: new Headers({
+      headers: new Headers({
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + String(localStorage.getItem('coachRedToken'))
       })
