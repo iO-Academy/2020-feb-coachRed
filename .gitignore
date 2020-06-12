@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 node_modules
 .vscode
 .DS_Store
 .idea
 dist
 **/.env
-=======
-.DS_Store
-.idea
->>>>>>> master
