@@ -5,7 +5,7 @@ export class Navbar extends React.Component {
     render() {
         return(
         <nav id="navbar" className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="navbar-brand" to="/registerCoach">Coach Red</Link>
+            <Link className="navbar-brand" to="#">Coach Red</Link>
             <ul className="navbar-nav mr-auto">
                 <li>
                     <Link className="nav-link" to="/registerCoach">Register a Coach</Link>
