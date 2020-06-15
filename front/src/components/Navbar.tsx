@@ -8,6 +8,7 @@ export class Navbar extends React.Component {
             <Link className="navbar-brand" to="#">Coach Red</Link>
             <ul className="navbar-nav mr-auto">
                 <li>
+                    <Link className="nav-link" to="/coachSearch">Find a Coach</Link>
                     <Link className="nav-link" to="/registerCoach">Register a Coach</Link>
                 </li>
             </ul>

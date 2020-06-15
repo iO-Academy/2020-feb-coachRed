@@ -3,6 +3,7 @@ import {LocationFieldProps, LocationField} from './LocationField'
 import {PostCodeSearch, PostCodeSearchState, PostCodeSearchProperties} from './PostCodeSearch'
 import {Location} from '../../../back/src/interfaces/Location'
 import {Submit} from './Submit'
+import {Dropdown} from './SportDropdown'
 
 
 export interface CoachSearchProps {
@@ -10,19 +11,18 @@ export interface CoachSearchProps {
 }
  
 export interface CoachSearchState {
-    location: Location,
-    postcode: string
+    location: Location | null
+    postcode: string | null
+    sport: string | null
 }
  
 class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
     constructor(props: CoachSearchProps) {
         super(props);
         this.state = { 
-            location: {
-                longitude: 0,
-                latitude: 0
-            },
-            postcode: ''
+            location: null,
+            postcode: null,
+            sport: 'Rugby'
         };
     }
 
@@ -31,6 +31,8 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
     updatePostcode = (newPS: string) => {
         this.setState({postcode: newPS})
     }
+
+    updateSport = (newSport: string) => {this.setState({sport: newSport})}
 
     sendResults = async (e : any) => {
         e.preventDefault()
@@ -55,9 +57,25 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
     render() { 
         return ( 
             <div className='root'>
-                <LocationField updateParent={this.updateLocation} fieldData={null}/>
+                <div>
+                    <h1>Welcome to Coach Red!</h1>
+                    <p>We help athletes and coaches to connect</p>
+                    <p>Are you an athlete? Search for coaches in your area now!</p>
+                </div>
+                <Dropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport}/>
+                <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
                 <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false}/>
                 <Submit sendResults={this.sendResults} buttonName="Search" />
+                <div>
+                    <div>
+                        <p>"Wow! What a Great Company! I found the best coach!"</p>
+                        <p>     - John Doe, 2020</p>
+                    </div>
+                    <div>
+                        <p>"Wow! What a Great Company! I've never made so much money before!</p>
+                        <p>     - Abraham Lincoln, 2020</p>
+                    </div>
+                </div>
             </div>
          );
     }
