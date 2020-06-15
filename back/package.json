@@ -11,11 +11,13 @@
   "license": "ISC",
   "repository": "https://github.com/Mayden-Academy/2020-feb-coachRed",
   "dependencies": {
+    "@types/haversine": "^1.1.4",
     "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.0.0",
+    "haversine": "^1.1.1",
     "jsonwebtoken": "^8.5.1",
     "mongo": "^0.1.0",
     "mongoose": "^5.9.17",
