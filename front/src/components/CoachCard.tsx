@@ -4,12 +4,19 @@ export interface CoachCardProps {
     name: string
     distance: number
     experience: string
+    coachId: string
 }
  
 class CoachCard extends React.Component<CoachCardProps, {}> {
     constructor(props: CoachCardProps) {
         super(props);
     }
+
+    displayCoachDetails = () => {
+        
+        // redirect to ViewCoach with coachId passed as prop
+    }
+
     render() { 
         return ( 
             <div>
@@ -22,7 +29,7 @@ class CoachCard extends React.Component<CoachCardProps, {}> {
                 <div className='coachExperience'>
                     {this.props.experience} Years of Experience
                 </div>
-                <input type="button" value='details'/>
+                <input type="button" value='details' onClick={this.displayCoachDetails}/>
             </div>
          );
     }

@@ -22,7 +22,8 @@ export default async (req : express.Request, res : express.Response) => {
                     firstName : coach.firstName,
                     lastName: coach.lastName,
                     distance: distance,
-                    yearsCoaching: coach.yearsCoaching
+                    yearsCoaching: coach.yearsCoaching,
+                    coachId: coach._id
                 }
                 matchingCoaches.push(coachIncludingDistance)
             }
