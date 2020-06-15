@@ -1,6 +1,7 @@
 import express = require('express')
 import routes from './routes'
 import mongoose = require('mongoose')
+import cors = require('cors')
 import { db } from './db'
 require('dotenv').config()
 import expressmongosanitize = require('express-mongo-sanitize')
@@ -10,6 +11,7 @@ const database = db
 const app : express.Application = express()
 const port: number = 3000
 
+app.options('*', cors())
 app.use(express.json())
 app.use(express.static('dist/public/'))
 app.use(express.urlencoded({extended: true}))

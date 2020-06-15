@@ -3,7 +3,7 @@ import * as React from "react"
 export interface DropdownProperties {
     fieldName: string, 
     label: string,
-    updateParent(newOption: string): void,
+    updateParent: React.SetStateAction<any> | ((fieldData: string | number) => void) 
     options: Array<string>
 }
 export interface DropdownState {

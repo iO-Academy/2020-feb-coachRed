@@ -7,7 +7,7 @@ export interface DropdownProperties {
 }
 export interface DropdownState {dropdownVisible : boolean, fieldData: string}
 
-export class Dropdown extends React.Component<DropdownProperties, DropdownState> {
+export class SportDropdown extends React.Component<DropdownProperties, DropdownState> {
 
     sports: Array<string>
 

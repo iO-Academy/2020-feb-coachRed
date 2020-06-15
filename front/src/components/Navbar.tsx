@@ -6,12 +6,15 @@ export class Navbar extends React.Component {
         return(
         <nav id="navbar" className="navbar navbar-expand-lg navbar-light bg-light">
             <Link className="navbar-brand" to="#">Coach Red</Link>
-            <ul className="navbar-nav mr-auto">
-                <li>
+            <div className="collapse navbar-collapse">
+                <ul className="navbar-nav mr-auto">
+                    <li>
                         <Link className="nav-link" to="/registerCoach">Register a Coach</Link>
-                        <Link className="nav-link" to="/viewCoach">Coach Details</Link>
-                </li>
-            </ul>
+                        <Link className="nav-link" to="/coachSearch">Find a Coach</Link>
+                        <Link className="nav-link" to="/registerAthlete">Register an Athlete</Link>
+                    </li>
+                </ul>
+            </div>
             <Link className="nav-link my-2 my-sm-0" to="/coachLogin">Coach Login</Link>
         </nav>)
     }
