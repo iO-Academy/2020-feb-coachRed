@@ -4,6 +4,7 @@ import { BookingInterface } from "../interfaces/BookingInterface"
 
 export interface BookingListProps {
   bookings: Array<any>
+  date: Date
 }
 
 export default class BookingList extends React.Component <BookingListProps, {}> {
@@ -20,8 +21,9 @@ export default class BookingList extends React.Component <BookingListProps, {}> 
     return(
       <div className='bookings'>
         {this.props.bookings.map((booking: BookingInterface) => {
-          return <Booking key={this.props.bookings.findIndex((entry)=>entry===booking)}
-          startTime={booking.startTime} endTime={booking.endTime}/>
+          return <Booking date={this.props.date} key={this.props.bookings.findIndex((entry)=>entry===booking)}
+            startTime={booking.startTime} endTime={booking.endTime} id={booking._id} /> 
+          
         })}
         
       </div>

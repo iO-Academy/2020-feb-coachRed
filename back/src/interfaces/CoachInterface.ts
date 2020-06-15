@@ -9,7 +9,7 @@ export interface CoachInterface  {
     houseNumber: number, //  either number or name
     houseName: string, // either number or name
     address1: string,
-    address2: string,
+    address2: string | null,
     town: string,
     county: string,
     postcode: string, // can typehint a postcode with regex?
@@ -20,5 +20,5 @@ export interface CoachInterface  {
     sport: string, // list from database. Typehint to sport?
     expertise: string,
   
-    password: string //obvs needs sorting out
+    password: string | null //obvs needs sorting out
   }

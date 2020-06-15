@@ -5,6 +5,7 @@ import {CoachRegistration} from "./components/CoachRegistration"
 import CoachLogin from "./components/CoachLogin"
 import { CoachAvailibility } from "./components/CoachAvailibility"
 import {Navbar} from "./components/Navbar"
+import ViewCoach from "./components/ViewCoach"
 
 export class App extends React.Component {
     
@@ -17,7 +18,8 @@ export class App extends React.Component {
                         <div className="row">
                             <div className="pageContent col-10 offset-1 bg-light">
                                 <Switch>
-                                    <Route path="/registerCoach" component={CoachRegistration}/>
+                                    <Route path="/registerCoach" component={CoachRegistration} />
+                                    <Route path="/viewCoach" component={ViewCoach}/>
                                     <Route path="/coachLogin" component={CoachLogin} />
                                     <Route path="/coachAvailibility" component={CoachAvailibility }/>
                                     <Route path="/" component={CoachRegistration}/>

@@ -2,11 +2,12 @@ import express = require('express')
 import Coach from '../models/coachModel'
 
 export default (req : express.Request, res : express.Response) => {
-    const bearerToken = req.header('Authorization').split(' ')[1]
+    const id = req.query.id
     try {
             let slotsToReturn: Array<any> = []
             const desiredDate = new Date(Date.parse(req.params.date))
-            Coach.findOne({token: bearerToken}).then((coach: any) => {
+        Coach.findById(id).then((coach: any) => {
+            console.log(coach)
                 coach.timeSlots.forEach((slot: any) => {
                     const slotDate = new Date(Date.parse(slot.date))
                     if (slotDate.toDateString() == desiredDate.toDateString()) {
@@ -30,7 +31,6 @@ export default (req : express.Request, res : express.Response) => {
                     status: 'success',
                     message: 'slots retrieved',
                     data: {
-                        token: req.header('Authorization').split(' ')[1],
                         slots: slotsToReturn
                     }
                 })
@@ -40,7 +40,7 @@ export default (req : express.Request, res : express.Response) => {
                 status: 'fail',
                 message: err,
                 data: {
-                    token: req.header('Authorization').split(' ')[1]
+                    
                 }
             })
     }

@@ -25,7 +25,8 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
         modalDisplay: false,
         selectedDate: new Date(),
         isDateSelected: false,
-        bookings: []
+        bookings: [],
+   
       } 
   }
 
@@ -36,18 +37,16 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     const request = {
       method: 'GET',
       headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + String(localStorage.getItem('coachRedToken'))
+          'Content-Type': 'application/json'
       }
     }
+    let id = localStorage.getItem('id')
 
-    let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}`, request)
+    let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}?id=${id}`, request)
     if (slots.status === 403) {
       console.log(await slots.json())
-      // window.location.href = 'coachLogin'
     }
     let response = await slots.json()
-    localStorage.setItem('coachRedToken', response.data.token)
 
     this.setState({bookings: response.data.slots})
   }
@@ -72,7 +71,7 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
               <div className="bookingsContainer">
                 <div className="bookingList">
                     {!this.state.isDateSelected && <p>Please Select a Date</p>}
-                    {this.state.isDateSelected && < BookingList bookings={this.state.bookings}/>}
+              {this.state.isDateSelected && < BookingList date={this.state.selectedDate} bookings={this.state.bookings}/>}
                     {this.state.isDateSelected && <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>}
                 </div>
                 <div id="newSlot" className="newSlotModal">

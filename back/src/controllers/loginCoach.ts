@@ -18,13 +18,15 @@ export default (req: express.Request, res: express.Response) => {
                         }, process.env.SECRET, {
                         expiresIn: 1800 //expires in 30 minutes
                     })
+                   
                     coach.token = token
                     coach.save()
                     res.status(200).json({
                         status: 'success',
                         message: 'login successful',
                         data: {
-                            "token": token
+                            "token": token,
+                            "id" : coach._id
                         }
                     })
                 } else {

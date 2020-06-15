@@ -5,6 +5,8 @@ import loginCoach from './controllers/loginCoach'
 import validateUser from './controllers/validateUser'
 import createSlot from './controllers/createSlot'
 import getSlots from './controllers/getSlots'
+import getCoach from './controllers/getCoach'
+import bookSlot from './controllers/bookSlot'
 import cors = require('cors')
 const app = express();
 
@@ -15,9 +17,11 @@ const routes = (app : express.Application) :void => {
     app.get('/sport', getAllSports)
     app.post('/coach', sendFormInfo)
     app.post('/coach/login', loginCoach)
-    app.use('/slot/', validateUser)
+    app.post('/slot/', validateUser)
     app.post('/slot/', createSlot)
+    app.put('/slot/:slotId', bookSlot)
     app.get('/slot/:date', getSlots)
+    app.get('/coach/:id', getCoach)
 }
 
 export default routes
