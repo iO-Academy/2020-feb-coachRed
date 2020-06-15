@@ -1,28 +1,36 @@
 import * as React from 'react'
 import {LocationFieldProps, LocationField} from './LocationField'
-import PostCodeSearch from './PostCodeSearch'
+import {PostCodeSearch, PostCodeSearchState, PostCodeSearchProperties} from './PostCodeSearch'
+import {Location} from '../../../back/src/interfaces/Location'
+import {Submit} from './Submit'
+
 
 export interface CoachSearchProps {
     
 }
  
 export interface CoachSearchState {
-    longitude: string,
-    latitude: string
+    location: Location,
+    postcode: string
 }
  
 class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
     constructor(props: CoachSearchProps) {
         super(props);
         this.state = { 
-            longitude: '',
-            latitude: ''
+            location: {
+                longitude: 0,
+                latitude: 0
+            },
+            postcode: ''
         };
     }
 
     updateLocation = (newLoc: Location) => {this.setState({location: newLoc})}
 
-    updatePostcode(newPS: string) {this.setState({postcode: newPS})}
+    updatePostcode = (newPS: string) => {
+        this.setState({postcode: newPS})
+    }
 
     sendResults = async (e : any) => {
         e.preventDefault()
@@ -47,12 +55,12 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
     render() { 
         return ( 
             <div className='root'>
-                <LocationField/>
-                <PostCodeSearch/>
-                <Submit sendResults={this.sendResults} buttonName="Login" />
+                <LocationField updateParent={this.updateLocation} fieldData={null}/>
+                <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false}/>
+                <Submit sendResults={this.sendResults} buttonName="Search" />
             </div>
          );
     }
 }
  
-export default CoachLogin;
+export default CoachSearch;
