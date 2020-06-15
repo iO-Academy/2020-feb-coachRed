@@ -2,6 +2,7 @@ import * as React from "react"
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 
 import {CoachRegistration} from "./components/CoachRegistration"
+import { AthleteRegistration } from "./components/AthleteRegistration"
 import CoachLogin from "./components/CoachLogin"
 import { CoachAvailibility } from "./components/CoachAvailibility"
 import {Navbar} from "./components/Navbar"
@@ -20,6 +21,7 @@ export class App extends React.Component {
                                     <Route path="/registerCoach" component={CoachRegistration}/>
                                     <Route path="/coachLogin" component={CoachLogin} />
                                     <Route path="/coachAvailibility" component={CoachAvailibility }/>
+                                    <Route path="/registerAthlete" component={AthleteRegistration} />
                                     <Route path="/" component={CoachRegistration}/>
                                 </Switch>
                             </div>

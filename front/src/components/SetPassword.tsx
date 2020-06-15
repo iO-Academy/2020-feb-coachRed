@@ -1,7 +1,7 @@
 import * as React from "react"
 
 export interface SetPasswordProps {
-    updateParent(fieldData: string | number): void
+    updateParent: React.SetStateAction<any> | ((fieldData: string | number) => void) 
 }
 
 export interface SetPasswordState {

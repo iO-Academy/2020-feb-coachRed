@@ -6,7 +6,7 @@ export interface TextInputProps {
     fieldData : string | number,
     inputType : string,
     isRequired : boolean,
-    updateParent(fieldData: string | number): void
+    updateParent: React.SetStateAction<any> | ((fieldData: string | number) => void) 
 }
 
 export class TextInput extends React.Component<TextInputProps, {}> {

@@ -4,7 +4,7 @@ export interface TextAreaProps {
     label : string, 
     fieldName : string, 
     fieldData : string | number
-    updateParent(fieldData: string | number): void
+    updateParent: React.SetStateAction<any> | ((fieldData: string | number) => void) 
 }
 
 export class TextArea extends React.Component<TextAreaProps, {}> {

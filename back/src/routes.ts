@@ -15,7 +15,7 @@ import { checkAthleteLogin } from './controllers/athlete/checkAthleteLogin'
 const app = express();
 
 const routes = (app : express.Application) :void => {
-    app.options('*', cors())
+    
     app.get('/', (req,res)=>{res.sendFile('index.html',{root: "./"})})
     app.get('/dist/styles/styles.css', (req,res)=>{res.sendFile('dist/styles/styles.css',{root: "./"})})
     app.get('/sport', getAllSports)
