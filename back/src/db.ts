@@ -6,6 +6,7 @@ const database : string = 'CoachRed'
 class Database {
     constructor() {
         this._connect()
+        this._configure()
     }
 
     _connect() {
@@ -16,6 +17,10 @@ class Database {
             .catch(err => {
                 console.error('Database connection error')
             })
+    }
+
+    _configure() {
+        mongoose.set('useFindAndModify', false)
     }
 }
 
