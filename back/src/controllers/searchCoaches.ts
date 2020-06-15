@@ -11,13 +11,20 @@ export default async (req : express.Request, res : express.Response) => {
         const search = JSON.parse(req.params.search)
         const athleteLocation = {longitude: parseFloat(search.longitude), latitude: parseFloat(search.latitude)}
 
-        const coaches = await Coach.find()
+        const coaches = await Coach.find()//select only the required fields
 
         let matchingCoaches :Array<any> = []
 
         coaches.forEach((coach :any) => {
-            if(haversine(athleteLocation, coach.location, {threshold: 30, unit: 'mile'})){
-                matchingCoaches.push(coach)
+            if(haversine(athleteLocation, coach.location, {threshold: 30, unit: 'mile'}) && search.sport === coach.sport){
+                const distance = haversine(athleteLocation, coach.location, {unit: 'mile'})
+                const coachIncludingDistance = {
+                    firstName : coach.firstName,
+                    lastName: coach.lastName,
+                    distance: distance,
+                    yearsCoaching: coach.yearsCoaching
+                }
+                matchingCoaches.push(coachIncludingDistance)
             }
         })
 
