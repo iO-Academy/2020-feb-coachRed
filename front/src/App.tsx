@@ -6,6 +6,7 @@ import { AthleteRegistration } from "./components/AthleteRegistration"
 import CoachLogin from "./components/CoachLogin"
 import { CoachAvailibility } from "./components/CoachAvailibility"
 import {Navbar} from "./components/Navbar"
+import CoachSearch from "./components/CoachSearch"
 
 export class App extends React.Component {
     
@@ -18,11 +19,12 @@ export class App extends React.Component {
                         <div className="row">
                             <div className="pageContent col-10 offset-1 bg-light">
                                 <Switch>
+                                    <Route path="/coachSearch" component={CoachSearch}/>
                                     <Route path="/registerCoach" component={CoachRegistration}/>
                                     <Route path="/coachLogin" component={CoachLogin} />
                                     <Route path="/coachAvailibility" component={CoachAvailibility }/>
                                     <Route path="/registerAthlete" component={AthleteRegistration} />
-                                    <Route path="/" component={CoachRegistration}/>
+                                    <Route path="/" component={CoachSearch}/>
                                 </Switch>
                             </div>
                         </div>

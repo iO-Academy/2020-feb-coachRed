@@ -10,6 +10,7 @@ export class Navbar extends React.Component {
                 <ul className="navbar-nav mr-auto">
                     <li>
                         <Link className="nav-link" to="/registerCoach">Register a Coach</Link>
+                        <Link className="nav-link" to="/coachSearch">Find a Coach</Link>
                         <Link className="nav-link" to="/registerAthlete">Register an Athlete</Link>
                     </li>
                 </ul>

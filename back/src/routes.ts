@@ -5,6 +5,7 @@ import loginCoach from './controllers/loginCoach'
 import validateUser from './controllers/validateUser'
 import createSlot from './controllers/createSlot'
 import getSlots from './controllers/getSlots'
+import searchCoaches from './controllers/searchCoaches'
 import cors = require('cors')
 import { readAthlete } from './controllers/athlete/readAthlete'
 import { createAthlete } from './controllers/athlete/createAthlete'
@@ -31,7 +32,8 @@ const routes = (app : express.Application) :void => {
     app.post('/athlete',createAthlete)
     app.put('/athlete',updateAthlete)
     app.delete('/athlete', deleteAthlete)
-    app.post('/athlete/login',loginAthlete)
+    app.post('/athlete/login', loginAthlete)
+    app.get('/coach/:search', searchCoaches)
 }
 
 export default routes
