@@ -3,7 +3,7 @@ import * as React from "react"
 import { Location } from '../interfaces/Location'
 
 import { LocationField } from "./LocationField"
-import { Dropdown } from "./SportDropdown"
+import { SportDropdown } from "./SportDropdown"
 import { TextInput } from "./TextInput"
 import { TextArea } from "./TextArea"
 import { PostCodeSearch } from "./PostCodeSearch"
@@ -130,7 +130,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
                 <TextInput label="How long have you been coaching?" fieldName="yearsTraining" 
                 fieldData={this.state.yearsCoaching} inputType="number"  isRequired={true} 
                 updateParent={this.updateYearsTraining} />
-                <Dropdown label="What sport will you be coaching?" fieldName="sport"
+                <SportDropdown label="What sport will you be coaching?" fieldName="sport"
                 updateParent={this.updateSport}/>
                 <TextInput label="What's your area of expertise?" fieldName="areaOfExpertise" 
                 fieldData={this.state.expertise} inputType="text" isRequired={true} 
