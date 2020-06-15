@@ -5,6 +5,7 @@ import loginCoach from './controllers/loginCoach'
 import validateUser from './controllers/validateUser'
 import createSlot from './controllers/createSlot'
 import getSlots from './controllers/getSlots'
+import searchCoaches from './controllers/searchCoaches'
 import cors = require('cors')
 const app = express();
 
@@ -18,6 +19,7 @@ const routes = (app : express.Application) :void => {
     app.use('/slot/', validateUser)
     app.post('/slot/', createSlot)
     app.get('/slot/:date', getSlots)
+    app.get('/coach/:search', searchCoaches)
 }
 
 export default routes
