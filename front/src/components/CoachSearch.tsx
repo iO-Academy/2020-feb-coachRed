@@ -4,6 +4,8 @@ import {PostCodeSearch, PostCodeSearchState, PostCodeSearchProperties} from './P
 import {Location} from '../../../back/src/interfaces/Location'
 import {Submit} from './Submit'
 import {Dropdown} from './SportDropdown'
+import CoachCardList from './CoachCardList'
+import WelcomeMessage from './WelcomeMessage'
 
 
 export interface CoachSearchProps {
@@ -14,6 +16,7 @@ export interface CoachSearchState {
     location: Location | null
     postcode: string | null
     sport: string | null
+    searchResults: Array<Object> |null
 }
  
 class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
@@ -22,7 +25,8 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
         this.state = { 
             location: null,
             postcode: null,
-            sport: 'Rugby'
+            sport: 'Rugby',
+            searchResults: null
         };
     }
 
@@ -36,37 +40,33 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
 
     sendResults = async (e : any) => {
         e.preventDefault()
-        let response = await fetch('http://localhost:3000/coach/login', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.state)
+        const search = JSON.stringify({
+            longitude: this.state.location?.longitude,
+            latitude: this.state.location?.latitude,
+            sport: this.state.sport
         })
-        let data = await response.json()
-        
-        if (data.status === 'success') {
-            localStorage.setItem('coachRedToken', data.data.token)
-            window.location.href = "/coachAvailibility"
 
-        } else {
-            alert('no chance')
-        }
+        console.log(search)
+
+        let response = await fetch(`http://localhost:3000/coach/${search}`)
+        let data = await response.json()
+
+        console.log(data)
+
+        this.setState({searchResults: data.data.matchingCoaches})
     }
 
     render() { 
         return ( 
             <div className='root'>
-                <div>
-                    <h1>Welcome to Coach Red!</h1>
-                    <p>We help athletes and coaches to connect</p>
-                    <p>Are you an athlete? Search for coaches in your area now!</p>
-                </div>
+                {!this.state.searchResults && <WelcomeMessage/>}
                 <Dropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport}/>
                 <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
                 <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false}/>
                 <Submit sendResults={this.sendResults} buttonName="Search" />
-                <div>
+
+                {this.state.searchResults ? <CoachCardList coaches={this.state.searchResults}/>:
+                    <div>
                     <div>
                         <p>"Wow! What a Great Company! I found the best coach!"</p>
                         <p>     - John Doe, 2020</p>
@@ -75,7 +75,9 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
                         <p>"Wow! What a Great Company! I've never made so much money before!</p>
                         <p>     - Abraham Lincoln, 2020</p>
                     </div>
-                </div>
+                </div> 
+                }
+                
             </div>
          );
     }
