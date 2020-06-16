@@ -5,7 +5,7 @@ export default (req : express.Request, res : express.Response) => {
   
   try {
       
-      let coachId = req.params.id
+      let coachId = req.query.coachId
       
       Coach.findOne({ _id: coachId }).then((coach: any) => {
         res.status(200).json({

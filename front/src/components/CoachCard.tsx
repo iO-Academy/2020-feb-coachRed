@@ -14,7 +14,8 @@ class CoachCard extends React.Component<CoachCardProps, {}> {
 
     displayCoachDetails = () => {
         
-        // redirect to ViewCoach with coachId passed as prop
+        localStorage.setItem('coachId', this.props.coachId)
+        window.location.href = '/viewCoach'
     }
 
     render() { 

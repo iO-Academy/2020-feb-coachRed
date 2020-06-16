@@ -41,12 +41,8 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
 
   bookSession = async (e: any) => {
     e.preventDefault(); 
-    console.log(this.props.id)
    
     const slotId = this.props.id
-
-    console.log(slotId)
-    
 
     await fetch(`http://localhost:3000/slot/${slotId}`, {
         method: 'PUT',

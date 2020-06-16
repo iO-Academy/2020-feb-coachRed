@@ -25,7 +25,10 @@ export class App extends React.Component {
                                     <Route path="/coachLogin" component={CoachLogin} />
                                     <Route path="/coachAvailibility" component={CoachAvailibility }/>
                                     <Route path="/registerAthlete" component={AthleteRegistration} />
-                                    <Route path="/" component={CoachSearch}/>
+                                    <Route path="/viewCoach" component={ViewCoach} />
+                                    <Route path="/" component={CoachSearch} />
+                                    
+                                    
                                 </Switch>
                             </div>
                         </div>
