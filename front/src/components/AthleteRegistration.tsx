@@ -50,16 +50,16 @@ export const AthleteRegistration = () => {
             // Processing to insert date of birth in the right format
             let formData = getFormData()
 
-            formData.dateOfBirth = (new Date(formData.dateOfBirth)).toISOString().split('T')[0]
-            const registerResponse = await (await fetch('http://localhost:3000/athlete', {
+            formData.dateOfBirth = (new Date(formData.dateOfBirth)).toISOString()
+            const registerResponse = await fetch('http://localhost:3000/athlete', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
-            })).json()
-            if (registerResponse.status === 200) {
-                window.location.href="/coachLogin"
+            })
+            if (registerResponse.status == 200) {
+                window.location.href="/coachSearch"
             } else {
                 console.log('Oops! It looks like something went wrong!')
             }

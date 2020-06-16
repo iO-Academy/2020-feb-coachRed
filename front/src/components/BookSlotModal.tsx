@@ -7,10 +7,10 @@ import { Submit } from './Submit';
 export interface BookSlotModalState {
 
   numberOfSessions: string
-  athleteName: string
-  athletePhone: any
-  athleteId: any
-  slotId: string
+  athleteName: string | null
+  athletePhone: string | null
+  athleteId: string | null
+  coachId: string | null
  
 }
 
@@ -27,11 +27,19 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
     super(props);
     this.state = {
       numberOfSessions: '6',
-      athleteName: localStorage.getItem('firstName') + ' ' + localStorage.getItem('lastName'),
-      athletePhone: localStorage.getItem('phone'),
-      athleteId: localStorage.getItem('id'),
-      slotId: ''
+      athleteName: '',
+      athletePhone: '',
+      athleteId: '',
+      coachId: ''
     };
+  }
+
+  componentDidMount = () => {
+    this.setState({ athleteName: localStorage.getItem('firstName') + ' ' + localStorage.getItem('lastName') })
+    this.setState({ athletePhone: localStorage.getItem('phone') })
+    this.setState({ athleteId: localStorage.getItem('id') })
+    this.setState({ coachId: localStorage.getItem('coachId') })
+    
   }
 
   updateSessions = (newSessions: string) => {
@@ -43,13 +51,16 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
     e.preventDefault(); 
    
     const slotId = this.props.id
+    const coachId = this.state.coachId
+    console.log(localStorage.getItem("coachRedToken"))
 
-    await fetch(`http://localhost:3000/slot/${slotId}`, {
+    await fetch(`http://localhost:3000/slot/${slotId}?coachId=${coachId}`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('coachRedToken')
         },
-        body: JSON.stringify(this.state)
+      body: JSON.stringify(this.state)
     })
   }
 

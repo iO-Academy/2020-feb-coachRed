@@ -7,7 +7,7 @@ export default (req : express.Request, res : express.Response) => {
             let slotsToReturn: Array<any> = []
             const desiredDate = new Date(Date.parse(req.params.date))
         Coach.findById(id).then((coach: any) => {
-            console.log(coach)
+           
                 coach.timeSlots.forEach((slot: any) => {
                     const slotDate = new Date(Date.parse(slot.date))
                     if (slotDate.toDateString() == desiredDate.toDateString()) {

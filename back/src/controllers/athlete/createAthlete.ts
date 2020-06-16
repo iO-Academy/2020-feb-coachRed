@@ -48,7 +48,7 @@ export async function createAthlete(req: express.Request, res: express.Response)
                 }).catch(err => {
                     const response: RestResponse = {
                         status: 'fail',
-                        message: 'invalid data',
+                        message: 'invalid data - failed to save',
                         data: {}
                     }
     
@@ -71,7 +71,7 @@ export async function createAthlete(req: express.Request, res: express.Response)
     } else {
         const response: RestResponse = {
             status: 'fail',
-            message: 'invalid data',
+            message: 'invalid data - failed validation',
             data: {}
         }
 

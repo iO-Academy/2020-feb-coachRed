@@ -88,7 +88,8 @@ export default class ViewCoach extends Component<ViewCoachProps, ViewCoachState>
       },
       coachId: response.data.coach._id
     })
-    console.log(this.state.coachId)
+    localStorage.setItem('coachId', response.data.coach._id)
+
   }
 
 

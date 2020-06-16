@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import {CoachRegistration} from "./components/CoachRegistration"
 import { AthleteRegistration } from "./components/AthleteRegistration"
 import CoachLogin from "./components/CoachLogin"
+import AthleteLogin from "./components/AthleteLogin"
 import { CoachAvailibility } from "./components/CoachAvailibility"
 import {Navbar} from "./components/Navbar"
 import ViewCoach from "./components/ViewCoach"
@@ -23,6 +24,7 @@ export class App extends React.Component {
                                     <Route path="/coachSearch" component={CoachSearch}/>
                                     <Route path="/registerCoach" component={CoachRegistration}/>
                                     <Route path="/coachLogin" component={CoachLogin} />
+                                    <Route path="/athleteLogin" component={AthleteLogin} />
                                     <Route path="/coachAvailibility" component={CoachAvailibility }/>
                                     <Route path="/registerAthlete" component={AthleteRegistration} />
                                     <Route path="/viewCoach" component={ViewCoach} />

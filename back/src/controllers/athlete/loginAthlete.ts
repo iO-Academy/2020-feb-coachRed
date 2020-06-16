@@ -27,7 +27,8 @@ export async function loginAthlete(req: express.Request, res: express.Response) 
                 }, process.env.SECRET, {
                     expiresIn: 1800
                 });
-                athlete.token = token;
+                athlete.token = token
+                
                 athlete.save().catch((err: any) => {
                     const response: RestResponse = {
                         status: 'fail',

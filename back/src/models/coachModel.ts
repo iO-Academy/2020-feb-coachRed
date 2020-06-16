@@ -34,7 +34,12 @@ let CoachSchema  = {
       date: String,
       startTime: String,
       endTime: String,
-      repeat: String
+      repeat: String,
+      booked: Boolean,
+      bookedBy: String,
+      contact: String,
+      athleteId: String
+
     }
   ]
 }

@@ -46,7 +46,7 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
     }
     let response = await slots.json()
     this.setState({ bookings: response.data.slots })
-    console.log(this.state.bookings)
+  
 
   }
 
