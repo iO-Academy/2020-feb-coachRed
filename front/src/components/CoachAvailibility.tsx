@@ -48,7 +48,8 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     }
     let response = await slots.json()
 
-    this.setState({bookings: response.data.slots})
+    this.setState({ bookings: response.data.slots })
+    console.log(response.data.slots)
   }
 
  

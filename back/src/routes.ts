@@ -38,6 +38,7 @@ const routes = (app : express.Application) :void => {
     app.delete('/athlete', deleteAthlete)
     app.post('/athlete/login', loginAthlete)
     app.get('/coach/:search', searchCoaches)
+    // app.get('/slot/:slotId', getSlotInfo)
 }
 
 export default routes

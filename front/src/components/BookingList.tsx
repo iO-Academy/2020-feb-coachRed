@@ -21,8 +21,8 @@ export default class BookingList extends React.Component <BookingListProps, {}> 
     return(
       <div className='bookings'>
         {this.props.bookings.map((booking: BookingInterface) => {
-          return <Booking date={this.props.date} key={this.props.bookings.findIndex((entry)=>entry===booking)}
-            startTime={booking.startTime} endTime={booking.endTime} id={booking._id} /> 
+          return <Booking who='coach' buttonName="Details" date={this.props.date} key={this.props.bookings.findIndex((entry) => entry === booking)}
+            booking={booking}/> 
           
         })}
         

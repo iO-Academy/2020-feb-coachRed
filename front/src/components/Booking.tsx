@@ -1,16 +1,20 @@
 import * as React from "react"
-import BookSlotModal from './BookSlotModal'
+import BookSlotModal from "./BookSlotModal"
+import ViewBookingDetails from "./ViewBookingDetails"
+import {Submit} from './Submit'
+import { BookingInterface } from "../interfaces/BookingInterface"
 
 export interface BookingProps {
-  startTime: string,
-  endTime: string
+  booking: BookingInterface
   date: Date
-  id: string
+  buttonName: string
+  who: string
 }
 
 export interface BookingState {
  
   modalDisplay: boolean
+  
 }
 
 export default class Booking extends React.Component<BookingProps, BookingState> {
@@ -24,9 +28,15 @@ export default class Booking extends React.Component<BookingProps, BookingState>
       
     }
   }
+
   
   openModal = () => {
-    this.setState({ modalDisplay: (this.state.modalDisplay === true) ? false : true })
+    if (localStorage.getItem('token')) {
+      this.setState({ modalDisplay: (this.state.modalDisplay === true) ? false : true })
+    }
+    else {
+      window.location.href = '/athleteLogin'
+    }
     
   }
 
@@ -34,10 +44,14 @@ export default class Booking extends React.Component<BookingProps, BookingState>
     return(
       <div className='booking'>
         <span>
-          {this.props.startTime} - {this.props.endTime}
+          {this.props.booking.startTime} - {this.props.booking.endTime}
         </span>
-        <button className="btn btn-danger" onClick={this.openModal}>Book this time slot</button>
-        {this.state.modalDisplay && < BookSlotModal date={this.props.date} startTime={this.props.startTime} endTime={this.props.endTime} id={this.props.id} toggleModal={this.openModal} />}
+        
+        {this.props.who == 'coach' && this.props.booking.booked && <Submit buttonName={this.props.buttonName} sendResults={this.openModal} />}
+        {this.props.who == 'athlete' && <Submit buttonName={this.props.buttonName} sendResults={this.openModal} />}
+
+        {this.state.modalDisplay && (this.props.who == 'athlete') && < BookSlotModal date={this.props.date} startTime={this.props.booking.startTime} endTime={this.props.booking.endTime} id={this.props.booking._id} toggleModal={this.openModal} />}
+        {this.state.modalDisplay && (this.props.who == 'coach') && < ViewBookingDetails booking={this.props.booking} toggleModal={this.openModal} />}
       </div>
     )}
   

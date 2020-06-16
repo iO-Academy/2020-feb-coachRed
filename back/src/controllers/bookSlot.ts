@@ -5,11 +5,10 @@ import {AthleteModel} from '../models/AthleteModel'
 export default async (req: express.Request, res: express.Response) => {
 
     const bearerToken = req.header("Authorization").split(' ')[1]
-    console.log(bearerToken)
+
     const athlete : any = await AthleteModel.findOne({token: bearerToken})
     const slotId = req.params.slotId
     const coachId = req.query.coachId
-    console.log(athlete)
 
     try {
         Coach.findById(coachId)
