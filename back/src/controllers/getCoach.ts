@@ -2,7 +2,7 @@ import express = require('express')
 import Coach from '../models/coachModel'
 
 export default (req : express.Request, res : express.Response) => {
-    // const bearerToken = req.header('Authorization').split(' ')[1]
+  
   try {
       
       let coachId = req.params.id
