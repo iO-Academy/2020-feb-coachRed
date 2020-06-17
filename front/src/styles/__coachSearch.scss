@@ -6,9 +6,6 @@
     margin: auto;
     padding: 2em;
 
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
     .locationField{
         button{
             background-image: url("../images/location.png");
@@ -16,15 +13,13 @@
             background-size: cover;
             width: 30px;
             height: 30px;
-=======
->>>>>>> geocoding
+        }
+
     .locationBox {
 
         display: flex;
         justify-content: center;
         align-items: flex-end;
-
-<<<<<<< HEAD
         .locationField{
             padding-right: 1em;
 
@@ -37,9 +32,6 @@
                 padding: 1em;
             }   
         } 
-=======
-        
->>>>>>> geocoding
         .postcodeForm{
             display: flex;
             justify-content: space-between;
@@ -55,10 +47,7 @@
                 margin: 0 1em;
                 padding: 1em
             }
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> geocoding
         }
     }
+}
 }
