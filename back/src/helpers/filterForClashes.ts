@@ -14,15 +14,16 @@ export function filterForClashes(timeSlots: Array<SlotInterface>, dateToCheck: D
             return slotIsBooked;
         });
         bookedSlots.forEach(bookedSlot => {
-            const bookedSlotStarts = bookedSlot.startTime.replace(':','.')
-            const bookedSlotEnds = bookedSlot.endTime.replace(':','.')
-            const timeSlotStarts = timeSlot.startTime.replace(':','.')
-            const timeSlotEnds = timeSlot.startTime.replace(':','.')
-            if ((timeSlotStarts < bookedSlotStarts && bookedSlotStarts < timeSlotEnds)
-             || (bookedSlotStarts < timeSlotStarts && timeSlotStarts < bookedSlotEnds)
-             || bookedSlot === timeSlot) {
-                 timeAvailable = false;
-             }
+            if (!(bookedSlot === timeSlot)) {
+                const bookedSlotStarts = bookedSlot.startTime.replace(':','.')
+                const bookedSlotEnds = bookedSlot.endTime.replace(':','.')
+                const timeSlotStarts = timeSlot.startTime.replace(':','.')
+                const timeSlotEnds = timeSlot.startTime.replace(':','.')
+                if ((timeSlotStarts <= bookedSlotStarts && bookedSlotStarts < timeSlotEnds)
+                || (bookedSlotStarts <= timeSlotStarts && timeSlotStarts < bookedSlotEnds)) {
+                    timeAvailable = false;
+                }
+            }
         });
         return timeAvailable;
     });

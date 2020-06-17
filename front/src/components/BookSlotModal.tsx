@@ -64,18 +64,12 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
         },
       body: JSON.stringify(requestBody)
     })
-<<<<<<< HEAD
     alert('You booked the session!')
     window.location.reload()
-=======
-
-    this.props.toggleModal()
->>>>>>> development
   }
 
   render() {
     return (
-<<<<<<< HEAD
       <div className="modal" role="dialog" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
@@ -95,16 +89,6 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
             </div>
           </div>
         </div>
-=======
-      <div>
-        
-        <h5>{this.props.date.toDateString()}</h5>
-        <h5>{this.props.startTime} - {this.props.endTime}</h5>
-        <Dropdown fieldName="numberOfSessions" label="How many sessions?" updateParent={this.updateSessions} options={['1','6', '8', '10']} />
-        <Submit buttonName="Book Now!" sendResults={this.bookSession}/>
-
-      </div>
->>>>>>> development
     )
   }
 } 
