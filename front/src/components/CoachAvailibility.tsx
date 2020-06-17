@@ -3,6 +3,7 @@ import Calendar from './Calendar'
 import BookingList from './BookingList'
 import Modal from './Modal'
 import {CoachInterface }from '../interfaces/CoachInterface'
+import { BookingInterface } from '../interfaces/BookingInterface'
 
 export interface CoachAvailibilityState {
   modalDisplay: boolean
@@ -47,9 +48,46 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
       console.log(await slots.json())
     }
     let response = await slots.json()
-
-    this.setState({ bookings: response.data.slots })
-
+    let bookings: Array<BookingInterface> = []
+    response.data.slots.forEach((slot: any) => {
+      let slotAvailable = true;
+      if (slot.bookedBy.length > 0) {
+        slot.bookedBy.forEach((booking: any) => {
+          console.log(booking.startDate)
+          let formattedDate = this.state.selectedDate.toISOString()
+          console.log(booking.endDate)
+          if (booking.startDate <= formattedDate && formattedDate <= booking.endDate) { 
+            bookings.push({
+              _id: booking._id,
+              date: this.state.selectedDate.toLocaleDateString(),
+              startTime: slot.startTime,
+              endTime: slot.endTime,
+              repeat: slot.repeat,
+              hourlyRate: slot.hourlyRate,
+              email: booking.email,
+              contact: booking.phone,
+              booked: true,
+              bookedBy: booking.firstName + ' ' + booking.lastName
+            })
+            slotAvailable = false;
+          } 
+        })
+      } else if (slotAvailable) {
+        bookings.push({
+          _id: slot._id,
+          date: this.state.selectedDate.toLocaleDateString(),
+          startTime: slot.startTime,
+          endTime: slot.endTime,
+          repeat: slot.repeat,
+          hourlyRate: slot.hourlyRate,
+          email: '',
+          contact: '',
+          booked: false,
+          bookedBy: ''
+        })
+      }
+    })
+    this.setState({ bookings: bookings })
   }
 
  

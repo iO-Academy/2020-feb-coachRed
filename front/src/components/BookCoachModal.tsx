@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Calendar from './Calendar';
 import BookableSlotList from './BookableSlotList'
 import { BookingInterface } from '../interfaces/BookingInterface'
+import { count } from 'console';
 export interface BookCoachModalState {
 
   bookings: Array<object>
@@ -53,11 +54,12 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
     // Adapter to account for the fact that the format for a booking was designed without the expectation that multiple
     // Bookings could be made for the same slot
     response.data.slots.forEach((slot: any) => {
-      if (slot.bookedBy) {
+      let slotAvailable = true;
+      if (slot.bookedBy.length > 0) {
         slot.bookedBy.forEach((booking: any) => {
-          if (booking.startDate < this.state.selectedDate && this.state.selectedDate < booking.endDate) { 
+          if (booking.startDate <= this.state.selectedDate && this.state.selectedDate <= booking.endDate) { 
             bookings.push({
-              _id: booking.id,
+              _id: booking._id,
               date: this.state.selectedDate.toLocaleDateString(),
               startTime: slot.startTime,
               endTime: slot.endTime,
@@ -68,13 +70,25 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
               booked: true,
               bookedBy: booking.firstName + ' ' + booking.lastName
             })
-          }
+            slotAvailable = false;
+          } 
+        })
+      } else if (slotAvailable) {
+        bookings.push({
+          _id: slot._id,
+          date: this.state.selectedDate.toLocaleDateString(),
+          startTime: slot.startTime,
+          endTime: slot.endTime,
+          repeat: slot.repeat,
+          hourlyRate: slot.hourlyRate,
+          email: '',
+          contact: '',
+          booked: false,
+          bookedBy: ''
         })
       }
     })
     this.setState({ bookings: bookings })
-  
-
   }
 
   toggleModal = () => {
