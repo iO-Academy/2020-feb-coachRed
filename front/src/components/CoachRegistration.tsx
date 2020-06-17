@@ -98,6 +98,17 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
         window.location.href="/coachLogin"
     }
 
+    async componentDidUpdate() {
+        if(!(this.state.postcode) && this.state.location){
+            let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
+            let data = await response.json()
+
+            this.setState({postcode: data.address.postcode})
+
+            console.log(this.state.postcode)
+        }
+    }
+
     render() {
         return(
             <div className="root registration">
@@ -123,7 +134,7 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
                     <LocationField updateParent={this.updateLocation} fieldData={this.state.location} />
                     
                     <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} 
-                        isRequired={true} />
+                        isRequired={true} postcode={this.state.postcode}/>
                     
                     <TextInput label="Address Line 1:" fieldName="addressOne" fieldData={this.state.address1}
                         inputType="text" isRequired={true} updateParent={this.updateAddress1} />
