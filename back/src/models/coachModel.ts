@@ -29,17 +29,21 @@ let CoachSchema  = {
 
   timeSlots: [
     {
-      ageRange: String,
-      hourlyRate: Number,
-      date: String,
-      startTime: String,
-      endTime: String,
-      repeat: String,
-      booked: Boolean,
-      bookedBy: String,
-      contact: String,
-      athleteId: String
-
+      ageGroup: {type: String, required: true},
+      hourlyRate: {type: Number, required: true},
+      date: {type: String, required: true},
+      startTime: {type: String, required: true},
+      endTime: {type: String, required: true},
+      repeat: {type: String, required: true},
+      availableFor: Number,
+      bookedBy: [{
+          firstName: {type: String, required: true},
+          lastName: {type: String, required: true},
+          startDate: {type: Date, required: true},
+          endDate: {type: Date, required: true},
+          email: {type: String, required: true},
+          phone: {type: String, required: true}
+      }]
     }
   ]
 }

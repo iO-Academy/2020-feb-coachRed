@@ -43,7 +43,7 @@ export default class BookableSlotList extends React.Component <BookableSlotListP
               <div className="modal-body form">
               <div className='bookings'>
         {this.props.bookings.map((booking: BookingInterface) => {
-          return !(booking.booked) &&  <Booking date={this.props.date} who='athlete' buttonName="Book this slot" key={this.props.bookings.findIndex((entry) => entry === booking)}
+          return <Booking date={this.props.date} who='athlete' buttonName="Book this slot" key={this.props.bookings.findIndex((entry) => entry === booking)}
               booking={booking} />
         })}
       </div>
