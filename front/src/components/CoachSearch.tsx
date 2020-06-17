@@ -38,22 +38,25 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
 
     updateSport = (newSport: string) => {this.setState({sport: newSport})}
 
-    sendResults = async (e : any) => {
-        e.preventDefault()
-        const search = JSON.stringify({
-            longitude: this.state.location?.longitude,
-            latitude: this.state.location?.latitude,
-            sport: this.state.sport
-        })
+    sendResults = async (e: any) => {
+        if (this.state.location) {
+           
+            e.preventDefault()
+            const search = JSON.stringify({
+                longitude: this.state.location?.longitude,
+                latitude: this.state.location?.latitude,
+                sport: this.state.sport
+            })
 
-        console.log(search)
+            let response = await fetch(`http://localhost:3000/coach/${search}`)
+            let data = await response.json()
 
-        let response = await fetch(`http://localhost:3000/coach/${search}`)
-        let data = await response.json()
+            console.log(data)
 
-        console.log(data)
-
-        this.setState({searchResults: data.data.matchingCoaches})
+            this.setState({ searchResults: data.data.matchingCoaches })
+        } else {
+            alert('No location provided')
+        }
     }
 
     render() { 
@@ -61,13 +64,15 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
             <div className='root'>
                 {!this.state.searchResults && <WelcomeMessage/>}
                 <div className='coachSearch'>
-                    <SportDropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport}/>
-                    <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
-                    <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false}/>
+                    <SportDropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport} />
+                    <div className="locationBox">
+                        <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
+                        <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false} />
+                    </div>
                     <Submit sendResults={this.sendResults} buttonName="Search" />
                 </div>
                 {this.state.searchResults ? <CoachCardList coaches={this.state.searchResults}/>:
-                    <div>
+                <div className="quotes">
                     <div>
                         <p>"Wow! What a Great Company! I found the best coach!"</p>
                         <p>     - John Doe, 2020</p>

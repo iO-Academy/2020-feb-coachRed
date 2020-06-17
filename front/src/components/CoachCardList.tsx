@@ -13,7 +13,7 @@ class CoachCardList extends React.Component<CoachCardListProps, {}> {
         return (
             <div className='coachCardList'>
                 {this.props.coaches.map(( coach : any) => {
-                    return <CoachCard name={coach.firstName + coach.lastName} distance={coach.distance} experience={coach.yearsCoaching} coachId={coach.coachId}/>
+                    return <CoachCard name={coach.firstName} distance={coach.distance} experience={coach.yearsCoaching} coachId={coach.coachId}/>
                 })}
             </div>)
     }

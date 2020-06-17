@@ -51,12 +51,14 @@ class AthleteLogin extends React.Component<AthleteLoginProps, AthleteLoginState>
 
     render() { 
         return ( 
-            <div className='root'>
+            <div className='root form'>
                  <TextInput label="Email Address" fieldName="emailAddress" fieldData={this.state.email}
                 inputType="text" isRequired={true} updateParent={this.updateEmailAddress} />
                  <TextInput label="Password" fieldName="password" fieldData={this.state.password}
-                inputType="password" isRequired={false} updateParent={this.updatePassword} />
-                <Submit sendResults={this.sendResults} buttonName="Login" />
+                    inputType="password" isRequired={false} updateParent={this.updatePassword} />
+                <div className="submit">
+                    <Submit sendResults={this.sendResults} buttonName="Login" />
+                </div>
             </div>
          );
     }
