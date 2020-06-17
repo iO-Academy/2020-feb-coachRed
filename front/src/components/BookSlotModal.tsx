@@ -62,18 +62,33 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
         },
       body: JSON.stringify(this.state)
     })
+    alert('You booked the session!')
+    window.location.reload()
   }
 
   render() {
     return (
-      <div>
-        
-        <h5>{this.props.date.toDateString()}</h5>
-        <h5>{this.props.startTime} - {this.props.endTime}</h5>
-        <Dropdown fieldName="numberOfSessions" label="How many sessions?" updateParent={this.updateSessions} options={['6', '8', '10']} />
-        <Submit buttonName="Book Now!" sendResults={this.bookSession}/>
-
-      </div>
+      <div className="modal" role="dialog" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">{this.props.date.toDateString()}<br></br> {this.props.startTime} - {this.props.endTime}</h5>
+                <button type="button" className="close" onClick={this.props.toggleModal} aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body form">
+                <Dropdown fieldName="numberOfSessions" label="How many sessions?" updateParent={this.updateSessions} options={['6', '8', '10']} />
+                <Submit buttonName="Book Now!" sendResults={this.bookSession}/>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={this.props.toggleModal}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
     )
   }
-}
+} 
+
+         

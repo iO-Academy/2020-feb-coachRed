@@ -69,18 +69,29 @@ export default class Modal extends Component<ModalProps, ModalState>{
 
   render() {
     return (
-      <div>
-        <h3>New Time slot for {this.props.date.toLocaleDateString()}</h3>
-        <TextInput label='Start Time' fieldName='startTime' fieldData={this.state.startTime} inputType='time' isRequired={true} updateParent={this.updateStartTime} />
-        <TextInput label='End Time' fieldName='endTime' fieldData={this.state.endTime} inputType='time' isRequired={true} updateParent={this.updateEndTime} />
-        <Dropdown label='Repeat?' fieldName='repeat' updateParent={this.repeat} options={['Once', 'Weekly', 'Fortnightly', 'Monthly']} />
-        <Dropdown label='Age Group?' fieldName='age' updateParent={this.ageGroup} options={['Under 18s', 'Adults']} />
-        <TextInput label='Hourly Rate (£)' fieldName="hourlyRate" fieldData={this.state.hourlyRate} inputType='number' isRequired={true} updateParent={this.hourlyRate} />
-        <Submit sendResults={this.addSlot} buttonName='Add Slot' />
-
-        
-        
-      </div>
+      <div className="modal" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle">New Time slot for {this.props.date.toLocaleDateString()}</h5>
+              <button type="button" className="close" onClick={this.props.toggleModal} aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body form">
+              <TextInput label='Start Time' fieldName='startTime' fieldData={this.state.startTime} inputType='time' isRequired={true} updateParent={this.updateStartTime} />
+              <TextInput label='End Time' fieldName='endTime' fieldData={this.state.endTime} inputType='time' isRequired={true} updateParent={this.updateEndTime} />
+              <Dropdown label='Repeat?' fieldName='repeat' updateParent={this.repeat} options={['Once', 'Weekly', 'Fortnightly', 'Monthly']} />
+              <Dropdown label='Age Group?' fieldName='age' updateParent={this.ageGroup} options={['Under 18s', 'Adults']} />
+              <TextInput label='Hourly Rate (£)' fieldName="hourlyRate" fieldData={this.state.hourlyRate} inputType='number' isRequired={true} updateParent={this.hourlyRate} />
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={this.props.toggleModal}>Close</button>
+              <Submit sendResults={this.addSlot} buttonName='Add Slot' />
+            </div>
+          </div>
+        </div>
+      </div> 
     )
   }
 }

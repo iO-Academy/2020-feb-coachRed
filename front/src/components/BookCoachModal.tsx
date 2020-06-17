@@ -6,6 +6,7 @@ export interface BookCoachModalState {
   bookings: Array<object>
   isDateSelected: boolean
   selectedDate: Date
+  modalDisplay: boolean
 }
 
 export interface BookCoachModalProps {
@@ -20,7 +21,8 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
     this.state = {
       selectedDate: new Date(),
       bookings: [],
-      isDateSelected: false
+      isDateSelected: false,
+      modalDisplay: false
      
     };
   }
@@ -28,7 +30,8 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
 
   updateSelectedDate = async (dateClicked: Date) => {
     this.setState({ selectedDate: dateClicked })
-    this.setState({isDateSelected: true})
+    this.setState({ isDateSelected: true })
+    this.setState({modalDisplay: true})
     const correctDateFormat = dateClicked.toISOString().split('T')[0]
 
     const request = {
@@ -50,15 +53,34 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
 
   }
 
+  toggleModal = () => {
+    this.setState({ modalDisplay: (this.state.modalDisplay === true) ? false : true })
+    
+  }
+  
 
   render() {
     return (
-      <div>
-        <h3>To book a slot, just click on a day below</h3>
-        <Calendar chooseDate={this.updateSelectedDate} />
-        <h4>Available Slots</h4>
-        {this.state.isDateSelected && < BookableSlotList date={this.state.selectedDate} bookings={this.state.bookings}/>}
-      </div>
+      <div className="modal" role="dialog" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">To book a slot, just click on a day below</h5>
+                <button type="button" className="close" onClick={this.props.toggleModal} aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body form">
+              <Calendar chooseDate={this.updateSelectedDate} />
+        {this.state.isDateSelected && this.state.modalDisplay && < BookableSlotList date={this.state.selectedDate} bookings={this.state.bookings} toggleModal={this.toggleModal}/>}
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={this.props.toggleModal}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
     )
   }
 }
+

@@ -102,37 +102,27 @@ export default class ViewCoach extends Component<ViewCoachProps, ViewCoachState>
   render() {
     return (
       <div>
-          <div className="coachInfo">
+          <div className="viewCoach">
               <h1>{this.state.coach.firstName} {this.state.coach.lastName}</h1>
-
-              <h4>Coaches {this.state.coach.sport}</h4>
-
-              <h3>Address:</h3>
-              <p>
-                  {this.state.coach.address1}
-                  <br />
-                  {this.state.coach.address2}
-                  <br />
-                  {this.state.coach.town}
-                  <br />
-                  {this.state.coach.postcode}
-                  <br />
-              </p>
-              
-              <h3>Qualifications:</h3>
-              <p>
-                  {this.state.coach.qualifications}
-              </p>
-
-              <h3>Area of Expertise</h3>
-              <p>
-                  {this.state.coach.expertise}
-              </p>
-        </div>
-        <button className="btn btn-danger" onClick={this.openModal}>Book a Session</button>
-        {this.state.modalDisplay && < BookCoachModal coachId={this.state.coachId} toggleModal={this.openModal} />}
-        
-
+              <h6>Coaches {this.state.coach.sport}</h6>
+              <div className='coachDetails'>
+                  <h3>Address:</h3>
+                  <h6>{this.state.coach.address1}</h6>
+                  <h6>{this.state.coach.address2}</h6>
+                  <h6>{this.state.coach.town}</h6>
+                  <h6>{this.state.coach.postcode}</h6>
+              </div>
+              <div className='coachDetails'>   
+                  <h3>Qualifications:</h3>
+                  <h6>{this.state.coach.qualifications}</h6>
+              </div>   
+              <div className='coachDetails'>
+                  <h3>Area of Expertise:</h3>
+                  <h6>{this.state.coach.expertise}</h6>
+              </div>
+          </div>
+          <button className="btn btn-danger" onClick={this.openModal}>Book a Session</button>
+          {this.state.modalDisplay && < BookCoachModal coachId={this.state.coachId} toggleModal={this.openModal} />}
       </div>
     )
   }

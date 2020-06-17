@@ -58,7 +58,7 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
                         required={this.props.isRequired}
                         value={this.props.postcode}/>
                 </div>
-                <input 
+                <button 
                     className="btn magnifyingGlass"
                     type='submit' 
                     onClick={this.getLocation} />

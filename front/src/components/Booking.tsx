@@ -31,13 +31,12 @@ export default class Booking extends React.Component<BookingProps, BookingState>
 
   
   openModal = () => {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('coachRedToken')) {
       this.setState({ modalDisplay: (this.state.modalDisplay === true) ? false : true })
     }
     else {
       window.location.href = '/athleteLogin'
     }
-    
   }
 
   render() {
