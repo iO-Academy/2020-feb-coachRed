@@ -16,7 +16,7 @@ export interface CoachRegistrationState {
     email: string,
     phone: string,
     dob: string,
-    location: Location|null,
+    location: Location | null,
     postcode: string,
     address1: string,
     address2: string,
@@ -29,8 +29,8 @@ export interface CoachRegistrationState {
     password: string
 }
 
-export class CoachRegistration extends React.Component<{},CoachRegistrationState> {
-    
+export class CoachRegistration extends React.Component<{}, CoachRegistrationState> {
+
     constructor(props: any) {
         super(props)
         this.state = {
@@ -51,43 +51,84 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
             expertise: "",
             password: ""
         }
-        this.updateFirstName=this.updateFirstName.bind(this)
-        this.updateLastName=this.updateLastName.bind(this)
-        this.updateEmail=this.updateEmail.bind(this)
-        this.updatePhone=this.updatePhone.bind(this)
-        this.updateDateOfBirth=this.updateDateOfBirth.bind(this)
-        this.updateLocation=this.updateLocation.bind(this)
-        this.updatePostcode=this.updatePostcode.bind(this)
-        this.updateAddress1=this.updateAddress1.bind(this)
-        this.updateAddress2=this.updateAddress2.bind(this)
-        this.updateTown=this.updateTown.bind(this)
-        this.updateCounty=this.updateCounty.bind(this)
-        this.updateQualifications=this.updateQualifications.bind(this)
-        this.updateYearsTraining=this.updateYearsTraining.bind(this)
-        this.updateSport=this.updateSport.bind(this)
-        this.updateAreaOfExpertise=this.updateAreaOfExpertise.bind(this)
-        this.updatePassword=this.updatePassword.bind(this)
-        this.sendResults=this.sendResults.bind(this)
     }
 
-    updateFirstName(newFName: string) {this.setState({firstName: newFName})}
-    updateLastName(newLName: string) {this.setState({lastName: newLName})}
-    updateEmail(newEmail: string) {this.setState({email: newEmail})}
-    updatePhone(newPhone: string) {this.setState({phone: newPhone})}
-    updateDateOfBirth(newDOB: string) {this.setState({dob: newDOB})}
-    updateLocation(newLoc: Location) {this.setState({location: newLoc})}
-    updateAddress1(newAddr1: string) {this.setState({address1: newAddr1})}
-    updateAddress2(newAddr2: string) {this.setState({address2: newAddr2})}
-    updateTown(newTown: string) {this.setState({town: newTown})}
-    updateCounty(newCounty: string) {this.setState({county: newCounty})}
-    updatePostcode(newPS: string) {this.setState({postcode: newPS})}
-    updateQualifications(newQuals: string) {this.setState({qualifications: newQuals})}
-    updateYearsTraining(newYT: number) {this.setState({yearsCoaching: newYT})}
-    updateSport(newSport: string) {this.setState({sport: newSport})}
-    updateAreaOfExpertise(newAOE: string) {this.setState({expertise: newAOE})}
-    updatePassword(newPass: string) {this.setState({password: newPass})}
-    async sendResults (e: any) {
-        e.preventDefault(); 
+    updateFirstName = (newFName: string) => {
+        this.setState({ firstName: newFName })
+    }
+
+    updateLastName = (newLName: string) => {
+        this.setState({ lastName: newLName })
+    }
+
+    updateEmail = (newEmail: string) => {
+        this.setState({ email: newEmail })
+    }
+
+    updatePhone = (newPhone: string) => {
+        this.setState({ phone: newPhone })
+    }
+
+    updateDateOfBirth = (newDOB: string) => {
+        this.setState({ dob: newDOB })
+    }
+
+    updateLocation = async (newLoc: Location) => {
+        this.setState({ location: newLoc })
+        if (this.state.location) {
+            let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
+            let data = await response.json()
+
+            console.log(data)
+
+            this.setState({ postcode: data.address.postcode })
+
+            this.setState({ town: data.address.suburb })
+            this.setState({ county: data.address.county })
+            this.setState({ address2: data.address.road })
+        }
+    }
+    updateAddress1 = (newAddr1: string) => {
+        this.setState({ address1: newAddr1 })
+    }
+
+    updateAddress2 = (newAddr2: string) => {
+        this.setState({ address2: newAddr2 })
+    }
+
+    updateTown = (newTown: string) => {
+        this.setState({ town: newTown })
+    }
+
+    updateCounty = (newCounty: string) => {
+        this.setState({ county: newCounty })
+    }
+
+    updatePostcode = (newPS: string) => {
+        this.setState({ postcode: newPS })
+    }
+    updateQualifications = (newQuals: string) => {
+        this.setState({ qualifications: newQuals })
+    }
+
+    updateYearsTraining = (newYT: number) => {
+        this.setState({ yearsCoaching: newYT })
+    }
+
+    updateSport = (newSport: string) => {
+        this.setState({ sport: newSport })
+    }
+
+    updateAreaOfExpertise = (newAOE: string) => {
+        this.setState({ expertise: newAOE })
+    }
+
+    updatePassword = (newPass: string) => {
+        this.setState({ password: newPass })
+    }
+
+    sendResults = async (e: any) => {
+        e.preventDefault();
         await fetch('http://localhost:3000/coach', {
             method: 'POST',
             headers: {
@@ -95,22 +136,26 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
             },
             body: JSON.stringify(this.state)
         })
-        window.location.href="/coachLogin"
+        window.location.href = "/coachLogin"
     }
 
     async componentDidUpdate() {
-        if(!(this.state.postcode) && this.state.location){
+        if (!(this.state.postcode) && this.state.location) {
             let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
             let data = await response.json()
 
-            this.setState({postcode: data.address.postcode})
+            console.log(data)
 
-            console.log(this.state.postcode)
+            this.setState({ postcode: data.address.postcode })
+
+            this.setState({ town: data.address.suburb })
+            this.setState({ county: data.address.county })
+            this.setState({ address2: data.address.road })
         }
     }
 
     render() {
-        return(
+        return (
             <div className="root registration">
                 <h1 className="pageHeading">Welcome to Coach Red!</h1>
                 <p>To register as a coach, there are a few details we need from you</p>

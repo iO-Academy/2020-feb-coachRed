@@ -6,7 +6,7 @@ export interface TextInputProps {
     fieldData : string | number,
     inputType : string,
     isRequired : boolean,
-    updateParent: React.SetStateAction<any> | ((fieldData: string | number) => void) 
+    updateParent: React.SetStateAction<any> | ((fieldData: string | number) => void)
 }
 
 export class TextInput extends React.Component<TextInputProps, {}> {
@@ -32,7 +32,8 @@ export class TextInput extends React.Component<TextInputProps, {}> {
                     name={this.props.fieldName} 
                     id={this.props.fieldName}
                     required={this.props.isRequired} 
-                    onChange={this.textInputChange} >
+                    onChange={this.textInputChange}
+                    value={this.props.fieldData}>
                 </input>
             </div>
         )
