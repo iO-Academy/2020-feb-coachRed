@@ -106,6 +106,7 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
 
     updatePostcode = (newPS: string) => {
         this.setState({ postcode: newPS })
+        
     }
     updateQualifications = (newQuals: string) => {
         this.setState({ qualifications: newQuals })
@@ -137,21 +138,6 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
             body: JSON.stringify(this.state)
         })
         window.location.href = "/coachLogin"
-    }
-
-    async componentDidUpdate() {
-        if (!(this.state.postcode) && this.state.location) {
-            let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
-            let data = await response.json()
-
-            console.log(data)
-
-            this.setState({ postcode: data.address.postcode })
-
-            this.setState({ town: data.address.suburb })
-            this.setState({ county: data.address.county })
-            this.setState({ address2: data.address.road })
-        }
     }
 
     render() {
