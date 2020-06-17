@@ -14,7 +14,7 @@ export interface CoachSearchProps {
  
 export interface CoachSearchState {
     location: Location | null
-    postcode: string | null
+    postcode: string
     sport: string | null
     searchResults: Array<Object> |null
 }
@@ -24,7 +24,7 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
         super(props);
         this.state = { 
             location: null,
-            postcode: null,
+            postcode: '',
             sport: 'Rugby',
             searchResults: null
         };
@@ -56,6 +56,17 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
         this.setState({searchResults: data.data.matchingCoaches})
     }
 
+    async componentDidUpdate() {
+        if(!(this.state.postcode) && this.state.location){
+            let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
+            let data = await response.json()
+
+            this.setState({postcode: data.address.postcode})
+
+            console.log(this.state.postcode)
+        }
+    }
+
     render() { 
         return ( 
             <div className='root'>
@@ -63,7 +74,7 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
                 <div className='coachSearch'>
                     <SportDropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport}/>
                     <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
-                    <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false}/>
+                    <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false} postcode={this.state.postcode}/>
                     <Submit sendResults={this.sendResults} buttonName="Search" />
                 </div>
                 {this.state.searchResults ? <CoachCardList coaches={this.state.searchResults}/>:

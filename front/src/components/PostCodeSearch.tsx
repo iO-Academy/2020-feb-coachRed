@@ -8,6 +8,7 @@ export interface PostCodeSearchProperties {
     updateLocation(newLoc: Location): void,
     updateParent(newPS: string) : void,
     isRequired : boolean
+    postcode: string
 }
 export interface PostCodeSearchState {postcode: string}
 
@@ -50,13 +51,13 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
                         type='text' 
                         onChange={this.postcodeInputChange} 
                         name='postcode' 
-                        required={this.props.isRequired}/>
+                        required={this.props.isRequired}
+                        value={this.props.postcode}/>
                 </div>
                 <input 
                     className="btn magnifyingGlass"
                     type='submit' 
-                    onClick={this.getLocation} 
-                    value=''/>
+                    onClick={this.getLocation} />
             </form>
         );
     }
