@@ -12,7 +12,7 @@ export interface CoachAvailibilityState {
 }
 
 export interface CoachAvailibilityProps {
-  coach: CoachInterface | null
+  coach: CoachInterface 
 
 }
 
@@ -49,7 +49,7 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
     let response = await slots.json()
 
     this.setState({ bookings: response.data.slots })
-    console.log(response.data.slots)
+
   }
 
  
@@ -66,16 +66,20 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
   render() {
       return(
         <div className="coachAvailibility">
-            <div className="calendar">
+          <h3>Hi Coach!</h3>
+          <h3>Click on a date to view bookings, or add a new slot</h3>
+          <div className="calendar">
+          
                 < Calendar chooseDate={this.updateSelectedDate}/>
             </div>
               <div className="bookingsContainer">
                 <div className="bookingList">
-                    {!this.state.isDateSelected && <p>Please Select a Date</p>}
-              {this.state.isDateSelected && < BookingList date={this.state.selectedDate} bookings={this.state.bookings}/>}
-                    {this.state.isDateSelected && <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>}
+                  {!this.state.isDateSelected && <p>Please Select a Date</p>}
+                  {this.state.isDateSelected && <button className="btn btn-danger" onClick={this.openModal}>Add Slot</button>}
+                  {this.state.isDateSelected && < BookingList date={this.state.selectedDate} bookings={this.state.bookings}/>}
+                    
                 </div>
-                <div id="newSlot" className="newSlotModal">
+                <div id="newSlot">
                     {this.state.modalDisplay && < Modal date={this.state.selectedDate} toggleModal={this.openModal} />}
                 </div>
             </div>

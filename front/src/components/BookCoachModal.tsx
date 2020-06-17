@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Calendar from './Calendar';
 import BookableSlotList from './BookableSlotList'
+import { BookingInterface } from '../interfaces/BookingInterface'
 export interface BookCoachModalState {
 
   bookings: Array<object>
   isDateSelected: boolean
   selectedDate: Date
+  modalDisplay: boolean
 }
 
 export interface BookCoachModalProps {
@@ -20,7 +22,8 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
     this.state = {
       selectedDate: new Date(),
       bookings: [],
-      isDateSelected: false
+      isDateSelected: false,
+      modalDisplay: false
      
     };
   }
@@ -28,7 +31,8 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
 
   updateSelectedDate = async (dateClicked: Date) => {
     this.setState({ selectedDate: dateClicked })
-    this.setState({isDateSelected: true})
+    this.setState({ isDateSelected: true })
+    this.setState({modalDisplay: true})
     const correctDateFormat = dateClicked.toISOString().split('T')[0]
 
     const request = {
@@ -45,20 +49,62 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
 
     }
     let response = await slots.json()
-    this.setState({ bookings: response.data.slots })
+    let bookings: Array<BookingInterface> = []
+    // Adapter to account for the fact that the format for a booking was designed without the expectation that multiple
+    // Bookings could be made for the same slot
+    response.data.slots.forEach((slot: any) => {
+      if (slot.bookedBy) {
+        slot.bookedBy.forEach((booking: any) => {
+          if (booking.startDate < this.state.selectedDate && this.state.selectedDate < booking.endDate) { 
+            bookings.push({
+              _id: booking.id,
+              date: this.state.selectedDate.toLocaleDateString(),
+              startTime: slot.startTime,
+              endTime: slot.endTime,
+              repeat: slot.repeat,
+              hourlyRate: slot.hourlyRate,
+              email: booking.email,
+              contact: booking.phone,
+              booked: true,
+              bookedBy: booking.firstName + ' ' + booking.lastName
+            })
+          }
+        })
+      }
+    })
+    this.setState({ bookings: bookings })
   
 
   }
 
+  toggleModal = () => {
+    this.setState({ modalDisplay: (this.state.modalDisplay === true) ? false : true })
+    
+  }
+  
 
   render() {
     return (
-      <div>
-        <h3>To book a slot, just click on a day below</h3>
-        <Calendar chooseDate={this.updateSelectedDate} />
-        <h4>Available Slots</h4>
-        {this.state.isDateSelected && < BookableSlotList date={this.state.selectedDate} bookings={this.state.bookings}/>}
-      </div>
+      <div className="modal" role="dialog" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">To book a slot, just click on a day below</h5>
+                <button type="button" className="close" onClick={this.props.toggleModal} aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body form">
+              <Calendar chooseDate={this.updateSelectedDate} />
+        {this.state.isDateSelected && this.state.modalDisplay && < BookableSlotList date={this.state.selectedDate} bookings={this.state.bookings} toggleModal={this.toggleModal}/>}
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={this.props.toggleModal}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
     )
   }
 }
+

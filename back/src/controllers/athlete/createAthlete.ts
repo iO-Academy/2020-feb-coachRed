@@ -2,7 +2,7 @@ import express = require('express');
 import mongoose = require('mongoose');
 import bCrypt = require('bcrypt');
 import jsonWebToken = require('jsonwebtoken');
-
+import sendEmail from '../../helpers/sendEmail'
 import { AthleteModel } from '../../models/AthleteModel';
 import { AthleteInterface } from '../../interfaces/AthleteInterface';
 import { RestResponse } from '../../interfaces/RestResponse';

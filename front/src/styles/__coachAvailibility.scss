@@ -1,36 +1,44 @@
 @import '__defines';
+.coachAvailibility {
 
-#dayPicker{
-    .DayPicker {
-        width: 100%; 
-        text-align: center;
-        display: block;
-        margin: auto;
-        .DayPicker-wrapper {
-            .DayPicker-NavBar {
-                width: 50%;
+    padding-top: 3em;
 
-            }
-            .DayPicker-Months{
-                width: 100%;
-                .DayPicker-Month {
-                    width: 70%;
-                    border: 1px solid $mainFontColour;
+    text-align: center;
+    #dayPicker{
+        .DayPicker {
+            width: 100%; 
+            text-align: center;
+            display: block;
+            margin: auto;
+            .DayPicker-wrapper {
+                .DayPicker-NavBar {
+                    width: 50%;
+
+                }
+                .DayPicker-Months{
+                    width: 100%;
+                    .DayPicker-Month {
+                        width: 70%;
+                        border: 1px solid $mainFontColour;
+                    }
                 }
             }
         }
     }
-}
 
-.bookingsContainer {
-    margin: 0 auto;
-    width: 70%;
-}
+    .bookingsContainer {
+        margin: 0 auto;
+        width: 70%;
+        text-align: left;
+    }
 
-.newSlotModal {
-    div {
-        h3 {
-            padding-top: 2em;
+    .newSlotModal {
+
+
+        div {
+            h3 {
+                padding-top: 2em;
+            }
         }
     }
 }
