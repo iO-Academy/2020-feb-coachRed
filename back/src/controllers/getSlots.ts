@@ -1,47 +1,43 @@
 import express = require('express')
 import Coach from '../models/coachModel'
+import { findSlotsByDate } from '../helpers/findSlotsByDate'
+import { filterForClashes } from '../helpers/filterForClashes'
+import { findAvailability } from '../helpers/findAvailability'
+import { RestResponse } from '../interfaces/RestResponse'
 
-export default (req : express.Request, res : express.Response) => {
+export default async (req : express.Request, res : express.Response) => {
     const id = req.query.id
-    try {
-            let slotsToReturn: Array<any> = []
-            const desiredDate = new Date(Date.parse(req.params.date))
-        Coach.findById(id).then((coach: any) => {
-           
-                coach.timeSlots.forEach((slot: any) => {
-                    const slotDate = new Date(Date.parse(slot.date))
-                    if (slotDate.toDateString() == desiredDate.toDateString()) {
-                        slotsToReturn.push(slot)
-                    } else if (Date.parse(req.params.date) > Date.parse(slot.date)){
-                        if (slot.repeat === 'Weekly' && slotDate.getDay() === desiredDate.getDay()) {
-                            slotsToReturn.push(slot)
-                        } else if (slot.repeat === 'Fortnightly' && slotDate.getDay() === desiredDate.getDay()) {
-                            const weeksBetween = (dayOne: number, dayTwo: number) => {
-                                return (dayTwo - dayOne)/(60*60*24*7*1000)
-                            }
-                            if (!(weeksBetween(Date.parse(slot.date),Date.parse(req.params.date)) &1)) {
-                                slotsToReturn.push(slot)
-                            }
-                        } else if (slot.repeat === 'Monthly' && slotDate.getDate() === desiredDate.getDate()) {
-                            slotsToReturn.push(slot)
-                        }
-                    }
-                })
-                res.status(200).json({
-                    status: 'success',
-                    message: 'slots retrieved',
-                    data: {
-                        slots: slotsToReturn
-                    }
-                })
-            })
-        } catch (err) {
-            res.status(404).json({
-                status: 'fail',
-                message: err,
+    let slotsToReturn: Array<any> = []
+    const desiredDate = new Date(Date.parse(req.params.date))
+    Coach.findById(id).then(async (coach: any) => {
+        try {
+            let timeSlots = await findSlotsByDate(coach, desiredDate);
+            timeSlots = filterForClashes(timeSlots, desiredDate);
+            let slotsToReturn = await Promise.all(timeSlots.map(async (slot) => {
+                slot.availableFor = await findAvailability(coach, slot, desiredDate);
+                console.log(slot);
+                return slot;
+            }));
+
+            const response: RestResponse = {
+                status: 'success',
+                message: 'slots retrieved',
                 data: {
-                    
+                    slots: slotsToReturn
                 }
-            })
-    }
+            };
+    
+            return res.status(200).json(response);
+
+        } catch(err) {
+            const response: RestResponse = {
+                status: 'fail',
+                message: 'failed to find slots',
+                data: {}
+            };
+            console.log(err);
+
+            return res.status(500).json(response);
+        }
+    });
 }
