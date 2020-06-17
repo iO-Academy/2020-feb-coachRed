@@ -80,7 +80,7 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
                 </button>
               </div>
               <div className="modal-body form">
-                <Dropdown fieldName="numberOfSessions" label="How many sessions?" updateParent={this.updateSessions} options={['6', '8', '10']} />
+                <Dropdown fieldName="numberOfSessions" label="How many sessions?" updateParent={this.updateSessions} options={['1', '6', '8', '10']} />
                 <Submit buttonName="Book Now!" sendResults={this.bookSession}/>
               </div>
               <div className="modal-footer">

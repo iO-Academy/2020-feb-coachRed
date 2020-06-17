@@ -33,7 +33,7 @@ export default class ViewBookingDetails extends Component<ViewBookingDetailsProp
               <div className="modal-body form">
                 <h6>This slot is booked by {this.props.booking.bookedBy}</h6>
                 <h6>Phone Number: {this.props.booking.contact}</h6>
-                <h6>CoachRed Athlete Id: {this.props.booking.athleteId}</h6>
+                <h6>Email: {this.props.booking.email}</h6>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={this.props.toggleModal}>Close</button>

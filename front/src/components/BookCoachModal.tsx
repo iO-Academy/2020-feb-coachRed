@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Calendar from './Calendar';
 import BookableSlotList from './BookableSlotList'
+import { BookingInterface } from '../interfaces/BookingInterface'
 export interface BookCoachModalState {
 
   bookings: Array<object>
@@ -48,7 +49,30 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
 
     }
     let response = await slots.json()
-    this.setState({ bookings: response.data.slots })
+    let bookings: Array<BookingInterface> = []
+    // Adapter to account for the fact that the format for a booking was designed without the expectation that multiple
+    // Bookings could be made for the same slot
+    response.data.slots.forEach((slot: any) => {
+      if (slot.bookedBy) {
+        slot.bookedBy.forEach((booking: any) => {
+          if (booking.startDate < this.state.selectedDate && this.state.selectedDate < booking.endDate) { 
+            bookings.push({
+              _id: booking.id,
+              date: this.state.selectedDate.toLocaleDateString(),
+              startTime: slot.startTime,
+              endTime: slot.endTime,
+              repeat: slot.repeat,
+              hourlyRate: slot.hourlyRate,
+              email: booking.email,
+              contact: booking.phone,
+              booked: true,
+              bookedBy: booking.firstName + ' ' + booking.lastName
+            })
+          }
+        })
+      }
+    })
+    this.setState({ bookings: bookings })
   
 
   }

@@ -6,7 +6,7 @@ export interface BookingInterface  {
   endTime: string,
   repeat: string,
   hourlyRate: number,
-  athleteId: string,
+  email: string,
   booked: boolean,
   bookedBy: string,
   contact: string
