@@ -73,6 +73,7 @@ export const AthleteRegistration = () => {
         <div className="root">
             <h1 className="pageHeading">Welcome to Coach Red!</h1>
             <p>To register as an athlete, there are a few things we'll need from you:</p>
+<<<<<<< Updated upstream
 
             <TextInput label="First Name" fieldName="firstName" fieldData={firstName}
                 inputType="text" isRequired={true} updateParent={setFirstName} />
@@ -84,10 +85,33 @@ export const AthleteRegistration = () => {
                 inputType="tel" isRequired={true} updateParent={setPhone} />
                 <TextInput label="Date of Birth" fieldName="dateOfBirth" fieldData={dateOfBirth}
                 inputType="date" isRequired={true} updateParent={setDateOfBirth} />
+=======
+            <div className="form">
+                <TextInput label="First Name" fieldName="firstName" fieldData={firstName}
+                    inputType="text" isRequired={true} updateParent={setFirstName} value=''/>
+                
+                <TextInput label="Last Name" fieldName="lastName" fieldData={lastName}
+                    inputType="text" isRequired={true} updateParent={setLastName} value=''/>
+                
+                <TextInput label="Email Address" fieldName="email" fieldData={email}
+                    inputType="text" isRequired={true} updateParent={setEmail} value=''/>
+                
+                <TextInput label="Phone Number" fieldName="phone" fieldData={phone}
+                    inputType="tel" isRequired={true} updateParent={setPhone} value=''/>
+                
+                <TextInput label="Date of Birth" fieldName="dateOfBirth" fieldData={dateOfBirth}
+                    inputType="date" isRequired={true} updateParent={setDateOfBirth} value=''/>
+                
+>>>>>>> Stashed changes
                 <Dropdown label="What sport do you play?" fieldName="sport" updateParent = {setSport} 
                 options={sportList}/>
                 <TextInput label="How long have you been playing?" fieldName="yearsTraining" 
+<<<<<<< Updated upstream
                 fieldData={yearsExperience} inputType="number"  isRequired={true} updateParent={setYearsExperience} />
+=======
+                    fieldData={yearsExperience} inputType="number" isRequired={true} updateParent={setYearsExperience} value=''/>
+                
+>>>>>>> Stashed changes
                 <TextArea label="What are you looking for in a coach?" fieldName="lookingFor"
                 fieldData={lookingFor} updateParent={setLookingFor} />
                 <SetPassword updateParent={setPassword} />

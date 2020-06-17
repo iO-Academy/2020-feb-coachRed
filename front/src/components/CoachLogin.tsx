@@ -53,10 +53,17 @@ class CoachLogin extends React.Component<CoachLoginProps, CoachLoginState> {
         return ( 
             <div className='root'>
                  <TextInput label="Email Address" fieldName="emailAddress" fieldData={this.state.email}
-                inputType="text" isRequired={true} updateParent={this.updateEmailAddress} />
+                inputType="text" isRequired={true} updateParent={this.updateEmailAddress} value=''/>
                  <TextInput label="Password" fieldName="password" fieldData={this.state.password}
+<<<<<<< Updated upstream
                 inputType="password" isRequired={false} updateParent={this.updatePassword} />
                 <Submit sendResults={this.sendResults} buttonName="Login" />
+=======
+                    inputType="password" isRequired={false} updateParent={this.updatePassword} value=''/>
+                <div className='submit'>
+                    <Submit sendResults={this.sendResults} buttonName="Login" />
+                </div>
+>>>>>>> Stashed changes
             </div>
          );
     }

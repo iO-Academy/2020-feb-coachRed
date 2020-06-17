@@ -16,7 +16,7 @@ export interface CoachRegistrationState {
     email: string,
     phone: string,
     dob: string,
-    location: Location|null,
+    location: Location | null,
     postcode: string,
     address1: string,
     address2: string,
@@ -29,8 +29,8 @@ export interface CoachRegistrationState {
     password: string
 }
 
-export class CoachRegistration extends React.Component<{},CoachRegistrationState> {
-    
+export class CoachRegistration extends React.Component<{}, CoachRegistrationState> {
+
     constructor(props: any) {
         super(props)
         this.state = {
@@ -51,43 +51,84 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
             expertise: "",
             password: ""
         }
-        this.updateFirstName=this.updateFirstName.bind(this)
-        this.updateLastName=this.updateLastName.bind(this)
-        this.updateEmail=this.updateEmail.bind(this)
-        this.updatePhone=this.updatePhone.bind(this)
-        this.updateDateOfBirth=this.updateDateOfBirth.bind(this)
-        this.updateLocation=this.updateLocation.bind(this)
-        this.updatePostcode=this.updatePostcode.bind(this)
-        this.updateAddress1=this.updateAddress1.bind(this)
-        this.updateAddress2=this.updateAddress2.bind(this)
-        this.updateTown=this.updateTown.bind(this)
-        this.updateCounty=this.updateCounty.bind(this)
-        this.updateQualifications=this.updateQualifications.bind(this)
-        this.updateYearsTraining=this.updateYearsTraining.bind(this)
-        this.updateSport=this.updateSport.bind(this)
-        this.updateAreaOfExpertise=this.updateAreaOfExpertise.bind(this)
-        this.updatePassword=this.updatePassword.bind(this)
-        this.sendResults=this.sendResults.bind(this)
     }
 
-    updateFirstName(newFName: string) {this.setState({firstName: newFName})}
-    updateLastName(newLName: string) {this.setState({lastName: newLName})}
-    updateEmail(newEmail: string) {this.setState({email: newEmail})}
-    updatePhone(newPhone: string) {this.setState({phone: newPhone})}
-    updateDateOfBirth(newDOB: string) {this.setState({dob: newDOB})}
-    updateLocation(newLoc: Location) {this.setState({location: newLoc})}
-    updateAddress1(newAddr1: string) {this.setState({address1: newAddr1})}
-    updateAddress2(newAddr2: string) {this.setState({address2: newAddr2})}
-    updateTown(newTown: string) {this.setState({town: newTown})}
-    updateCounty(newCounty: string) {this.setState({county: newCounty})}
-    updatePostcode(newPS: string) {this.setState({postcode: newPS})}
-    updateQualifications(newQuals: string) {this.setState({qualifications: newQuals})}
-    updateYearsTraining(newYT: number) {this.setState({yearsCoaching: newYT})}
-    updateSport(newSport: string) {this.setState({sport: newSport})}
-    updateAreaOfExpertise(newAOE: string) {this.setState({expertise: newAOE})}
-    updatePassword(newPass: string) {this.setState({password: newPass})}
-    async sendResults (e: any) {
-        e.preventDefault(); 
+    updateFirstName = (newFName: string) => {
+        this.setState({ firstName: newFName })
+    }
+
+    updateLastName = (newLName: string) => {
+        this.setState({ lastName: newLName })
+    }
+
+    updateEmail = (newEmail: string) => {
+        this.setState({ email: newEmail })
+    }
+
+    updatePhone = (newPhone: string) => {
+        this.setState({ phone: newPhone })
+    }
+
+    updateDateOfBirth = (newDOB: string) => {
+        this.setState({ dob: newDOB })
+    }
+
+    updateLocation = async (newLoc: Location) => {
+        this.setState({ location: newLoc })
+        if (this.state.location) {
+            let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
+            let data = await response.json()
+
+            console.log(data)
+
+            this.setState({ postcode: data.address.postcode })
+
+            this.setState({ town: data.address.suburb })
+            this.setState({ county: data.address.county })
+            this.setState({ address2: data.address.road })
+        }
+    }
+    updateAddress1 = (newAddr1: string) => {
+        this.setState({ address1: newAddr1 })
+    }
+
+    updateAddress2 = (newAddr2: string) => {
+        this.setState({ address2: newAddr2 })
+    }
+
+    updateTown = (newTown: string) => {
+        this.setState({ town: newTown })
+    }
+
+    updateCounty = (newCounty: string) => {
+        this.setState({ county: newCounty })
+    }
+
+    updatePostcode = (newPS: string) => {
+        this.setState({ postcode: newPS })
+    }
+    updateQualifications = (newQuals: string) => {
+        this.setState({ qualifications: newQuals })
+    }
+
+    updateYearsTraining = (newYT: number) => {
+        this.setState({ yearsCoaching: newYT })
+    }
+
+    updateSport = (newSport: string) => {
+        this.setState({ sport: newSport })
+    }
+
+    updateAreaOfExpertise = (newAOE: string) => {
+        this.setState({ expertise: newAOE })
+    }
+
+    updatePassword = (newPass: string) => {
+        this.setState({ password: newPass })
+    }
+
+    sendResults = async (e: any) => {
+        e.preventDefault();
         await fetch('http://localhost:3000/coach', {
             method: 'POST',
             headers: {
@@ -95,26 +136,36 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
             },
             body: JSON.stringify(this.state)
         })
-        window.location.href="/coachLogin"
+        window.location.href = "/coachLogin"
     }
 
     async componentDidUpdate() {
-        if(!(this.state.postcode) && this.state.location){
+        if (!(this.state.postcode) && this.state.location) {
             let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
             let data = await response.json()
 
-            this.setState({postcode: data.address.postcode})
+            console.log(data)
 
-            console.log(this.state.postcode)
+            this.setState({ postcode: data.address.postcode })
+
+            this.setState({ town: data.address.suburb })
+            this.setState({ county: data.address.county })
+            this.setState({ address2: data.address.road })
         }
     }
 
     render() {
+<<<<<<< Updated upstream
         return(
             <div className="root">
+=======
+        return (
+            <div className="root registration">
+>>>>>>> Stashed changes
                 <h1 className="pageHeading">Welcome to Coach Red!</h1>
                 <p>To register as a coach, there are a few details we need from you</p>
 
+<<<<<<< Updated upstream
                 <TextInput label="First Name" fieldName="firstName" fieldData={this.state.firstName}
                 inputType="text" isRequired={true} updateParent={this.updateFirstName} />
                 <TextInput label="Last Name" fieldName="lastName" fieldData={this.state.lastName}
@@ -148,6 +199,59 @@ export class CoachRegistration extends React.Component<{},CoachRegistrationState
                 updateParent={this.updateAreaOfExpertise} />
                 <SetPassword updateParent={this.updatePassword}/>
                 <Submit sendResults={this.sendResults} buttonName="Register!" />
+=======
+                    <TextInput label="First Name" fieldName="firstName" fieldData={this.state.firstName}
+                        inputType="text" isRequired={true} updateParent={this.updateFirstName} value='' />
+
+                    <TextInput label="Last Name" fieldName="lastName" fieldData={this.state.lastName}
+                        inputType="text" isRequired={true} updateParent={this.updateLastName} value='' />
+
+                    <TextInput label="Email Address" fieldName="email" fieldData={this.state.email}
+                        inputType="text" isRequired={true} updateParent={this.updateEmail} value='' />
+
+                    <TextInput label="Phone Number" fieldName="phone" fieldData={this.state.phone}
+                        inputType="tel" isRequired={true} updateParent={this.updatePhone} value='' />
+
+                    <TextInput label="Date of Birth" fieldName="dateOfBirth" fieldData={this.state.dob}
+                        inputType="date" isRequired={true} updateParent={this.updateDateOfBirth} value='' />
+
+                    <LocationField updateParent={this.updateLocation} fieldData={this.state.location} />
+
+                    <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode}
+                        isRequired={true} postcode={this.state.postcode} />
+
+                    <TextInput label="Address Line 1:" fieldName="addressOne" fieldData={this.state.address1}
+                        inputType="text" isRequired={true} updateParent={this.updateAddress1} value='' />
+
+                    <TextInput label="Address Line 2:" fieldName="addressTwo" fieldData={this.state.address2}
+                        inputType="text" isRequired={false} updateParent={this.updateAddress2} value={this.state.address2} />
+
+                    <TextInput label="City" fieldName="town" fieldData={this.state.town}
+                        inputType="text" isRequired={true} updateParent={this.updateTown} value={this.state.town} />
+
+                    <TextInput label="County" fieldName="county" fieldData={this.state.county}
+                        inputType="text" isRequired={true} updateParent={this.updateCounty} value={this.state.county} />
+
+                    <TextArea label="Tell us about you and your qualifications" fieldName="qualifications"
+                        fieldData={this.state.qualifications} updateParent={this.updateQualifications} />
+
+                    <TextInput label="How long have you been coaching?" fieldName="yearsTraining"
+                        fieldData={this.state.yearsCoaching} inputType="number" isRequired={true}
+                        updateParent={this.updateYearsTraining} value='' />
+
+                    <SportDropdown label="What sport will you be coaching?" fieldName="sport"
+                        updateParent={this.updateSport} />
+
+                    <TextInput label="What's your area of expertise?" fieldName="areaOfExpertise"
+                        fieldData={this.state.expertise} inputType="text" isRequired={true}
+                        updateParent={this.updateAreaOfExpertise} value='' />
+
+                    <SetPassword updateParent={this.updatePassword} />
+                    <div className="submit">
+                        <Submit sendResults={this.sendResults} buttonName="Register!" />
+                    </div>
+                </div>
+>>>>>>> Stashed changes
             </div>
         )
     }
