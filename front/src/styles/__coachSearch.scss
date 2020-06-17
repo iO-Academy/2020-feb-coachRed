@@ -1,0 +1,18 @@
+.coachSearch{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 80%;
+    margin: auto;
+    padding: 2em;
+
+    .locationField{
+        button{
+            background-image: url("../images/location.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+        }
+    }
+}

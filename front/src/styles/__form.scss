@@ -1,12 +1,18 @@
 @import '__defines';
 
-label {
-    padding-top: 2em;
+.postcodeForm{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
-.btn {
-    margin-top: 1em;
-}
+// label {
+//     padding-top: 2em;
+// }
+
+// .btn {
+//     margin-top: 1em;
+// }
 
 .pageContent {
     padding-bottom: 2em;
@@ -16,4 +22,15 @@ label {
     padding-top: 1em;
     text-align: center;
     padding-bottom: 0.5em
+}
+
+.magnifyingGlass{
+    background-image: url('../images/search.png');
+    height: 30px;
+    width: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 1em;
+    padding: 1em
 }

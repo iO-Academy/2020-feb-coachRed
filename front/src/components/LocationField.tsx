@@ -24,8 +24,8 @@ export class LocationField extends React.Component<LocationFieldProps, {}> {
         if (this.props.fieldData) {
             return (
                 <div className="locationField">
-                    <label htmlFor="locationField">Location:</label>
-                    <p>{this.props.fieldData.latitude}, {this.props.fieldData.longitude}</p>
+                    {/* <label htmlFor="locationField">Location:</label> */}
+                    {/* <p>{this.props.fieldData.latitude}, {this.props.fieldData.longitude}</p> */}
                     <button onClick={this.getLocation} className="btn btn-danger">
                         Get Location
                     </button>
@@ -34,10 +34,9 @@ export class LocationField extends React.Component<LocationFieldProps, {}> {
         }
         return (
         <div className="locationField">
-            <label htmlFor="locationField">Location:</label>
-            <p></p>
-            <button onClick={this.getLocation} className="btn btn-danger">
-                Get Location
+            {/* <label htmlFor="locationField">Location:</label>
+            <p></p> */}
+            <button onClick={this.getLocation} className="btn">
             </button>
         </div>)
     }

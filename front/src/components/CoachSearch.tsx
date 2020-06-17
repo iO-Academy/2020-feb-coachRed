@@ -60,11 +60,12 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
         return ( 
             <div className='root'>
                 {!this.state.searchResults && <WelcomeMessage/>}
-                <SportDropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport}/>
-                <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
-                <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false}/>
-                <Submit sendResults={this.sendResults} buttonName="Search" />
-
+                <div className='coachSearch'>
+                    <SportDropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport}/>
+                    <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
+                    <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false}/>
+                    <Submit sendResults={this.sendResults} buttonName="Search" />
+                </div>
                 {this.state.searchResults ? <CoachCardList coaches={this.state.searchResults}/>:
                     <div>
                     <div>

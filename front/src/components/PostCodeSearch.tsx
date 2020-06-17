@@ -42,19 +42,21 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
 
     render() { 
         return ( 
-            <form>
-                <label htmlFor ='postcode'>Postcode</label>
+            <form className="postcodeForm">
+                <div className='postcodeInput'>
+                    <label htmlFor ='postcode'>Postcode</label>
+                    <input 
+                        className="form-control postcodeSearch"
+                        type='text' 
+                        onChange={this.postcodeInputChange} 
+                        name='postcode' 
+                        required={this.props.isRequired}/>
+                </div>
                 <input 
-                    className="form-control"
-                    type='text' 
-                    onChange={this.postcodeInputChange} 
-                    name='postcode' 
-                    required={this.props.isRequired}/>
-                <input 
-                    className="btn btn-danger"
+                    className="btn magnifyingGlass"
                     type='submit' 
                     onClick={this.getLocation} 
-                    value='Search'/>
+                    value=''/>
             </form>
         );
     }
