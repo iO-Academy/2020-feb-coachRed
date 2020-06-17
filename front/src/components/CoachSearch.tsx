@@ -3,7 +3,7 @@ import {LocationFieldProps, LocationField} from './LocationField'
 import {PostCodeSearch, PostCodeSearchState, PostCodeSearchProperties} from './PostCodeSearch'
 import {Location} from '../../../back/src/interfaces/Location'
 import {Submit} from './Submit'
-import {Dropdown} from './SportDropdown'
+import {SportDropdown} from './SportDropdown'
 import CoachCardList from './CoachCardList'
 import WelcomeMessage from './WelcomeMessage'
 
@@ -75,7 +75,7 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
             <div className='root'>
                 {!this.state.searchResults && <WelcomeMessage/>}
                 <div className='coachSearch'>
-                    <Dropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport} />
+                    <SportDropdown label='Sport' fieldName={'sport'} updateParent={this.updateSport} />
                     <div className="locationBox">
                         <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
                         <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false} postcode={this.state.postcode}/>
