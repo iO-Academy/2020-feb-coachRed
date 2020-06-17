@@ -6,13 +6,39 @@
     margin: auto;
     padding: 2em;
 
-    .locationField{
-        button{
-            background-image: url("../images/location.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            width: 30px;
-            height: 30px;
+    .locationBox {
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        .locationField{
+            padding-right: 1em;
+
+            button{
+                background-image: url("../images/location.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 2.4em;
+                height: 2.4em;
+                padding: 1em;
+            }   
+        } 
+        .postcodeForm{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            .magnifyingGlass{
+                background-image: url('../images/search.png');
+                height: 2.4em;
+                width: 2.4em;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 0 1em;
+                padding: 1em
+            }
         }
     }
 }

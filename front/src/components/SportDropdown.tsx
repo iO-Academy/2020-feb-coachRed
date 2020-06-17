@@ -1,13 +1,13 @@
 import * as React from "react"
 
-export interface DropdownProperties {
+export interface SportDropdownProperties {
     fieldName: string, 
     label: string,
     updateParent(newSport: string) : void
 }
-export interface DropdownState {dropdownVisible : boolean, fieldData: string}
+export interface SportDropdownState {dropdownVisible : boolean, fieldData: string}
 
-export class SportDropdown extends React.Component<DropdownProperties, DropdownState> {
+export class SportDropdown extends React.Component<SportDropdownProperties, SportDropdownState> {
 
     sports: Array<string>
 

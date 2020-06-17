@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Validator from 'validator'
 
 interface Location {
     latitude: number,
@@ -8,6 +9,7 @@ export interface PostCodeSearchProperties {
     updateLocation(newLoc: Location): void,
     updateParent(newPS: string) : void,
     isRequired : boolean
+    postcode: string
 }
 export interface PostCodeSearchState {postcode: string}
 
@@ -21,16 +23,19 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
         this.postcodeInputChange = this.postcodeInputChange.bind(this)
     }
 
-    async getLocation(event: React.MouseEvent){
+    async getLocation(event: React.MouseEvent) {
         event.preventDefault()
-
-        let response = await fetch(`http://api.postcodes.io/postcodes/${this.state.postcode}`)
-        let location = await response.json()
-        let longLat: Location = {
-            longitude: location.result.longitude,
-            latitude: location.result.latitude
+        if (this.state.postcode && Validator.isPostalCode(this.state.postcode, "GB")) {
+            let response = await fetch(`http://api.postcodes.io/postcodes/${this.state.postcode}`)
+            let location = await response.json()
+            let longLat: Location = {
+                longitude: location.result.longitude,
+                latitude: location.result.latitude
+            }
+            this.props.updateLocation(longLat)
+        } else {
+            alert("The postcode is invalid")
         }
-        this.props.updateLocation(longLat)
     }
 
     // Event here must be cast as any to avoid a typescript bug where the target of a React.ChangeEvent does not
@@ -50,13 +55,13 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
                         type='text' 
                         onChange={this.postcodeInputChange} 
                         name='postcode' 
-                        required={this.props.isRequired}/>
+                        required={this.props.isRequired}
+                        value={this.props.postcode}/>
                 </div>
                 <input 
                     className="btn magnifyingGlass"
                     type='submit' 
-                    onClick={this.getLocation} 
-                    value=''/>
+                    onClick={this.getLocation} />
             </form>
         );
     }

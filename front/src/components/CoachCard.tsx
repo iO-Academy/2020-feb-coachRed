@@ -20,17 +20,19 @@ class CoachCard extends React.Component<CoachCardProps, {}> {
 
     render() { 
         return ( 
-            <div>
+            <div className="coachCard">
                 <h2 className='coachName'>
                     {this.props.name}
                 </h2>
-                <div className='coachDistance'>
-                    {this.props.distance} Miles Away
+                <div className='distanceAndExperience'>
+                    <div className='coachDistance'>
+                        {this.props.distance} Miles Away
+                    </div>
+                    <div className='coachExperience'>
+                        {this.props.experience} Years of Experience
+                    </div>
                 </div>
-                <div className='coachExperience'>
-                    {this.props.experience} Years of Experience
-                </div>
-                <input type="button" value='details' onClick={this.displayCoachDetails}/>
+                <input type="button" value='Details' onClick={this.displayCoachDetails}/>
             </div>
          );
     }
