@@ -3,6 +3,8 @@ import Coach from '../models/coachModel'
 import {AthleteModel} from '../models/AthleteModel'
 import { findAvailability } from '../helpers/findAvailability'
 import { RestResponse } from '../interfaces/RestResponse'
+import { MailOptions } from '../interfaces/MailOptions';
+import sendEmail from '../helpers/sendEmail'
 
 export default async (req: express.Request, res: express.Response) => {
 
@@ -84,7 +86,13 @@ export default async (req: express.Request, res: express.Response) => {
                     data: {}
                 })
             })
-                    
+            let mailOptions: MailOptions = {
+                from: "Coach Red <coach.red.proto@gmail.com",
+                to: athlete.email,
+                subject: 'You have successfully registered',
+                html: '<h3>Welcome to Coach Red!</h3> <p>You have successfully registered as an athlete.</p>'
+            }
+            sendEmail(mailOptions)       
         }
     
     catch (err) {

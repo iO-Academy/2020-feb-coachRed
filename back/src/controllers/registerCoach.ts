@@ -5,6 +5,7 @@ import sendEmail from '../helpers/sendEmail'
 import coachValidator from '../helpers/coachValidator'
 import * as BCrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
+import {MailOptions} from '../interfaces/MailOptions'
 
 async function sendFormInfo(req: express.Request, res: express.Response) {
   
@@ -28,8 +29,13 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
                 let coach = new Coach(aCoach)
             
                 coach.save()
-    
-                sendEmail(aCoach)
+                let mailOptions: MailOptions = {
+                    from: "Coach Red <coach.red.proto@gmail.com",
+                    to: aCoach.email,
+                    subject: 'You have successfully registered',
+                    html: '<h3>Welcome to Coach Red!</h3> <p>You have successfully registered as a coach.</p>'
+                }
+                sendEmail(mailOptions)
     
                 res.status(200).json(
                     {
