@@ -2,6 +2,10 @@ import express = require('express');
 import mongoose = require('mongoose');
 import bCrypt = require('bcrypt');
 import jsonWebToken = require('jsonwebtoken');
+<<<<<<< HEAD
+=======
+import { MailOptions } from '../../interfaces/MailOptions';
+>>>>>>> bfd9279376150559de92451239ef750064ab2461
 import sendEmail from '../../helpers/sendEmail'
 import { AthleteModel } from '../../models/AthleteModel';
 import { AthleteInterface } from '../../interfaces/AthleteInterface';
@@ -43,6 +47,14 @@ export async function createAthlete(req: express.Request, res: express.Response)
                         message: 'athlete successfully created',
                         data: {}
                     };
+
+                    let mailOptions: MailOptions = {
+                        from: "Coach Red <coach.red.proto@gmail.com",
+                        to: athleteToCreate.email,
+                        subject: 'You have successfully registered',
+                        html: '<h3>Welcome to Coach Red!</h3> <p>You have successfully registered as an athlete.</p>'
+                    }
+                    sendEmail(mailOptions)
     
                     return res.status(200).json(response);
                 }).catch(err => {
