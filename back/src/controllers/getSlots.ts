@@ -15,7 +15,6 @@ export default async (req : express.Request, res : express.Response) => {
             timeSlots = filterForClashes(timeSlots, desiredDate);
             let slotsToReturn = await Promise.all(timeSlots.map(async (slot) => {
                 slot.availableFor = await findAvailability(coach, slot, desiredDate);
-                console.log(slot);
                 return slot;
             }));
 
@@ -35,7 +34,6 @@ export default async (req : express.Request, res : express.Response) => {
                 message: 'failed to find slots',
                 data: {}
             };
-            console.log(err);
 
             return res.status(500).json(response);
         }

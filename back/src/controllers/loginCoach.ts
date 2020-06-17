@@ -36,11 +36,18 @@ export default (req: express.Request, res: express.Response) => {
                     })
                 }
             })
+        }).catch(err => {
+            res.status(500).json({
+                status: 'fail',
+                message: 'could not login',
+                data: {}
+            })
         })
     } catch (err) {
         res.status(500).json({
             status: 'fail',
-            message: err
+            message: 'could not login',
+            data: {}
         })
     }
 }
