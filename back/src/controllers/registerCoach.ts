@@ -5,6 +5,7 @@ import sendEmail from '../helpers/sendEmail'
 import coachValidator from '../helpers/coachValidator'
 import * as BCrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
+import {MailOptions} from '../interfaces/MailOptions'
 
 async function sendFormInfo(req: express.Request, res: express.Response) {
   
@@ -28,7 +29,9 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
                 let coach = new Coach(aCoach)
             
                 coach.save()
-    
+                let mailOptions : MailOptions = {
+
+                }
                 sendEmail(aCoach)
     
                 res.status(200).json(
