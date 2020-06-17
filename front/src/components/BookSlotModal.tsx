@@ -6,12 +6,11 @@ import { Submit } from './Submit';
 
 export interface BookSlotModalState {
 
-  numberOfSessions: string
+  numberOfSessions: string | null
   athleteName: string | null
   athletePhone: string | null
   athleteId: string | null
   coachId: string | null
- 
 }
 
 export interface BookSlotModalProps {
@@ -26,7 +25,7 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
   constructor(props: any) {
     super(props);
     this.state = {
-      numberOfSessions: '6',
+      numberOfSessions: '1',
       athleteName: '',
       athletePhone: '',
       athleteId: '',
@@ -39,7 +38,6 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
     this.setState({ athletePhone: localStorage.getItem('phone') })
     this.setState({ athleteId: localStorage.getItem('id') })
     this.setState({ coachId: localStorage.getItem('coachId') })
-    
   }
 
   updateSessions = (newSessions: string) => {
@@ -53,6 +51,10 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
     const slotId = this.props.id
     const coachId = this.state.coachId
     console.log(localStorage.getItem("coachRedToken"))
+    const requestBody = {
+      initialDate: this.props.date,
+      numSessions: this.state.numberOfSessions
+    }
 
     await fetch(`http://localhost:3000/slot/${slotId}?coachId=${coachId}`, {
         method: 'PUT',
@@ -60,8 +62,10 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('coachRedToken')
         },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(requestBody)
     })
+
+    this.props.toggleModal()
   }
 
   render() {
@@ -70,7 +74,7 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
         
         <h5>{this.props.date.toDateString()}</h5>
         <h5>{this.props.startTime} - {this.props.endTime}</h5>
-        <Dropdown fieldName="numberOfSessions" label="How many sessions?" updateParent={this.updateSessions} options={['6', '8', '10']} />
+        <Dropdown fieldName="numberOfSessions" label="How many sessions?" updateParent={this.updateSessions} options={['1','6', '8', '10']} />
         <Submit buttonName="Book Now!" sendResults={this.bookSession}/>
 
       </div>
