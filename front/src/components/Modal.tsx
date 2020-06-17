@@ -71,11 +71,11 @@ export default class Modal extends Component<ModalProps, ModalState>{
     return (
       <div>
         <h3>New Time slot for {this.props.date.toLocaleDateString()}</h3>
-        <TextInput label='Start Time' fieldName='startTime' fieldData={this.state.startTime} inputType='time' isRequired={true} updateParent={this.updateStartTime} value=''/>
-        <TextInput label='End Time' fieldName='endTime' fieldData={this.state.endTime} inputType='time' isRequired={true} updateParent={this.updateEndTime} value=''/>
+        <TextInput label='Start Time' fieldName='startTime' fieldData={this.state.startTime} inputType='time' isRequired={true} updateParent={this.updateStartTime}/>
+        <TextInput label='End Time' fieldName='endTime' fieldData={this.state.endTime} inputType='time' isRequired={true} updateParent={this.updateEndTime}/>
         <Dropdown label='Repeat?' fieldName='repeat' updateParent={this.repeat} options={['Once', 'Weekly', 'Fortnightly', 'Monthly']} />
         <Dropdown label='Age Group?' fieldName='age' updateParent={this.ageGroup} options={['Under 18s', 'Adults']} />
-        <TextInput label='Hourly Rate (£)' fieldName="hourlyRate" fieldData={this.state.hourlyRate} inputType='number' isRequired={true} updateParent={this.hourlyRate} value=''/>
+        <TextInput label='Hourly Rate (£)' fieldName="hourlyRate" fieldData={this.state.hourlyRate} inputType='number' isRequired={true} updateParent={this.hourlyRate}/>
         <Submit sendResults={this.addSlot} buttonName='Add Slot' />
 
         
