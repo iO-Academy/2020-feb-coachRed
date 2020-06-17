@@ -30,7 +30,20 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
         };
     }
 
-    updateLocation = (newLoc: Location) => {this.setState({location: newLoc})}
+    updateLocation = async (newLoc: Location) => {
+        this.setState({location: newLoc})
+
+        if(!(this.state.postcode) && this.state.location){
+            let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
+            let data = await response.json()
+
+            this.setState({postcode: data.address.postcode})
+        }
+
+        if(this.state.location){
+            this.sendResults()
+        }
+    }
 
     updatePostcode = (newPS: string) => {
         this.setState({postcode: newPS})
@@ -38,10 +51,13 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
 
     updateSport = (newSport: string) => {this.setState({sport: newSport})}
 
-    sendResults = async (e: any) => {
+    sendResults = async (e: any = null) => {
         if (this.state.location) {
            
-            e.preventDefault()
+            if(e){
+                e.preventDefault()
+            }
+            
             const search = JSON.stringify({
                 longitude: this.state.location?.longitude,
                 latitude: this.state.location?.latitude,
@@ -59,15 +75,6 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
         }
     }
 
-    async componentDidUpdate() {
-        if(!(this.state.postcode) && this.state.location){
-            let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
-            let data = await response.json()
-
-            this.setState({postcode: data.address.postcode})
-        }
-    }
-
     render() { 
         return ( 
             <div className='root'>
@@ -78,7 +85,6 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
                         <LocationField updateParent={this.updateLocation} fieldData={this.state.location}/>
                         <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} isRequired={false} postcode={this.state.postcode}/>
                     </div>
-                    <Submit sendResults={this.sendResults} buttonName="Search" />
                 </div>
                 {this.state.searchResults ? <CoachCardList coaches={this.state.searchResults}/>:
                 <div className="quotes">
