@@ -89,8 +89,8 @@ export default async (req: express.Request, res: express.Response) => {
             let mailOptions: MailOptions = {
                 from: "Coach Red <coach.red.proto@gmail.com",
                 to: athlete.email,
-                subject: 'You have successfully registered',
-                html: '<h3>Welcome to Coach Red!</h3> <p>You have successfully registered as an athlete.</p>'
+                subject: 'You have booked a slot',
+                html: '<h3>Welcome to Coach Red!</h3> <p>You have successfully booked a slot.</p>'
             }
             sendEmail(mailOptions)       
         }
