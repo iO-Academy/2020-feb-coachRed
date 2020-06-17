@@ -19,14 +19,14 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
         this.state = { 
             postcode: ''
         }
-        this.getLocation = this.getLocation.bind(this)
-        this.postcodeInputChange = this.postcodeInputChange.bind(this)
     }
 
-    async getLocation(event: React.MouseEvent) {
+    getLocation = async (event: React.MouseEvent) => {
         event.preventDefault()
-        if (this.state.postcode && Validator.isPostalCode(this.state.postcode, "GB")) {
-            let response = await fetch(`http://api.postcodes.io/postcodes/${this.state.postcode}`)
+        let postcode = this.state.postcode ? this.state.postcode : this.props.postcode
+    
+        if (postcode && Validator.isPostalCode(postcode, "GB")) {
+            let response = await fetch(`http://api.postcodes.io/postcodes/${postcode}`)
             let location = await response.json()
             let longLat: Location = {
                 longitude: location.result.longitude,
@@ -40,7 +40,7 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
 
     // Event here must be cast as any to avoid a typescript bug where the target of a React.ChangeEvent does not
     // have a value attribute
-    postcodeInputChange(event: any){
+    postcodeInputChange = (event: any) => {
         this.setState({postcode: event.target.value})
         this.props.updateParent(event.target.value)
     }
@@ -58,7 +58,7 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
                         required={this.props.isRequired}
                         value={this.props.postcode}/>
                 </div>
-                <input 
+                <button 
                     className="btn magnifyingGlass"
                     type='submit' 
                     onClick={this.getLocation} />

@@ -65,8 +65,6 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
             let data = await response.json()
 
             this.setState({postcode: data.address.postcode})
-
-            console.log(this.state.postcode)
         }
     }
 
