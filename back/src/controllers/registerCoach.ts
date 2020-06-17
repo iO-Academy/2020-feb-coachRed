@@ -29,10 +29,13 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
                 let coach = new Coach(aCoach)
             
                 coach.save()
-                let mailOptions : MailOptions = {
-
+                let mailOptions: MailOptions = {
+                    from: "Coach Red <coach.red.proto@gmail.com",
+                    to: aCoach.email,
+                    subject: 'You have successfully registered',
+                    html: '<h3>Welcome to Coach Red!</h3> <p>You have successfully registered as a coach.</p>'
                 }
-                sendEmail(aCoach)
+                sendEmail(mailOptions)
     
                 res.status(200).json(
                     {
