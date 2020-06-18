@@ -8,4 +8,12 @@
     p {
         text-align: center;
     }
+
+    .locationBox{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 82%;
+        margin: auto;
+    }
  }
