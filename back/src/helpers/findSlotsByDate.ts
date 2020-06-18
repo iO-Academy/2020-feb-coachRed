@@ -24,7 +24,8 @@ export async function findSlotsByDate(coach: CoachInterface, desiredDate: Date) 
                     lastDay = 30;
                 } else if (currentMonth === 1) {
                     const isLeapYear = (desiredDate.getFullYear() % 4) ? 0 : 1;
-                    const lastDay = 28 + isLeapYear;
+                    console.log(isLeapYear)
+                    lastDay = 28 + isLeapYear;
                 }
                 if (slotDate.getDate() === desiredDate.getDate() 
                 || desiredDate.getDate() === lastDay && slotDate.getDate() > lastDay) {

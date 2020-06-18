@@ -1,30 +1,37 @@
-import { SlotInterface } from "../interfaces/SlotInterface";
+import { SlotInterface } from "../interfaces/SlotInterface"
 
 export function filterForClashes(timeSlots: Array<SlotInterface>, dateToCheck: Date) {
     const desiredDate = (new Date(dateToCheck)).getTime()
     return timeSlots.filter((timeSlot) => {
-        let timeAvailable = true;
+        let timeAvailable = true
         const bookedSlots = timeSlots.filter(timeSlot => {
             let slotIsBooked = false
             timeSlot.bookedBy.forEach((booking) => {
-                let startDate = (new Date(booking.startDate)).getTime();
-                let endDate = (new Date(booking.endDate)).getTime();
-                slotIsBooked = (startDate <= desiredDate && desiredDate <= endDate) ? true : false;
-            });
-            return slotIsBooked;
-        });
+                const timeStampToDays = 1000*60*60*24;
+                // Timestamp for startDate and endDate set so that they cover a whole day
+                let startDate = timeStampToDays*Math.floor((new Date(booking.startDate)).getTime()/timeStampToDays)
+                let endDate = timeStampToDays*Math.floor((new Date(booking.startDate)).getTime()/timeStampToDays) 
+                                + (timeStampToDays - 1)
+                slotIsBooked = (startDate <= desiredDate && desiredDate <= endDate) ? true : false
+            })
+            return slotIsBooked
+        })
         bookedSlots.forEach(bookedSlot => {
             if (!(bookedSlot === timeSlot)) {
                 const bookedSlotStarts = bookedSlot.startTime.replace(':','.')
                 const bookedSlotEnds = bookedSlot.endTime.replace(':','.')
                 const timeSlotStarts = timeSlot.startTime.replace(':','.')
                 const timeSlotEnds = timeSlot.endTime.replace(':','.')
+                console.log(bookedSlotStarts)
+                console.log(timeSlotStarts)
+                console.log(bookedSlotEnds)
+                console.log(timeSlotEnds)
                 if ((timeSlotStarts <= bookedSlotStarts && bookedSlotStarts < timeSlotEnds)
                 || (bookedSlotStarts <= timeSlotStarts && timeSlotStarts < bookedSlotEnds)) {
                     timeAvailable = false;
                 }
             }
-        });
-        return timeAvailable;
-    });
+        })
+        return timeAvailable
+    })
 }

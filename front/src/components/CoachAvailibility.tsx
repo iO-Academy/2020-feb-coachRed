@@ -72,7 +72,7 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
             slotAvailable = false;
           } 
         })
-      } else if (slotAvailable) {
+      } if (slotAvailable) {
         bookings.push({
           _id: slot._id,
           date: this.state.selectedDate.toLocaleDateString(),
