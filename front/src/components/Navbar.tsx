@@ -21,9 +21,11 @@ export class Navbar extends React.Component {
                     </li>
                 </ul>
             </div>
-            <Link className="nav-link my-2 my-sm-0" to="/athleteLogin">Athlete Login</Link>
-            <Link className="nav-link my-2 my-sm-0" to="/coachLogin">Coach Login</Link>
-            {localStorage.getItem('coachRedToken') && <button className='btn btn-danger' onClick={this.logOut}>Log Out</button>}
+            {localStorage.getItem('coachRedToken') ? <button className='btn btn-danger' onClick={this.logOut}>Log Out</button>:
+            <div>
+                <Link className="nav-link my-2 my-sm-0" to="/athleteLogin">Athlete Login</Link>
+                <Link className="nav-link my-2 my-sm-0" to="/coachLogin">Coach Login</Link>
+            </div>}
         </nav>)
     }
 }
