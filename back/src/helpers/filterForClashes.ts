@@ -7,8 +7,11 @@ export function filterForClashes(timeSlots: Array<SlotInterface>, dateToCheck: D
         const bookedSlots = timeSlots.filter(timeSlot => {
             let slotIsBooked = false
             timeSlot.bookedBy.forEach((booking) => {
-                let startDate = (new Date(booking.startDate)).getTime();
-                let endDate = (new Date(booking.endDate)).getTime();
+                const timeStampToDays = 1000*60*60*24;
+                // Timestamp for startDate and endDate set so that they cover a whole day
+                let startDate = timeStampToDays*Math.floor((new Date(booking.startDate)).getTime()/timeStampToDays);
+                let endDate = timeStampToDays*Math.floor((new Date(booking.startDate)).getTime()/timeStampToDays) 
+                                + (timeStampToDays - 1);
                 slotIsBooked = (startDate <= desiredDate && desiredDate <= endDate) ? true : false;
             });
             return slotIsBooked;
@@ -19,6 +22,10 @@ export function filterForClashes(timeSlots: Array<SlotInterface>, dateToCheck: D
                 const bookedSlotEnds = bookedSlot.endTime.replace(':','.')
                 const timeSlotStarts = timeSlot.startTime.replace(':','.')
                 const timeSlotEnds = timeSlot.endTime.replace(':','.')
+                console.log(bookedSlotStarts)
+                console.log(timeSlotStarts)
+                console.log(bookedSlotEnds)
+                console.log(timeSlotEnds)
                 if ((timeSlotStarts <= bookedSlotStarts && bookedSlotStarts < timeSlotEnds)
                 || (bookedSlotStarts <= timeSlotStarts && timeSlotStarts < bookedSlotEnds)) {
                     timeAvailable = false;
