@@ -13,13 +13,6 @@ function slotValidator (slot: any) {
       let date = (!validator.isEmpty(slot.date)) ? true : false
   
       let repeat = (!validator.isEmpty(slot.repeat)) ? true : false
-
-    //   console.log(startTime)
-    //   console.log(endTime)
-    //   console.log(hourlyRate)
-    //   console.log(ageRange)
-    //   console.log(date)
-    //   console.log(repeat)
   
       return startTime && endTime && hourlyRate && ageRange && date && repeat
 

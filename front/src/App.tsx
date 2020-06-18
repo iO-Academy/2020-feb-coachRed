@@ -13,7 +13,6 @@ import CoachSearch from "./components/CoachSearch"
 export class App extends React.Component {
     
     render() {
-        console.log(window.location.pathname)
         return(
             <div className="page">
                 <Router>

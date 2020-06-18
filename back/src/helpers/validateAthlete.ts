@@ -10,8 +10,6 @@ export const validateAthlete = async (athlete: AthleteInterface): Promise<boolea
         (RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)).test(athlete.email)
     const dateOfBirthValid: boolean = 
         (RegExp(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/)).test(athlete.dateOfBirth);
-    console.log(dateOfBirthValid)
-    console.log(athlete.dateOfBirth)
     const phoneValid: boolean = 
         (RegExp(/^[0-9\+ ]+$/)).test(athlete.phone)
 
