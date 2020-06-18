@@ -62,6 +62,7 @@ export default class Modal extends Component<ModalProps, ModalState>{
       return response.json()
     }).then((response) => {
       if(response.status === 'fail'){
+        localStorage.setItem('coachRedToken', response.data.token)
         alert('please fill out slot details correctly')
       } else {
         localStorage.setItem('coachRedToken', response.data.token)
