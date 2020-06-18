@@ -21,3 +21,16 @@
         max-width: 5em; 
     }
 }
+
+@media only screen and (max-width: 425px){
+    .coachCard{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0;
+        
+        input {
+            margin: 1em 0;
+        }
+        
+    }
+}
