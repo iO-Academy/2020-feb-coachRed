@@ -53,13 +53,16 @@ class CoachLogin extends React.Component<CoachLoginProps, CoachLoginState> {
 
     render() { 
         return ( 
-            <div className='root form'>
+            <div className='root form login'>
                  <TextInput label="Email Address" fieldName="emailAddress" fieldData={this.state.email}
                 inputType="text" isRequired={true} updateParent={this.updateEmailAddress}/>
                  <TextInput label="Password" fieldName="password" fieldData={this.state.password}
                     inputType="password" isRequired={false} updateParent={this.updatePassword}/>
                 <div className='submit'>
                     <Submit sendResults={this.sendResults} buttonName="Login" />
+                </div>
+                <div className="noAccount">
+                    <h5>Dont have an account? <a href='/registerCoach'>Sign Up</a></h5>
                 </div>
             </div>
          );
