@@ -28,11 +28,15 @@ export class PostCodeSearch extends React.Component<PostCodeSearchProperties, Po
         if (postcode && Validator.isPostalCode(postcode, "GB")) {
             let response = await fetch(`http://api.postcodes.io/postcodes/${postcode}`)
             let location = await response.json()
-            let longLat: Location = {
-                longitude: location.result.longitude,
-                latitude: location.result.latitude
+            if(location.status >= 400){
+                alert('Please try again the postcode is not in our database')
+            } else {
+                let longLat: Location = {
+                    longitude: location.result.longitude,
+                    latitude: location.result.latitude
+                }
+                this.props.updateLocation(longLat)
             }
-            this.props.updateLocation(longLat)
         } else {
             alert("The postcode is invalid")
         }
