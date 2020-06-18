@@ -13,7 +13,7 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
 
     aCoach.salt = await BCrypt.genSalt()
 
-    BCrypt.hash(aCoach.password, aCoach.salt, (err, hash) => {
+    BCrypt.hash(aCoach.password, aCoach.salt, async (err, hash) => {
         aCoach.password = hash
 
         aCoach.token = jwt.sign({username: aCoach.username, password: aCoach.password}, process.env.SECRET, {
@@ -28,7 +28,7 @@ async function sendFormInfo(req: express.Request, res: express.Response) {
             
                 let coach = new Coach(aCoach)
             
-                coach.save()
+                await coach.save()
                 let mailOptions: MailOptions = {
                     from: "Coach Red <coach.red.proto@gmail.com",
                     to: aCoach.email,
