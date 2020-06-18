@@ -2,30 +2,33 @@ import mongoose = require('mongoose')
 
 let CoachSchema  = {
 
-  firstName: String, //think we'll have to split name into 2
-  lastName: String,
-  email: String, //can we typehint an email address somehow?
+  firstName: {type: String, required: true}, //think we'll have to split name into 2
+  lastName: {type: String, required: true},
+  email: {type: String, required: true}, //can we typehint an email address somehow?
   phone: String, 
-  dob: String,
+  dob: {type: String, required: true},
   
   houseNumber: Number, //  either number or name
   houseName: String, // either number or name
-  address1: String,
+  address1: {type: String, required: true},
   address2: String,
-  town: String,
-  county: String,
-  postcode: String, // can typehint a postcode with regex?
-  location: Object, //needs to be location typehinted probably
+  town: {type: String, required: true},
+  county: {type: String, required: true},
+  postcode: {type: String, required: true}, // can typehint a postcode with regex?
+  location: {
+    latitude: {type: String, required: true},
+    longitude: {type: String, required: true}
+  }, //needs to be location typehinted probably
 
-  token: String,
-  salt: String,
+  token: {type: String, required: true},
+  salt: {type: String, required: true},
 
-  qualifications: String, //array best way to handle multiple?
-  yearsCoaching: Number,
-  sport: String, // list from database. Typehint to sport?
-  expertise: String,
+  qualifications: {type: String, required: true}, //array best way to handle multiple?
+  yearsCoaching: {type: Number, required: true},
+  sport: {type: String, required: true}, // list from database. Typehint to sport?
+  expertise: {type: String, required: true},
 
-  password: String, //obvs needs sorting out
+  password: {type: String, required: true}, //obvs needs sorting out
 
   timeSlots: [
     {

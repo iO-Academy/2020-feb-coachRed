@@ -8,9 +8,6 @@ export interface CoachCardProps {
 }
  
 class CoachCard extends React.Component<CoachCardProps, {}> {
-    constructor(props: CoachCardProps) {
-        super(props);
-    }
 
     displayCoachDetails = () => {
         
