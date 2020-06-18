@@ -56,7 +56,7 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
       numSessions: this.state.numberOfSessions
     }
 
-    await fetch(`http://localhost:3000/slot/${slotId}?coachId=${coachId}`, {
+   let response =  await fetch(`http://localhost:3000/slot/${slotId}?coachId=${coachId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -64,9 +64,14 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
         },
       body: JSON.stringify(requestBody)
     })
-    alert('You booked the session!')
-    window.location.reload()
-  }
+    let data = await response.json()
+
+    console.log(data)
+      
+    }
+    // alert('You booked the session!')
+    // window.location.reload()
+  
 
   render() {
     return (

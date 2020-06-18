@@ -90,7 +90,7 @@ export default async (req: express.Request, res: express.Response) => {
                 from: "Coach Red <coach.red.proto@gmail.com",
                 to: athlete.email,
                 subject: 'You have booked a slot',
-                html: '<h3>Welcome to Coach Red!</h3> <p>You have successfully booked a slot.</p>'
+                html: '<h3>Hi!</h3> <p>You have successfully booked a slot.</p>'
             }
             sendEmail(mailOptions)       
         }
