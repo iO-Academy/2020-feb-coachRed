@@ -6,9 +6,7 @@ export interface CoachCardListProps {
 }
  
 class CoachCardList extends React.Component<CoachCardListProps, {}> {
-    constructor(props: CoachCardListProps) {
-        super(props);
-    }
+    
     render() { 
         return (
             <div className='coachCardList'>

@@ -8,10 +8,7 @@ export interface CoachCardProps {
 }
  
 class CoachCard extends React.Component<CoachCardProps, {}> {
-    constructor(props: CoachCardProps) {
-        super(props);
-    }
-
+    
     displayCoachDetails = () => {
         
         localStorage.setItem('coachId', this.props.coachId)

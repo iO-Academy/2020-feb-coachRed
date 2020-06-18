@@ -46,11 +46,11 @@ export default class Booking extends React.Component<BookingProps, BookingState>
           {this.props.booking.startTime} - {this.props.booking.endTime}
         </span>
         
-        {this.props.who == 'coach' && this.props.booking.booked && <Submit buttonName={this.props.buttonName} sendResults={this.openModal} />}
-        {this.props.who == 'athlete' && <Submit buttonName={this.props.buttonName} sendResults={this.openModal} />}
+        {this.props.who === 'coach' && this.props.booking.booked && <Submit buttonName={this.props.buttonName} sendResults={this.openModal} />}
+        {this.props.who === 'athlete' && <Submit buttonName={this.props.buttonName} sendResults={this.openModal} />}
 
-        {this.state.modalDisplay && (this.props.who == 'athlete') && < BookSlotModal date={this.props.date} startTime={this.props.booking.startTime} endTime={this.props.booking.endTime} id={this.props.booking._id} toggleModal={this.openModal}/>}
-        {this.state.modalDisplay && (this.props.who == 'coach') && < ViewBookingDetails booking={this.props.booking} toggleModal={this.openModal} />}
+        {this.state.modalDisplay && (this.props.who === 'athlete') && < BookSlotModal date={this.props.date} startTime={this.props.booking.startTime} endTime={this.props.booking.endTime} id={this.props.booking._id} toggleModal={this.openModal}/>}
+        {this.state.modalDisplay && (this.props.who === 'coach') && < ViewBookingDetails booking={this.props.booking} toggleModal={this.openModal} />}
       </div>
     )}
   

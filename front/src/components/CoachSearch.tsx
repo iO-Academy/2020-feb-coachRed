@@ -1,8 +1,7 @@
 import * as React from 'react'
-import {LocationFieldProps, LocationField} from './LocationField'
-import {PostCodeSearch, PostCodeSearchState, PostCodeSearchProperties} from './PostCodeSearch'
+import {LocationField} from './LocationField'
+import {PostCodeSearch} from './PostCodeSearch'
 import {Location} from '../../../back/src/interfaces/Location'
-import {Submit} from './Submit'
 import {SportDropdown} from './SportDropdown'
 import CoachCardList from './CoachCardList'
 import WelcomeMessage from './WelcomeMessage'
@@ -63,6 +62,8 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
                 latitude: this.state.location?.latitude,
                 sport: this.state.sport
             })
+
+            console.log(search)
 
             let response = await fetch(`http://localhost:3000/coach/${search}`)
             let data = await response.json()
