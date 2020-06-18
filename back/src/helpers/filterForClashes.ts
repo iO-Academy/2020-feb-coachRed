@@ -22,10 +22,6 @@ export function filterForClashes(timeSlots: Array<SlotInterface>, dateToCheck: D
                 const bookedSlotEnds = bookedSlot.endTime.replace(':','.')
                 const timeSlotStarts = timeSlot.startTime.replace(':','.')
                 const timeSlotEnds = timeSlot.endTime.replace(':','.')
-                console.log(bookedSlotStarts)
-                console.log(timeSlotStarts)
-                console.log(bookedSlotEnds)
-                console.log(timeSlotEnds)
                 if ((timeSlotStarts <= bookedSlotStarts && bookedSlotStarts < timeSlotEnds)
                 || (bookedSlotStarts <= timeSlotStarts && timeSlotStarts < bookedSlotEnds)) {
                     timeAvailable = false;

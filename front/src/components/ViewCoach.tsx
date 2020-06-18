@@ -58,10 +58,6 @@ export default class ViewCoach extends Component<ViewCoachProps, ViewCoachState>
     const coachId = localStorage.getItem('coachId')
 
     let coach = await fetch(`http://localhost:3000/coach/?coachId=${coachId}`, request)
-      
-    if (coach.status === 403) {
-      console.log(await coach.json())
-    }
 
     let response = await coach.json()
     

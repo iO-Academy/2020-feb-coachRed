@@ -44,10 +44,6 @@ export default class BookCoachModal extends Component<BookCoachModalProps, BookC
     }
 
     let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}?id=${this.props.coachId}`, request)
-    if (slots.status === 403) {
-      console.log(await slots.json())
-
-    }
     let response = await slots.json()
     let bookings: Array<BookingInterface> = []
     // Adapter to account for the fact that the format for a booking was designed without the expectation that multiple
