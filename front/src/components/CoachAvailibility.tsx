@@ -53,9 +53,9 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
       let slotAvailable = true;
       if (slot.bookedBy.length > 0) {
         slot.bookedBy.forEach((booking: any) => {
-          console.log(booking.startDate)
+         
           let formattedDate = this.state.selectedDate.toISOString()
-          console.log(booking.endDate)
+       
           if (booking.startDate <= formattedDate && formattedDate <= booking.endDate) { 
             bookings.push({
               _id: booking._id,
