@@ -32,7 +32,6 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
   }
 
   updateSelectedDate = async (dateClicked: Date) => {
-    console.log(dateClicked < new Date(Date.now()))
     if(dateClicked < new Date(Date.now())){
       alert("Please select a date in the future")
     }else{
@@ -48,9 +47,7 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
       let id = localStorage.getItem('id')
 
       let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}?id=${id}`, request)
-      if (slots.status === 403) {
-        console.log(await slots.json())
-      }
+      
       let response = await slots.json()
       let bookings: Array<BookingInterface> = []
       response.data.slots.forEach((slot: any) => {

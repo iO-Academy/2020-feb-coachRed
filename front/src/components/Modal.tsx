@@ -61,8 +61,12 @@ export default class Modal extends Component<ModalProps, ModalState>{
     }).then((response) => {
       return response.json()
     }).then((response) => {
-      localStorage.setItem('coachRedToken', response.data.token)
-      this.props.toggleModal()
+      if(response.status === 'fail'){
+        alert('please fill out slot details correctly')
+      } else {
+        localStorage.setItem('coachRedToken', response.data.token)
+        this.props.toggleModal()
+      }
     })
   }
 
