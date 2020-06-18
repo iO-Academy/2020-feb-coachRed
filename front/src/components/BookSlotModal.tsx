@@ -11,6 +11,7 @@ export interface BookSlotModalState {
   athletePhone: string | null
   athleteId: string | null
   coachId: string | null
+  groupSize: string | null
 }
 
 export interface BookSlotModalProps {
@@ -29,7 +30,8 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
       athleteName: '',
       athletePhone: '',
       athleteId: '',
-      coachId: ''
+      coachId: '',
+      groupSize: 'One to One'
     };
   }
 
@@ -45,6 +47,10 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
 
   } 
 
+  updateGroupSize = (newSize: string) => {
+    this.setState({ groupSize: newSize})
+  }
+
   bookSession = async (e: any) => {
     e.preventDefault(); 
    
@@ -52,7 +58,8 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
     const coachId = this.state.coachId
     const requestBody = {
       initialDate: this.props.date,
-      numSessions: this.state.numberOfSessions
+      numSessions: this.state.numberOfSessions,
+      groupSize: this.state.groupSize
     }
 
    let response =  await fetch(`http://localhost:3000/slot/${slotId}?coachId=${coachId}`, {
@@ -63,12 +70,15 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
         },
       body: JSON.stringify(requestBody)
     })
+
+    let responseData = await response.json()
     
     if (response.status === 403) {
       alert('You need to log in!')
       window.location.href = "/athleteLogin"
      
     } else {
+      localStorage.setItem('coachRedToken', responseData.data.token)
       alert('You booked the session!')
       window.location.reload()
     }
@@ -90,6 +100,7 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
               </div>
               <div className="modal-body form">
                 <Dropdown fieldName="numberOfSessions" label="How many sessions?" updateParent={this.updateSessions} options={['1', '6', '8', '10']} />
+                <Dropdown fieldName="groupSize" label="Group Size" updateParent={this.updateGroupSize} options={['One to One', 'Small Group']} />
                 <Submit buttonName="Book Now!" sendResults={this.bookSession}/>
               </div>
               <div className="modal-footer">

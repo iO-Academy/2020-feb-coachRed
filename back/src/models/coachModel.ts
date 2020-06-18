@@ -45,7 +45,8 @@ let CoachSchema  = {
           startDate: {type: Date, required: true},
           endDate: {type: Date, required: true},
           email: {type: String, required: true},
-          phone: {type: String, required: true}
+          phone: {type: String, required: true},
+          groupSize: {type: String, required: true}
       }]
     }
   ]

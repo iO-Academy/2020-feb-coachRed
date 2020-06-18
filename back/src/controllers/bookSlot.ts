@@ -14,6 +14,7 @@ export default async (req: express.Request, res: express.Response) => {
     const slotId = req.params.slotId
     const coachId = req.query.coachId
     const numSessions = req.body.numSessions
+    const groupSize = req.body.groupSize
     const initialDate = new Date(req.body.initialDate)
     const initialTimestamp = initialDate.getTime()
 
@@ -71,6 +72,7 @@ export default async (req: express.Request, res: express.Response) => {
                     firstName: athlete.firstName,
                     lastName: athlete.lastName,
                     phone: athlete.phone,
+                    groupSize: groupSize,
                     email: athlete.email,
                     startDate: initialDate,
                     endDate: endDate
@@ -83,7 +85,9 @@ export default async (req: express.Request, res: express.Response) => {
                 res.status(200).json({
                     status: 'success',
                     message: 'Successfully booked session',
-                    data: {}
+                    data: {
+                        token: bearerToken
+                    }
                 })
             })
             let mailOptions: MailOptions = {
@@ -100,7 +104,7 @@ export default async (req: express.Request, res: express.Response) => {
                 status: 'fail',
                 message: err,
                 data: {
-                    
+                    token: bearerToken
                 }
             })
     }
