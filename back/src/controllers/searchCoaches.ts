@@ -9,6 +9,7 @@ import haversine = require('haversine')
 export default async (req : express.Request, res : express.Response) => {
     try{
         const search = JSON.parse(req.params.search)
+
         const athleteLocation = {longitude: parseFloat(search.longitude), latitude: parseFloat(search.latitude)}
 
         const coaches = await Coach.find()//select only the required fields
@@ -28,8 +29,7 @@ export default async (req : express.Request, res : express.Response) => {
                 matchingCoaches.push(coachIncludingDistance)
             }
         })
-
-        res.status(200).json({
+        res.json({
             status: 'success',
             message: 'successfully got coaches from database',
             data: {

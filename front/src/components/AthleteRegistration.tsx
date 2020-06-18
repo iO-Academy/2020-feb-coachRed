@@ -58,7 +58,7 @@ export const AthleteRegistration = () => {
                 },
                 body: JSON.stringify(formData)
             })
-            if (registerResponse.status == 200) {
+            if (registerResponse.status === 200) {
                 window.location.href="/coachSearch"
             } else {
                 console.log('Oops! It looks like something went wrong!')

@@ -79,13 +79,13 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
             let response = await fetch(`https://eu1.locationiq.com/v1/reverse.php?key=9a3db48671cb39&lat=${this.state.location.latitude}&lon=${this.state.location.longitude}&format=json`)
             let data = await response.json()
 
-            console.log(data)
 
             this.setState({ postcode: data.address.postcode })
 
             this.setState({ town: data.address.suburb })
             this.setState({ county: data.address.county })
             this.setState({ address2: data.address.road })
+            this.setState({address1: ''})
         }
     }
     updateAddress1 = (newAddr1: string) => {
@@ -161,11 +161,13 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
                     
                     <TextInput label="Date of Birth" fieldName="dateOfBirth" fieldData={this.state.dob}
                         inputType="date" isRequired={true} updateParent={this.updateDateOfBirth} />
-                    
-                    <LocationField updateParent={this.updateLocation} fieldData={this.state.location} />
-                    
-                    <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} 
-                        isRequired={true} postcode={this.state.postcode}/>
+                     
+                     <div className="locationBox">
+                        <LocationField updateParent={this.updateLocation} fieldData={this.state.location} />
+                        
+                        <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} 
+                            isRequired={true} postcode={this.state.postcode}/>
+                    </div>
                     
                     <TextInput label="Address Line 1:" fieldName="addressOne" fieldData={this.state.address1}
                         inputType="text" isRequired={true} updateParent={this.updateAddress1} />

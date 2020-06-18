@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Calendar from './Calendar';
 import BookableSlotList from './BookableSlotList'
 import { BookingInterface } from '../interfaces/BookingInterface'
-import { count } from 'console';
 export interface BookCoachModalState {
 
   bookings: Array<object>
