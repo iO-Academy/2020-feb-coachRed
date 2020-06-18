@@ -140,9 +140,10 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
         let data = await response.json()
 
         if(data.status === 'success'){
+            alert('You have successfully registered!')
             window.location.href = "/coachLogin"
         } else {
-            alert('registration failed try again')
+            alert('Registration failed. Please try again')
         }
         
     }

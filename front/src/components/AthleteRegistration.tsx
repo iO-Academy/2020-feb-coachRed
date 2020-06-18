@@ -59,12 +59,13 @@ export const AthleteRegistration = () => {
                 body: JSON.stringify(formData)
             })
             if (registerResponse.status === 200) {
+                alert('You have successfully registered as an Athlete!')
                 window.location.href="/coachSearch"
             } else {
-                console.log('Oops! It looks like something went wrong!')
+                alert('Oops! It looks like something went wrong!')
             }
         } catch(err) {
-            console.log('Oops! It looks like something went wrong!')
+            alert('Oops! It looks like something went wrong!')
         }
     }
     
