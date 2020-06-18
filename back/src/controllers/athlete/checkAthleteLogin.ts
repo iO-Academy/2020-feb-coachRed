@@ -6,6 +6,7 @@ import { AthleteModel } from '../../models/AthleteModel';
 import { RestResponse } from '../../interfaces/RestResponse';
 
 export async function checkAthleteLogin(req: express.Request, res: express.Response, next: express.NextFunction) {
+    console.log('test')
     if (!req.header('Authorization')) {
         const response: RestResponse = {
             status: 'fail',

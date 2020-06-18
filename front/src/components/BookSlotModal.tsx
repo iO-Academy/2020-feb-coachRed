@@ -64,13 +64,18 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
         },
       body: JSON.stringify(requestBody)
     })
-    let data = await response.json()
-
-    console.log(data)
-      
+    
+    if (response.status === 403) {
+      alert('You need to log in!')
+      window.location.href = "/athleteLogin"
+     
+    } else {
+      alert('You booked the session!')
+      window.location.reload()
     }
-    // alert('You booked the session!')
-    // window.location.reload()
+      
+  }
+   
   
 
   render() {

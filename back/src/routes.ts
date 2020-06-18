@@ -26,6 +26,7 @@ const routes = (app : express.Application) :void => {
     app.post('/coach/login', loginCoach)
     app.post('/slot/', validateUser)
     app.post('/slot/', createSlot)
+    app.put('/slot/:slotId', checkAthleteLogin)
     app.put('/slot/:slotId', bookSlot)
     app.get('/slot/:date', getSlots)
     app.get('/coach', getCoach)
