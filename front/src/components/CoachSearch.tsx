@@ -63,8 +63,6 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
                 sport: this.state.sport
             })
 
-            console.log(search)
-
             let response = await fetch(`http://localhost:3000/coach/${search}`)
             let data = await response.json()
 

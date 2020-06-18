@@ -50,7 +50,6 @@ export default class BookSlotModal extends Component<BookSlotModalProps, BookSlo
    
     const slotId = this.props.id
     const coachId = this.state.coachId
-    console.log(localStorage.getItem("coachRedToken"))
     const requestBody = {
       initialDate: this.props.date,
       numSessions: this.state.numberOfSessions
