@@ -32,62 +32,67 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
   }
 
   updateSelectedDate = async (dateClicked: Date) => {
-    this.setState({ selectedDate: dateClicked })
-    this.setState({isDateSelected: true})
-    const correctDateFormat = dateClicked.toISOString().split('T')[0]
-    const request = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json'
+    console.log(dateClicked < new Date(Date.now()))
+    if(dateClicked < new Date(Date.now())){
+      alert("Please select a date in the future")
+    }else{
+      this.setState({ selectedDate: dateClicked })
+      this.setState({isDateSelected: true})
+      const correctDateFormat = dateClicked.toISOString().split('T')[0]
+      const request = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
       }
-    }
-    let id = localStorage.getItem('id')
+      let id = localStorage.getItem('id')
 
-    let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}?id=${id}`, request)
-    if (slots.status === 403) {
-      console.log(await slots.json())
-    }
-    let response = await slots.json()
-    let bookings: Array<BookingInterface> = []
-    response.data.slots.forEach((slot: any) => {
-      let slotAvailable = true;
-      if (slot.bookedBy.length > 0) {
-        slot.bookedBy.forEach((booking: any) => {
-         
-          let formattedDate = this.state.selectedDate.toISOString()
-       
-          if (booking.startDate <= formattedDate && formattedDate <= booking.endDate) { 
-            bookings.push({
-              _id: booking._id,
-              date: this.state.selectedDate.toLocaleDateString(),
-              startTime: slot.startTime,
-              endTime: slot.endTime,
-              repeat: slot.repeat,
-              hourlyRate: slot.hourlyRate,
-              email: booking.email,
-              contact: booking.phone,
-              booked: true,
-              bookedBy: booking.firstName + ' ' + booking.lastName
-            })
-            slotAvailable = false;
-          } 
-        })
-      } if (slotAvailable) {
-        bookings.push({
-          _id: slot._id,
-          date: this.state.selectedDate.toLocaleDateString(),
-          startTime: slot.startTime,
-          endTime: slot.endTime,
-          repeat: slot.repeat,
-          hourlyRate: slot.hourlyRate,
-          email: '',
-          contact: '',
-          booked: false,
-          bookedBy: ''
-        })
+      let slots = await fetch(`http://localhost:3000/slot/${correctDateFormat}?id=${id}`, request)
+      if (slots.status === 403) {
+        console.log(await slots.json())
       }
-    })
-    this.setState({ bookings: bookings })
+      let response = await slots.json()
+      let bookings: Array<BookingInterface> = []
+      response.data.slots.forEach((slot: any) => {
+        let slotAvailable = true;
+        if (slot.bookedBy.length > 0) {
+          slot.bookedBy.forEach((booking: any) => {
+          
+            let formattedDate = this.state.selectedDate.toISOString()
+        
+            if (booking.startDate <= formattedDate && formattedDate <= booking.endDate) { 
+              bookings.push({
+                _id: booking._id,
+                date: this.state.selectedDate.toLocaleDateString(),
+                startTime: slot.startTime,
+                endTime: slot.endTime,
+                repeat: slot.repeat,
+                hourlyRate: slot.hourlyRate,
+                email: booking.email,
+                contact: booking.phone,
+                booked: true,
+                bookedBy: booking.firstName + ' ' + booking.lastName
+              })
+              slotAvailable = false;
+            } 
+          })
+        } if (slotAvailable) {
+          bookings.push({
+            _id: slot._id,
+            date: this.state.selectedDate.toLocaleDateString(),
+            startTime: slot.startTime,
+            endTime: slot.endTime,
+            repeat: slot.repeat,
+            hourlyRate: slot.hourlyRate,
+            email: '',
+            contact: '',
+            booked: false,
+            bookedBy: ''
+          })
+        }
+      })
+      this.setState({ bookings: bookings })
+    }
   }
 
  
