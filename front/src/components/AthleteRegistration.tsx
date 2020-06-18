@@ -76,28 +76,28 @@ export const AthleteRegistration = () => {
             <p>To register as an athlete, there are a few things we'll need from you:</p>
             <div className="form">
                 <TextInput label="First Name" fieldName="firstName" fieldData={firstName}
-                    inputType="text" isRequired={true} updateParent={setFirstName} />
+                inputType="text" isRequired={true} updateParent={setFirstName} />
                 
                 <TextInput label="Last Name" fieldName="lastName" fieldData={lastName}
-                    inputType="text" isRequired={true} updateParent={setLastName} />
-                
-                <TextInput label="Email Address" fieldName="email" fieldData={email}
-                    inputType="text" isRequired={true} updateParent={setEmail} />
+                inputType="text" isRequired={true} updateParent={setLastName} />
                 
                 <TextInput label="Phone Number" fieldName="phone" fieldData={phone}
-                    inputType="tel" isRequired={true} updateParent={setPhone} />
+                inputType="tel" isRequired={true} updateParent={setPhone} />
                 
                 <TextInput label="Date of Birth" fieldName="dateOfBirth" fieldData={dateOfBirth}
-                    inputType="date" isRequired={true} updateParent={setDateOfBirth} />
+                inputType="date" isRequired={true} updateParent={setDateOfBirth} />
                 
                 <Dropdown label="What sport do you play?" fieldName="sport" updateParent = {setSport} 
-                    options={sportList} />
+                options={sportList} />
                 
                 <TextInput label="How long have you been playing?" fieldName="yearsTraining" 
-                    fieldData={yearsExperience} inputType="number" isRequired={true} updateParent={setYearsExperience} />
+                fieldData={yearsExperience} inputType="number" isRequired={true} updateParent={setYearsExperience} />
                 
                 <TextArea label="What are you looking for in a coach?" fieldName="lookingFor"
-                    fieldData={lookingFor} updateParent={setLookingFor} />
+                fieldData={lookingFor} updateParent={setLookingFor} />
+
+                <TextInput label="Email Address" fieldName="email" fieldData={email}
+                inputType="text" isRequired={true} updateParent={setEmail} />
                 
                 <SetPassword updateParent={setPassword} />
 

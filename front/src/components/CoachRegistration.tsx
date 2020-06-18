@@ -156,52 +156,52 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
                 <div className='form'>
 
                     <TextInput label="First Name" fieldName="firstName" fieldData={this.state.firstName}
-                        inputType="text" isRequired={true} updateParent={this.updateFirstName} />
+                    inputType="text" isRequired={true} updateParent={this.updateFirstName} />
                     
                     <TextInput label="Last Name" fieldName="lastName" fieldData={this.state.lastName}
-                        inputType="text" isRequired={true} updateParent={this.updateLastName} />
-                    
-                    <TextInput label="Email Address" fieldName="email" fieldData={this.state.email}
-                        inputType="text" isRequired={true} updateParent={this.updateEmail} />
+                    inputType="text" isRequired={true} updateParent={this.updateLastName} />
                     
                     <TextInput label="Phone Number" fieldName="phone" fieldData={this.state.phone}
-                        inputType="tel" isRequired={true} updateParent={this.updatePhone} />
+                    inputType="tel" isRequired={true} updateParent={this.updatePhone} />
                     
                     <TextInput label="Date of Birth" fieldName="dateOfBirth" fieldData={this.state.dob}
-                        inputType="date" isRequired={true} updateParent={this.updateDateOfBirth} />
+                    inputType="date" isRequired={true} updateParent={this.updateDateOfBirth} />
                      
                      <div className="locationBox">
                         <LocationField updateParent={this.updateLocation} fieldData={this.state.location} />
                         
                         <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} 
-                            isRequired={true} postcode={this.state.postcode}/>
+                        isRequired={true} postcode={this.state.postcode}/>
                     </div>
                     
                     <TextInput label="Address Line 1:" fieldName="addressOne" fieldData={this.state.address1}
-                        inputType="text" isRequired={true} updateParent={this.updateAddress1} />
+                    inputType="text" isRequired={true} updateParent={this.updateAddress1} />
                     
                     <TextInput label="Address Line 2:" fieldName="addressTwo" fieldData={this.state.address2}
-                        inputType="text" isRequired={false} updateParent={this.updateAddress2} />
+                    inputType="text" isRequired={false} updateParent={this.updateAddress2} />
                     
                     <TextInput label="City" fieldName="town" fieldData={this.state.town}
-                        inputType="text" isRequired={true} updateParent={this.updateTown} />
+                    inputType="text" isRequired={true} updateParent={this.updateTown} />
                     
                     <TextInput label="County" fieldName="county" fieldData={this.state.county}
-                        inputType="text" isRequired={true} updateParent={this.updateCounty} />
+                    inputType="text" isRequired={true} updateParent={this.updateCounty} />
                     
                     <TextArea label="Tell us about you and your qualifications" fieldName="qualifications"
-                        fieldData={this.state.qualifications} updateParent={this.updateQualifications} />
+                    fieldData={this.state.qualifications} updateParent={this.updateQualifications} />
                     
                     <TextInput label="How long have you been coaching?" fieldName="yearsTraining" 
                     fieldData={this.state.yearsCoaching} inputType="number"  isRequired={true} 
-                        updateParent={this.updateYearsTraining} />
+                    updateParent={this.updateYearsTraining} />
                     
                     <SportDropdown label="What sport will you be coaching?" fieldName="sport"
-                        updateParent={this.updateSport} />
+                    updateParent={this.updateSport} />
                     
                     <TextInput label="What's your area of expertise?" fieldName="areaOfExpertise" 
                     fieldData={this.state.expertise} inputType="text" isRequired={true} 
-                        updateParent={this.updateAreaOfExpertise} />
+                    updateParent={this.updateAreaOfExpertise} />
+
+                    <TextInput label="Email Address" fieldName="email" fieldData={this.state.email}
+                    inputType="text" isRequired={true} updateParent={this.updateEmail} />
                     
                     <SetPassword updateParent={this.updatePassword} />
                     <div className="submit">
