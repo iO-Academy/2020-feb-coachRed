@@ -130,14 +130,21 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
 
     sendResults = async (e: any) => {
         e.preventDefault();
-        await fetch('http://localhost:3000/coach', {
+        let response = await fetch('http://localhost:3000/coach', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
         })
-        window.location.href = "/coachLogin"
+        let data = await response.json()
+
+        if(data.status === 'success'){
+            window.location.href = "/coachLogin"
+        } else {
+            alert('registration failed try again')
+        }
+        
     }
 
     render() {
