@@ -13,6 +13,7 @@ import CoachSearch from "./components/CoachSearch"
 export class App extends React.Component {
     
     render() {
+        console.log(window.location.pathname)
         return(
             <div className="page">
                 <Router>
@@ -35,7 +36,17 @@ export class App extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <footer className="footer bg-light"><p><small>© Coach Red 2020</small></p></footer>
+                    <footer className="footer bg-light">
+                        <p className="text-left">
+                            © Coach Red 2020
+                        </p>
+                        
+                        <p className="text-right">
+                            <a href="#"><img src={"./images/facebook.png"}></img></a>
+                            <a href="#"><img src={"./images/twitter.png"}></img></a>
+                        </p>
+                      
+                    </footer>
                 </Router>
             </div>
         )
