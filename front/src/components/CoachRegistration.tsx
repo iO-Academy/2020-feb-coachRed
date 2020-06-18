@@ -85,6 +85,7 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
             this.setState({ town: data.address.suburb })
             this.setState({ county: data.address.county })
             this.setState({ address2: data.address.road })
+            this.setState({address1: ''})
         }
     }
     updateAddress1 = (newAddr1: string) => {
@@ -129,14 +130,21 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
 
     sendResults = async (e: any) => {
         e.preventDefault();
-        await fetch('http://localhost:3000/coach', {
+        let response = await fetch('http://localhost:3000/coach', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
         })
-        window.location.href = "/coachLogin"
+        let data = await response.json()
+
+        if(data.status === 'success'){
+            window.location.href = "/coachLogin"
+        } else {
+            alert('registration failed try again')
+        }
+        
     }
 
     render() {
@@ -160,11 +168,13 @@ export class CoachRegistration extends React.Component<{}, CoachRegistrationStat
                     
                     <TextInput label="Date of Birth" fieldName="dateOfBirth" fieldData={this.state.dob}
                         inputType="date" isRequired={true} updateParent={this.updateDateOfBirth} />
-                    
-                    <LocationField updateParent={this.updateLocation} fieldData={this.state.location} />
-                    
-                    <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} 
-                        isRequired={true} postcode={this.state.postcode}/>
+                     
+                     <div className="locationBox">
+                        <LocationField updateParent={this.updateLocation} fieldData={this.state.location} />
+                        
+                        <PostCodeSearch updateLocation={this.updateLocation} updateParent={this.updatePostcode} 
+                            isRequired={true} postcode={this.state.postcode}/>
+                    </div>
                     
                     <TextInput label="Address Line 1:" fieldName="addressOne" fieldData={this.state.address1}
                         inputType="text" isRequired={true} updateParent={this.updateAddress1} />
