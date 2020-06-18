@@ -22,7 +22,7 @@ export default async (req : express.Request, res : express.Response) => {
                 const coachIncludingDistance = {
                     firstName : coach.firstName,
                     lastName: coach.lastName,
-                    distance: distance,
+                    distance: Math.floor(distance * 10)/10,
                     yearsCoaching: coach.yearsCoaching,
                     coachId: coach._id
                 }
