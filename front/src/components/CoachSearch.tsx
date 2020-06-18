@@ -67,8 +67,6 @@ class CoachSearch extends React.Component<CoachSearchProps, CoachSearchState> {
             let response = await fetch(`http://localhost:3000/coach/${search}`)
             let data = await response.json()
 
-            console.log(data)
-
             this.setState({ searchResults: data.data.matchingCoaches })
         } else {
             alert('No location provided')
