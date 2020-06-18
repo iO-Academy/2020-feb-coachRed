@@ -77,6 +77,22 @@ export default async (req: express.Request, res: express.Response) => {
                 }
                 timeSlot.bookedBy.push(booking)
                 coach.save()
+               
+                let mailOptionsAthlete: MailOptions = {
+                    from: "Coach Red <coach.red.proto@gmail.com",
+                    to: athlete.email,
+                    subject: 'You have booked a slot',
+                    html: '<h3>Hi!</h3> <p>You have successfully booked a slot.</p>'
+                }
+            
+                let mailOptionsCoach: MailOptions = {
+                    from: "Coach Red <coach.red.proto@gmail.com",
+                    to: coach.email,
+                    subject: 'Someone booked a slot!',
+                    html: '<h3>Hi!</h3> <p>Someone has booked your slot.</p>'
+                }
+                sendEmail(mailOptionsAthlete)
+                sendEmail(mailOptionsCoach)
             })
                             
             .then(coach => {
@@ -86,13 +102,7 @@ export default async (req: express.Request, res: express.Response) => {
                     data: {}
                 })
             })
-            let mailOptions: MailOptions = {
-                from: "Coach Red <coach.red.proto@gmail.com",
-                to: athlete.email,
-                subject: 'You have booked a slot',
-                html: '<h3>Hi!</h3> <p>You have successfully booked a slot.</p>'
-            }
-            sendEmail(mailOptions)       
+                   
         }
     
     catch (err) {

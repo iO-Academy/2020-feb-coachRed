@@ -97,7 +97,7 @@ export default class ViewCoach extends Component<ViewCoachProps, ViewCoachState>
 
   render() {
     return (
-      <div>
+      <div className="viewCoachAll">
           <div className="viewCoach">
               <h1>{this.state.coach.firstName} {this.state.coach.lastName}</h1>
               <h6>Coaches {this.state.coach.sport}</h6>
