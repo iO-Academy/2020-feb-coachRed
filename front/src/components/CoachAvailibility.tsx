@@ -32,7 +32,10 @@ export class CoachAvailibility extends React.Component<CoachAvailibilityProps, C
   }
 
   updateSelectedDate = async (dateClicked: Date) => {
-    if(dateClicked.setHours(0,0,0,0) < (new Date(Date.now())).setHours(0,0,0,0)){
+
+    let dateToCheck = new Date()
+    Object.assign(dateToCheck, dateClicked)
+    if(dateToCheck.setHours(0,0,0,0) < (new Date(Date.now())).setHours(0,0,0,0)){
       alert("Please select a date in the future")
     }else{
       this.setState({ selectedDate: dateClicked })
