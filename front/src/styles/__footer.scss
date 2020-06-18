@@ -1,0 +1,18 @@
+footer {
+    position: fixed;
+    height: 1.5em;
+    overflow: hidden;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    border-top: 1px solid $mainFontColour;
+    display: flex;
+    justify-content: space-between;
+    p{
+        width: 50%;
+    }
+    img {
+        height: 200%;
+        padding-right: 1em;
+    }
+}

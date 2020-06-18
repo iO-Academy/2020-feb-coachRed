@@ -1,2 +1,7 @@
+node_modules
+.vscode
 .DS_Store
 .idea
+dist
+**/.env
+front/build

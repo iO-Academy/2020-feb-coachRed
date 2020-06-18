@@ -1,0 +1,23 @@
+@import '__defines';
+
+#navbar {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid $mainFontColour;
+    z-index: 1;
+    width: 100%;
+
+    li {
+        height: 100%;
+    }
+}
+
+.nav-link {
+    display: inline-block;
+}
+
+@media only screen and (max-width: 375px) {
+    .navbar-brand {
+        display: none
+    }
+}

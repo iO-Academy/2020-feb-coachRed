@@ -1,0 +1,21 @@
+@import '__defines';
+
+.dropdownContainer {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+
+    .dropdownItems {
+        position:absolute;
+        top: 100%;
+        z-index: 1;
+        background-color: $backgroundLight;
+        border: 1px solid $mainFontColour;
+        border-radius: 5px;
+        left: 2rem;
+
+        .dropdownItem {
+            padding: 0.5em;
+        }
+    }
+}

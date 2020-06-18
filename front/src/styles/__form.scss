@@ -1,0 +1,73 @@
+.form {
+    padding-top: 1em;
+    padding-bottom: 3em;
+
+    .formItem {
+        width: 80%;
+        margin: auto;
+        padding-top: 1em;
+    }
+
+    .postcodeForm {
+        width: 80%;
+        margin: auto;
+        padding-top: 1em;
+        display: flex;
+        align-items: flex-end;
+        align-content: stretch;
+
+        .postcodeInput {
+            width: 100%;
+        }
+
+        .magnifyingGlass{
+            background-image: url('../images/search.png');
+            height: 2.4em;
+            width: 2.4em;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0 1em;
+            padding: 1em;
+            display: inline;
+        }
+    }
+
+    .dropdownContainer {
+        width: 80%;
+        margin: auto;
+        padding-top: 1em;
+        display: flex;
+        align-items: flex-end;
+        align-content: space-between;
+
+        .dropdown {
+            padding-left: 2em;
+        }
+    }
+
+    .passwordContainer {
+        padding-top: 1em;
+        width: 80%;
+        margin: auto;
+
+        label {
+            padding-top: 1em;
+        }
+
+        p {
+            padding-top: 1em;
+        }
+        
+    }
+
+    .submit {
+        text-align: center;
+        
+        button {
+            width: 60%;
+            margin: auto;
+            margin-top: 2em;
+        }
+    }  
+}

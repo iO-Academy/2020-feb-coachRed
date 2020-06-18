@@ -1,0 +1,20 @@
+body{
+    min-height: 100vh;
+    #root {
+        min-height: 100vh;
+        .page { 
+            min-height: 100vh;
+            .container {
+                min-height: 100vh;
+                .row{
+                    min-height: 100vh;
+                    height: 100%;
+                    .pageContent{
+                        min-height: 100%;
+                        padding-bottom: 2em;
+                    }
+                }
+            }
+        }
+    }
+}

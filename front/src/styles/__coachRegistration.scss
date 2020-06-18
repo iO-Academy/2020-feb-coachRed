@@ -1,0 +1,19 @@
+ .registration {
+
+    .pageHeading {
+        padding-top: 1em;
+        text-align: center;
+        padding-bottom: 0.5em
+    }
+    p {
+        text-align: center;
+    }
+
+    .locationBox{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 82%;
+        margin: auto;
+    }
+ }
