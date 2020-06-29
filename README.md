@@ -7,5 +7,5 @@ Application is split into front and back folders.
 
 Each of the two has a gulp watch set up, and each can be started with npm start. 
 
-DB has three collections: sport, athlete, and coach.
+The DB must be named `CoachRed` and has three collections: `sport`, `athlete`, and `coach`.
 
