@@ -18,7 +18,7 @@
     "react-modal": "^3.11.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "typescript": "^3.7.5",
     "validator": "^13.1.1"
   },
@@ -28,9 +28,9 @@
     "@types/react-router": "^5.1.7",
     "@types/react-router-dom": "^5.1.5",
     "gulp": "^4.0.2",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^2.6.5",
-    "node-sass": "^4.14.1"
+    "node-sass": "^9.0.0"
   },
   "scripts": {
     "start": "PORT=8000 react-scripts start",
